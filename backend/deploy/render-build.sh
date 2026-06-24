@@ -2,7 +2,7 @@
 # Render.com build script
 set -e
 echo "Installing dependencies..."
-npm install
+npm install --include=dev
 echo "Generating Prisma client..."
 npx prisma generate
 echo "Building TypeScript..."
