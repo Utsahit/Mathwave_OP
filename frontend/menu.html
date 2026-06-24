@@ -305,7 +305,10 @@ function renderMenuItems(category) {
 
 async function loadMenuData() {
   try {
-    const response = await fetch('http://localhost:5000/api/v1/menu/public');
+    const apiBase = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+      ? 'http://localhost:5000'
+      : 'https://elixir-oak-api.onrender.com';
+    const response = await fetch(apiBase + '/api/v1/menu/public');
     if (!response.ok) throw new Error('Unable to load menu from API');
     const body = await response.json();
     const categories = body?.data?.categories;
