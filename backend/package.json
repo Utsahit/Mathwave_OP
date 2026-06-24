@@ -14,7 +14,6 @@
     "lint": "eslint \"src/**/*.ts\" \"tests/**/*.ts\"",
     "test": "jest --runInBand --detectOpenHandles",
     "bench": "node benchmarks/run.js",
-    "prepare": "husky",
     "typecheck": "tsc --noEmit"
   },
   "lint-staged": {
