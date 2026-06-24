@@ -1,0 +1,9 @@
+{
+  "version": "5.22.0",
+  "steps": [
+    {
+      "tag": "CreateEnum",
+      "enum": "ReportFrequency"
+    }
+  ]
+}
