@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Professional Service Business Template</title>
+  <meta name="description" content="Professional, responsive service business landing page built with Tailwind CSS." />
+
+  <!-- Optional font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        /* ── Primary ── */
+        "primary":                    "#3B82F6",
+        "on-primary":                 "#0A1628",
+        "primary-container":          "#1E3A5F",
+        "on-primary-container":       "#93C5FD",
+        "primary-fixed":              "#BFDBFE",
+        "primary-fixed-dim":          "#60A5FA",
+        "on-primary-fixed":           "#0A1628",
+        "on-primary-fixed-variant":   "#1D4ED8",
+
+        /* ── Secondary ── */
+        "secondary":                  "#22D3EE",
+        "on-secondary":               "#071018",
+        "secondary-container":        "#0E3042",
+        "on-secondary-container":     "#A5F3FC",
+        "secondary-fixed":            "#CFFAFE",
+        "secondary-fixed-dim":        "#67E8F9",
+        "on-secondary-fixed":         "#071018",
+        "on-secondary-fixed-variant": "#0891B2",
+
+        /* ── Tertiary ── */
+        "tertiary":                   "#A78BFA",
+        "on-tertiary":                "#14102A",
+        "tertiary-container":         "#2E1A5A",
+        "on-tertiary-container":      "#DDD6FE",
+        "tertiary-fixed":             "#EDE9FE",
+        "tertiary-fixed-dim":         "#C4B5FD",
+        "on-tertiary-fixed":          "#14102A",
+        "on-tertiary-fixed-variant":  "#7C3AED",
+
+        /* ── Error ── */
+        "error":                      "#F87171",
+        "on-error":                   "#1A0808",
+        "error-container":            "#3D0A0A",
+        "on-error-container":         "#FCA5A5",
+
+        /* ── Surfaces ── */
+        "background":                 "#080B10",
+        "on-background":              "#CDD5E0",
+        "surface":                    "#0D1117",
+        "on-surface":                 "#CDD5E0",
+        "surface-variant":            "#141B25",
+        "on-surface-variant":         "#8898A8",
+        "surface-container-lowest":   "#050709",
+        "surface-container-low":      "#080B10",
+        "surface-container":          "#0D1117",
+        "surface-container-high":     "#131920",
+        "surface-container-highest":  "#1A2230",
+        "surface-bright":             "#22303D",
+        "surface-dim":                "#050709",
+        "surface-tint":               "#3B82F6",
+
+        /* ── Inverse ── */
+        "inverse-surface":            "#CDD5E0",
+        "inverse-on-surface":         "#0D1117",
+        "inverse-primary":            "#1D4ED8",
+
+        /* ── Outline ── */
+        "outline":                    "#2D3F52",
+        "outline-variant":            "#1A2535",
+
+        /* ── Scrim / Shadow ── */
+        "scrim":                      "#000000",
+        "shadow":                     "#000000",
+
+        /* ── Data-vis semantic palette ── */
+        "data-positive":              "#22C55E",
+        "data-negative":              "#EF4444",
+        "data-warning":               "#F59E0B",
+        "data-neutral":               "#94A3B8",
+        "data-highlight":             "#3B82F6",
+        "data-series-1":              "#3B82F6",
+        "data-series-2":              "#22D3EE",
+        "data-series-3":              "#A78BFA",
+        "data-series-4":              "#34D399",
+        "data-series-5":              "#FB923C",
+        "data-series-6":              "#F472B6"
+      },
+      borderRadius: {
+        "none":    "0rem",
+        "DEFAULT": "0.1875rem",
+        "sm":      "0.125rem",
+        "md":      "0.1875rem",
+        "lg":      "0.3125rem",
+        "xl":      "0.5rem",
+        "2xl":     "0.75rem",
+        "full":    "9999px"
+      },
+      spacing: {
+        "unit":   "4px",
+        "xs":     "2px",
+        "sm":     "6px",
+        "md":     "12px",
+        "lg":     "20px",
+        "xl":     "32px",
+        "2xl":    "48px",
+        "gutter": "16px",
+        "margin": "24px"
+      },
+      fontFamily: {
+        "display":    ["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "headline-xl":["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "headline-lg":["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "headline-md":["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "headline-sm":["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "body-lg":    ["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "body-md":    ["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "body-sm":    ["'IBM Plex Sans'", "'Inter'", "sans-serif"],
+        "label-lg":   ["'IBM Plex Mono'", "monospace"],
+        "label-md":   ["'IBM Plex Mono'", "monospace"],
+        "label-sm":   ["'IBM Plex Mono'", "monospace"],
+        "mono":       ["'IBM Plex Mono'", "monospace"],
+        "tabular":    ["'IBM Plex Mono'", "monospace"]
+      },
+      fontSize: {
+        "headline-xl": ["28px",  {lineHeight:"1.2",  fontWeight:"600", letterSpacing:"-0.01em"}],
+        "headline-lg": ["22px",  {lineHeight:"1.25", fontWeight:"600", letterSpacing:"-0.005em"}],
+        "headline-md": ["17px",  {lineHeight:"1.3",  fontWeight:"500"}],
+        "headline-sm": ["14px",  {lineHeight:"1.3",  fontWeight:"500"}],
+        "body-lg":     ["14px",  {lineHeight:"1.6",  fontWeight:"400"}],
+        "body-md":     ["13px",  {lineHeight:"1.55", fontWeight:"400"}],
+        "body-sm":     ["12px",  {lineHeight:"1.5",  fontWeight:"400"}],
+        "label-lg":    ["12px",  {lineHeight:"1.3",  letterSpacing:"0.02em", fontWeight:"500"}],
+        "label-md":    ["11px",  {lineHeight:"1.2",  letterSpacing:"0.04em", fontWeight:"500"}],
+        "label-sm":    ["10px",  {lineHeight:"1.1",  letterSpacing:"0.06em", fontWeight:"500"}]
+      },
+      letterSpacing: {
+        "tightest": "-0.03em",
+        "tighter":  "-0.01em",
+        "tight":    "-0.005em",
+        "normal":   "0em",
+        "wide":     "0.03em",
+        "wider":    "0.06em",
+        "widest":   "0.12em"
+      },
+      lineHeight: {
+        "none":    "1",
+        "display": "1.2",
+        "tight":   "1.3",
+        "snug":    "1.4",
+        "normal":  "1.5",
+        "relaxed": "1.6",
+        "loose":   "1.7"
+      },
+      fontWeight: {
+        "thin":       "100",
+        "extralight": "200",
+        "light":      "300",
+        "normal":     "400",
+        "medium":     "500",
+        "semibold":   "600",
+        "bold":       "700",
+        "extrabold":  "800",
+        "black":      "900"
+      },
+      boxShadow: {
+        "none":  "none",
+        "sm":    "0 1px 2px rgba(0,0,0,0.4)",
+        "md":    "0 2px 6px rgba(0,0,0,0.5)",
+        "lg":    "0 4px 12px rgba(0,0,0,0.6)",
+        "xl":    "0 8px 24px rgba(0,0,0,0.7)",
+        "inner": "inset 0 1px 3px rgba(0,0,0,0.6)",
+        "focus": "0 0 0 2px rgba(59,130,246,0.5)"
+      },
+      transitionDuration: {
+        "fast":   "80ms",
+        "normal": "150ms",
+        "slow":   "280ms"
+      },
+      transitionTimingFunction: {
+        "sharp":  "cubic-bezier(0.4,0,0.6,1)",
+        "smooth": "cubic-bezier(0.4,0,0.2,1)",
+        "bounce": "cubic-bezier(0.34,1.56,0.64,1)"
+      },
+      zIndex: {
+        "behind":    "-1",
+        "base":      "0",
+        "raised":    "10",
+        "sticky":    "20",
+        "dropdown":  "30",
+        "overlay":   "40",
+        "modal":     "50",
+        "toast":     "60",
+        "tooltip":   "70",
+        "popover":   "80"
+      },
+      screens: {
+        "xs":  "375px",
+        "sm":  "640px",
+        "md":  "768px",
+        "lg":  "1024px",
+        "xl":  "1280px",
+        "2xl": "1536px",
+        "3xl": "1920px",
+        "4xl": "2560px"
+      },
+      maxWidth: {
+        "prose":       "56ch",
+        "container":   "1400px",
+        "wide":        "1800px",
+        "ultrawide":   "2200px",
+        "full":        "100%"
+      },
+      minWidth: {
+        "cell-xs":  "48px",
+        "cell-sm":  "80px",
+        "cell-md":  "120px",
+        "cell-lg":  "180px",
+        "cell-xl":  "240px"
+      }
+    }
+  }
+}
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, sans-serif; }
+  </style>
+</head>
+
+<body class="bg-background text-on-background antialiased">
+  <!-- Sticky Navigation -->
+  <header class="sticky top-0 z-50 border-b border-outline-variant/60 bg-background/90 backdrop-blur">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8" aria-label="Primary">
+      <a href="#home" class="flex items-center gap-3">
+        <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary shadow-sm">
+          <span class="text-label-md font-bold">P</span>
+        </div>
+        <div>
+          <p class="text-label-md font-semibold tracking-wide text-on-background">Prestige Advisory</p>
+          <p class="text-label-sm text-on-surface-variant">Consulting • Legal • Accounting</p>
+        </div>
+      </a>
+
+      <div class="hidden items-center gap-8 md:flex">
+        <a href="#services" class="text-body-md font-medium text-on-surface-variant transition hover:text-primary">Services</a>
+        <a href="#trust" class="text-body-md font-medium text-on-surface-variant transition hover:text-primary">Trust</a>
+        <a href="#contact" class="text-body-md font-medium text-on-surface-variant transition hover:text-primary">Contact</a>
+      </div>
+
+      <div class="hidden md:block">
+        <a
+          href="https://wa.me/15551234567?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation."
+          target="_blank"
+          rel="noreferrer"
+          class="inline-flex items-center rounded-full bg-primary px-5 py-3 text-label-md font-semibold text-on-primary shadow-sm transition hover:bg-primary/90"
+        >
+          WhatsApp Us
+        </a>
+      </div>
+
+      <button
+        id="menuBtn"
+        class="inline-flex items-center justify-center rounded-full border border-outline-variant px-4 py-2 text-label-md font-semibold text-on-background md:hidden"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+        type="button"
+      >
+        Menu
+      </button>
+    </nav>
+
+    <div id="mobileMenu" class="hidden border-t border-outline-variant bg-background md:hidden">
+      <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4 sm:px-6">
+        <a href="#services" class="rounded-lg px-3 py-2 text-body-md font-medium text-on-surface-variant hover:bg-surface">Services</a>
+        <a href="#trust" class="rounded-lg px-3 py-2 text-body-md font-medium text-on-surface-variant hover:bg-surface">Trust</a>
+        <a href="#contact" class="rounded-lg px-3 py-2 text-body-md font-medium text-on-surface-variant hover:bg-surface">Contact</a>
+        <a
+          href="https://wa.me/15551234567?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation."
+          target="_blank"
+          rel="noreferrer"
+          class="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-5 py-3 text-label-md font-semibold text-on-primary"
+        >
+          WhatsApp Us
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="home">
+    <!-- Hero -->
+    <section class="relative overflow-hidden bg-surface-container-low">
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,_rgba(59,130,246,0.12),_transparent_35%),radial-gradient(circle_at_bottom_left,_rgba(99,102,241,0.10),_transparent_30%)]"></div>
+
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-28">
+        <div>
+          <span class="inline-flex rounded-full bg-primary-container px-4 py-2 text-label-sm font-semibold text-on-primary-container">
+            Trusted professional services
+          </span>
+
+          <h1 class="mt-6 max-w-2xl font-headline-xl text-4xl font-light tracking-tight text-on-background sm:text-5xl">
+            Clear advice, strong strategy, and dependable results for your business.
+          </h1>
+
+          <p class="mt-6 max-w-xl font-body-lg text-on-surface-variant">
+            We help clients navigate legal, financial, and strategic decisions with precision, discretion, and a corporate standard of service.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+            <a
+              href="https://wa.me/15551234567?text=Hello%2C%20I%20would%20like%20to%20book%20a%20consultation."
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center justify-center rounded-full bg-primary px-6 py-3.5 text-label-md font-semibold text-on-primary shadow-sm transition hover:bg-primary/90"
+            >
+              Book on WhatsApp
+            </a>
+            <a
+              href="#services"
+              class="inline-flex items-center justify-center rounded-full border border-outline-variant bg-surface px-6 py-3.5 text-label-md font-semibold text-on-background transition hover:bg-surface-container"
+            >
+              Explore Services
+            </a>
+          </div>
+
+          <dl class="mt-10 grid max-w-xl grid-cols-3 gap-4">
+            <div class="rounded-2xl bg-surface p-4 shadow-soft ring-1 ring-outline-variant/60">
+              <dt class="text-label-sm font-semibold uppercase tracking-wide text-on-surface-variant">Experience</dt>
+              <dd class="mt-2 text-2xl font-bold text-on-background">10+</dd>
+            </div>
+            <div class="rounded-2xl bg-surface p-4 shadow-soft ring-1 ring-outline-variant/60">
+              <dt class="text-label-sm font-semibold uppercase tracking-wide text-on-surface-variant">Clients</dt>
+              <dd class="mt-2 text-2xl font-bold text-on-background">500+</dd>
+            </div>
+            <div class="rounded-2xl bg-surface p-4 shadow-soft ring-1 ring-outline-variant/60">
+              <dt class="text-label-sm font-semibold uppercase tracking-wide text-on-surface-variant">Rating</dt>
+              <dd class="mt-2 text-2xl font-bold text-on-background">4.9/5</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="lg:justify-self-end">
+          <div class="rounded-[2rem] bg-surface p-6 shadow-soft ring-1 ring-outline-variant/60">
+            <div class="rounded-[1.5rem] bg-surface-container-lowest p-6">
+              <div class="flex items-center justify-between">
+                <p class="text-label-md font-semibold text-on-background">Client Support</p>
+                <span class="rounded-full bg-secondary-container px-3 py-1 text-label-sm font-semibold text-on-secondary-container">Available</span>
+              </div>
+
+              <div class="mt-6 space-y-4">
+                <div class="rounded-2xl bg-surface-container-low p-4">
+                  <p class="text-label-md font-semibold text-on-background">Fast response</p>
+                  <p class="mt-1 text-body-md text-on-surface-variant">Prompt replies and clear next steps for every inquiry.</p>
+                </div>
+                <div class="rounded-2xl bg-surface-container-low p-4">
+                  <p class="text-label-md font-semibold text-on-background">Confidential handling</p>
+                  <p class="mt-1 text-body-md text-on-surface-variant">Your information stays private and professionally managed.</p>
+                </div>
+                <div class="rounded-2xl bg-surface-container-low p-4">
+                  <p class="text-label-md font-semibold text-on-background">Tailored guidance</p>
+                  <p class="mt-1 text-body-md text-on-surface-variant">Solutions aligned with your goals, sector, and timeline.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="bg-background py-20 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-label-sm font-semibold uppercase tracking-[0.2em] text-primary">Services</p>
+          <h2 class="mt-3 font-headline-lg text-3xl font-light tracking-tight text-on-background sm:text-4xl">
+            Practical support for high-trust professional needs.
+          </h2>
+          <p class="mt-4 text-body-lg text-on-surface-variant">
+            Structured advice, precise execution, and a polished client experience from first contact to final delivery.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 md:grid-cols-3">
+          <!-- Card 1 -->
+          <article class="rounded-2xl bg-surface p-6 shadow-soft ring-1 ring-outline-variant/60 transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-container text-on-primary-container">
+              <!-- Briefcase icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1m-8 0h12a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2Zm0 0h12m-9 5h6" />
+              </svg>
+            </div>
+            <h3 class="mt-5 font-headline-md text-2xl text-on-background">Business Advisory</h3>
+            <p class="mt-3 text-body-md text-on-surface-variant">
+              Strategic planning, operational guidance, and decision support for growth-focused companies.
+            </p>
+          </article>
+
+          <!-- Card 2 -->
+          <article class="rounded-2xl bg-surface p-6 shadow-soft ring-1 ring-outline-variant/60 transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-secondary-container text-on-secondary-container">
+              <!-- Scale icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v18m-7-5h14M6 6l4 8a3 3 0 0 1-6 0l4-8Zm12 0 4 8a3 3 0 0 1-6 0l4-8Z" />
+              </svg>
+            </div>
+            <h3 class="mt-5 font-headline-md text-2xl text-on-background">Legal Services</h3>
+            <p class="mt-3 text-body-md text-on-surface-variant">
+              Contract review, compliance support, dispute preparation, and client representation.
+            </p>
+          </article>
+
+          <!-- Card 3 -->
+          <article class="rounded-2xl bg-surface p-6 shadow-soft ring-1 ring-outline-variant/60 transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-tertiary-container text-on-tertiary-container">
+              <!-- Calculator icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm2 4h6m-6 4h.01M13 11h.01M9 11h.01M13 15h.01M9 15h.01" />
+              </svg>
+            </div>
+            <h3 class="mt-5 font-headline-md text-2xl text-on-background">Accounting & Tax</h3>
+            <p class="mt-3 text-body-md text-on-surface-variant">
+              Bookkeeping, reporting, tax planning, and financial clarity for confident decisions.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust -->
+    <section id="trust" class="bg-surface py-20 sm:py-24">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <p class="text-label-sm font-semibold uppercase tracking-[0.2em] text-primary">Trust</p>
+          <h2 class="mt-3 font-headline-lg text-3xl font-light tracking-tight text-on-background sm:text-4xl">
+            Clients rely on us for clarity, consistency, and discretion.
+          </h2>
+        </div>
+
+        <div class="mt-10 grid gap-6 lg:grid-cols-3">
+          <blockquote class="rounded-2xl bg-surface-container-lowest p-6 shadow-soft ring-1 ring-outline-variant/60">
+            <div class="flex gap-1 text-primary" aria-label="5 out of 5 stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="mt-4 text-body-md text-on-surface-variant">
+              “Professional, responsive, and highly organized. They gave us confidence at every stage.”
+            </p>
+            <footer class="mt-5">
+              <p class="text-label-md font-semibold text-on-background">A. Sharma</p>
+              <p class="text-label-sm text-on-surface-variant">Founder, Retail Group</p>
+            </footer>
+          </blockquote>
+
+          <blockquote class="rounded-2xl bg-surface-container-lowest p-6 shadow-soft ring-1 ring-outline-variant/60">
+            <div class="flex gap-1 text-primary" aria-label="5 out of 5 stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="mt-4 text-body-md text-on-surface-variant">
+              “Clear legal guidance and excellent communication. Everything was handled with care and precision.”
+            </p>
+            <footer class="mt-5">
+              <p class="text-label-md font-semibold text-on-background">M. Khan</p>
+              <p class="text-label-sm text-on-surface-variant">Managing Director</p>
+            </footer>
+          </blockquote>
+
+          <blockquote class="rounded-2xl bg-surface-container-lowest p-6 shadow-soft ring-1 ring-outline-variant/60">
+            <div class="flex gap-1 text-primary" aria-label="5 out of 5 stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p class="mt-4 text-body-md text-on-surface-variant">
+              “Our accounting workflow became much smoother. Strong attention to detail and dependable follow-up.”
+            </p>
+            <footer class="mt-5">
+              <p class="text-label-md font-semibold text-on-background">R. Mehta</p>
+              <p class="text-label-sm text-on-surface-variant">CFO, Services Company</p>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact / Footer -->
+    <footer id="contact" class="bg-inverse-surface text-inverse-on-surface">
+      <div class="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-3 lg:px-8">
+        <div>
+          <div class="flex items-center gap-3">
+            <div class="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-on-primary">
+              <span class="text-label-md font-bold">P</span>
+            </div>
+            <div>
+              <p class="text-label-md font-semibold tracking-wide">Prestige Advisory</p>
+              <p class="text-label-sm text-inverse-on-surface/70">Consultant • Lawyer • Accountant</p>
+            </div>
+          </div>
+          <p class="mt-5 max-w-md text-body-md text-inverse-on-surface/75">
+            Dedicated professional services for businesses and individuals who value trust, speed, and quality.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="text-label-md font-semibold uppercase tracking-[0.18em] text-inverse-on-surface/80">Contact</h2>
+          <ul class="mt-5 space-y-3 text-body-md text-inverse-on-surface/75">
+            <li><span class="font-semibold text-inverse-on-surface">Phone:</span> +91 98765 43210</li>
+            <li><span class="font-semibold text-inverse-on-surface">Email:</span> hello@prestigeadvisory.com</li>
+            <li><span class="font-semibold text-inverse-on-surface">Address:</span> 21 Business Avenue, Metro City</li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-label-md font-semibold uppercase tracking-[0.18em] text-inverse-on-surface/80">Office Hours</h2>
+          <ul class="mt-5 space-y-3 text-body-md text-inverse-on-surface/75">
+            <li>Mon – Fri: 9:00 AM – 6:00 PM</li>
+            <li>Saturday: 10:00 AM – 2:00 PM</li>
+            <li>Sunday: Closed</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10">
+        <div class="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-5 text-label-sm text-inverse-on-surface/60 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+          <p>© 2026 Prestige Advisory. All rights reserved.</p>
+          <p>Designed for responsive corporate service websites.</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    menuBtn?.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.toggle("hidden");
+      menuBtn.setAttribute("aria-expanded", String(!isHidden));
+    });
+
+    // Close mobile menu after clicking a link
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "version": "5.22.0",
+  "steps": [
+    {
+      "tag": "CreateEnum",
+      "enum": "NotificationType"
+    },
+    {
+      "tag": "CreateEnum",
+      "enum": "NotificationChannel"
+    },
+    {
+      "tag": "CreateEnum",
+      "enum": "JobStatus"
+    }
+  ]
+}

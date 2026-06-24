@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>THE VAULT — Restaurant & Bar, Bengaluru</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ─────────────────────────────────────────
+       DESIGN TOKENS
+       Palette: Vault Black, Midnight Blue, Brushed Gold, Ember Amber, Warm Ivory
+    ───────────────────────────────────────── */
+    :root {
+      --vault-black:   #0A0A0F;
+      --midnight:      #0D1B2A;
+      --deep-blue:     #112233;
+      --gold:          #C9A84C;
+      --gold-light:    #E8C96D;
+      --gold-dim:      #7A6028;
+      --amber:         #D4622A;
+      --amber-soft:    #E8845A;
+      --ivory:         #F5F0E8;
+      --ivory-dim:     #BDB5A6;
+      --charcoal:      #1E2535;
+      --glass:         rgba(13,27,42,0.85);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--vault-black);
+      color: var(--ivory);
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── TYPOGRAPHY ─── */
+    .font-display  { font-family: 'Playfair Display', serif; }
+    .font-refined  { font-family: 'Cormorant Garamond', serif; }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--vault-black); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 2px; }
+
+    /* ─── NOISE TEXTURE overlay ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.3;
+    }
+
+    /* ─── NAVIGATION ─── */
+    #navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 2rem;
+      transition: background 0.5s ease, padding 0.4s ease, box-shadow 0.4s ease;
+    }
+    #navbar.scrolled {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(201,168,76,0.15);
+    }
+    .nav-inner {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 80px;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; letter-spacing: 0.35em;
+      color: var(--gold); text-decoration: none;
+      text-transform: uppercase;
+    }
+    .logo-sub {
+      display: block; font-family: 'Inter', sans-serif;
+      font-size: 0.55rem; letter-spacing: 0.3em;
+      color: var(--ivory-dim); text-transform: uppercase;
+      margin-top: -2px;
+    }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-link {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ivory-dim); text-decoration: none;
+      position: relative; padding-bottom: 2px;
+      transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 1px; background: var(--gold);
+      transition: width 0.35s ease;
+    }
+    .nav-link:hover { color: var(--ivory); }
+    .nav-link:hover::after { width: 100%; }
+
+    .btn-reserve {
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.65rem 1.6rem; border: 1px solid var(--gold);
+      color: var(--gold); background: transparent; cursor: pointer;
+      text-decoration: none;
+      position: relative; overflow: hidden;
+      transition: color 0.4s;
+    }
+    .btn-reserve::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold); transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.77,0,0.18,1);
+    }
+    .btn-reserve:hover { color: var(--vault-black); }
+    .btn-reserve:hover::before { transform: translateX(0); }
+    .btn-reserve span { position: relative; z-index: 1; }
+
+    /* ─── HAMBURGER ─── */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 1px;
+      background: var(--gold);
+      transition: all 0.3s ease;
+    }
+    .hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; z-index: 999;
+      background: var(--vault-black);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .nav-link {
+      font-size: 1.2rem; letter-spacing: 0.25em;
+      color: var(--ivory);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative; height: 100vh; min-height: 700px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(160deg, rgba(10,10,15,0.55) 0%, rgba(13,27,42,0.7) 60%, rgba(10,10,15,0.95) 100%),
+        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1800&q=80&auto=format&fit=crop') center/cover no-repeat;
+      will-change: transform;
+      transform: scale(1.08);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 1.5rem;
+      max-width: 900px;
+    }
+    .hero-eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      line-height: 0.92; font-weight: 400;
+      color: var(--ivory);
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp 1.1s ease 0.5s forwards;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-style: italic; color: var(--ivory-dim);
+      margin-top: 1.5rem; letter-spacing: 0.05em;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1.1s ease 0.75s forwards;
+    }
+    .hero-cta-group {
+      display: flex; gap: 1.2rem; justify-content: center;
+      margin-top: 3rem; flex-wrap: wrap;
+      opacity: 0; transform: translateY(20px);
+      animation: fadeUp 1.1s ease 1s forwards;
+    }
+    .btn-primary {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 1rem 2.5rem; background: var(--gold);
+      color: var(--vault-black); text-decoration: none;
+      font-weight: 600; cursor: pointer;
+      position: relative; overflow: hidden;
+      transition: color 0.4s;
+    }
+    .btn-primary::before {
+      content: ''; position: absolute; inset: 0;
+      background: var(--gold-light); transform: translateX(-101%);
+      transition: transform 0.4s cubic-bezier(0.77,0,0.18,1);
+    }
+    .btn-primary:hover::before { transform: translateX(0); }
+    .btn-primary span { position: relative; z-index: 1; }
+    .btn-outline {
+      font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase;
+      padding: 1rem 2.5rem; border: 1px solid rgba(245,240,232,0.35);
+      color: var(--ivory); text-decoration: none; cursor: pointer;
+      transition: border-color 0.3s, color 0.3s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px;
+      opacity: 0; animation: fadeIn 1s ease 1.8s forwards;
+    }
+    .scroll-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
+      animation: scrollPulse 2.5s ease-in-out infinite;
+    }
+    .scroll-label {
+      font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ivory-dim);
+    }
+
+    /* ─── DIVIDER ─── */
+    .gold-divider {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 0 auto 3rem; max-width: 200px;
+    }
+    .gold-divider::before, .gold-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--gold-dim);
+    }
+    .gold-diamond {
+      width: 6px; height: 6px; background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { padding: 7rem 1.5rem; }
+    .section-inner { max-width: 1300px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 400; line-height: 1.15; color: var(--ivory);
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-body {
+      font-size: 0.95rem; line-height: 1.85;
+      color: var(--ivory-dim); max-width: 550px;
+    }
+
+    /* ─── AMBIANCE STRIP ─── */
+    #ambiance { padding: 5rem 0; background: var(--midnight); overflow: hidden; }
+    .ambiance-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 3px; height: 480px;
+    }
+    .ambiance-cell {
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .ambiance-cell img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.75) saturate(0.85);
+      transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94),
+                  filter 0.6s ease;
+    }
+    .ambiance-cell:hover img {
+      transform: scale(1.06); filter: brightness(0.85) saturate(1);
+    }
+    .ambiance-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-style: italic;
+      color: var(--ivory); letter-spacing: 0.05em;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+    }
+
+    /* ─── MENU SECTION ─── */
+    #menu { background: var(--vault-black); }
+    .menu-tabs {
+      display: flex; gap: 0; flex-wrap: wrap;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      margin-bottom: 3.5rem;
+    }
+    .menu-tab-btn {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      padding: 1rem 1.8rem; background: none; border: none; cursor: pointer;
+      color: var(--ivory-dim);
+      position: relative;
+      transition: color 0.3s;
+    }
+    .menu-tab-btn::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 2px; background: var(--gold);
+      transform: scaleX(0); transition: transform 0.35s ease;
+    }
+    .menu-tab-btn:hover { color: var(--ivory); }
+    .menu-tab-btn.active { color: var(--gold); }
+    .menu-tab-btn.active::after { transform: scaleX(1); }
+
+    .menu-panel { display: none; }
+    .menu-panel.active { display: block; animation: fadeIn 0.4s ease; }
+
+    .menu-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px; background: rgba(201,168,76,0.08);
+    }
+    .menu-item {
+      padding: 2rem; background: var(--vault-black);
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+    }
+    .menu-item:hover { background: var(--charcoal); }
+    .menu-item-img {
+      position: absolute; inset: 0; z-index: 1;
+      opacity: 0; transform: scale(1.05);
+      transition: opacity 0.5s ease, transform 0.6s ease;
+    }
+    .menu-item-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.4);
+    }
+    .menu-item:hover .menu-item-img { opacity: 1; transform: scale(1); }
+    .menu-item-content { position: relative; z-index: 2; }
+    .menu-item-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 500; color: var(--ivory);
+      margin-bottom: 0.4rem;
+    }
+    .menu-item-desc {
+      font-size: 0.82rem; color: var(--ivory-dim); line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+    .menu-item-footer {
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .menu-item-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem; color: var(--gold);
+    }
+    .menu-badge {
+      font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.25rem 0.7rem; border: 1px solid var(--amber);
+      color: var(--amber-soft);
+    }
+
+    /* ─── SIGNATURE STORY ─── */
+    #story { background: var(--midnight); }
+    .story-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 6rem; align-items: center;
+    }
+    .story-visual {
+      position: relative; aspect-ratio: 4/5; overflow: hidden;
+    }
+    .story-visual img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.85) saturate(0.9);
+      transition: transform 0.8s ease;
+    }
+    .story-visual:hover img { transform: scale(1.04); }
+    .story-visual-frame {
+      position: absolute; inset: 1.2rem;
+      border: 1px solid rgba(201,168,76,0.25);
+      pointer-events: none;
+    }
+    .story-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 7rem; font-weight: 400; color: rgba(201,168,76,0.07);
+      line-height: 1; margin-bottom: -2rem;
+    }
+    .story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      font-style: italic; line-height: 1.6;
+      color: var(--ivory);
+      border-left: 2px solid var(--gold);
+      padding-left: 1.5rem; margin: 1.5rem 0 2rem;
+    }
+
+    /* ─── RESERVATION ─── */
+    #reservation { background: var(--vault-black); }
+    .reservation-wrap {
+      display: grid; grid-template-columns: 1fr 1.1fr;
+      gap: 5rem; align-items: start;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .form-label {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--gold);
+    }
+    .form-control {
+      background: var(--charcoal); border: 1px solid rgba(201,168,76,0.2);
+      color: var(--ivory); padding: 0.85rem 1rem;
+      font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      outline: none; width: 100%;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .form-control:focus {
+      border-color: var(--gold-dim);
+      background: rgba(30,37,53,0.95);
+    }
+    .form-control::placeholder { color: rgba(189,181,166,0.35); }
+    select.form-control option { background: var(--charcoal); }
+    .form-note {
+      font-size: 0.78rem; color: var(--ivory-dim); margin-top: 0.5rem;
+    }
+    .reservation-aside {
+      padding: 3rem; background: var(--charcoal);
+      border-top: 3px solid var(--gold);
+    }
+    .aside-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem; font-weight: 500; color: var(--ivory);
+      margin-bottom: 2rem;
+    }
+    .info-item {
+      display: flex; gap: 1rem; margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+    .info-icon {
+      width: 36px; height: 36px; border: 1px solid var(--gold-dim);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; color: var(--gold); font-size: 0.9rem;
+    }
+    .info-text-label {
+      font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.25rem;
+    }
+    .info-text-val { font-size: 0.88rem; color: var(--ivory-dim); line-height: 1.6; }
+
+    .whatsapp-btn {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.9rem 1.5rem;
+      background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3);
+      color: #25D366; text-decoration: none;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      margin-top: 2rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .whatsapp-btn:hover {
+      background: rgba(37,211,102,0.2); border-color: rgba(37,211,102,0.6);
+    }
+    .whatsapp-icon {
+      width: 20px; height: 20px; flex-shrink: 0;
+    }
+
+    /* ─── EVENTS ─── */
+    #events { background: var(--midnight); }
+    .events-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+    .event-card {
+      position: relative; overflow: hidden; cursor: pointer;
+      aspect-ratio: 3/4;
+    }
+    .event-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.55) saturate(0.8);
+      transition: transform 0.7s ease, filter 0.5s ease;
+    }
+    .event-card:hover img {
+      transform: scale(1.08); filter: brightness(0.65) saturate(1);
+    }
+    .event-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,15,0.9) 0%, transparent 50%);
+    }
+    .event-content {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem;
+    }
+    .event-tag {
+      font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .event-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; color: var(--ivory); margin-bottom: 0.5rem;
+    }
+    .event-desc { font-size: 0.82rem; color: var(--ivory-dim); line-height: 1.55; }
+    .event-arrow {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 36px; height: 36px; border: 1px solid rgba(201,168,76,0.4);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1rem;
+      transform: translateY(-8px); opacity: 0;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .event-card:hover .event-arrow { transform: translateY(0); opacity: 1; }
+
+    /* ─── FIND US ─── */
+    #find-us { background: var(--vault-black); padding: 7rem 1.5rem 0; }
+    .findus-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+      padding-bottom: 7rem;
+    }
+    .map-embed {
+      width: 100%; aspect-ratio: 4/3; border: 0;
+      filter: invert(93%) hue-rotate(180deg) brightness(0.85) saturate(1.1);
+      opacity: 0.9;
+    }
+    .social-row {
+      display: flex; gap: 1rem; margin-top: 2rem;
+    }
+    .social-icon {
+      width: 42px; height: 42px; border: 1px solid rgba(201,168,76,0.3);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ivory-dim); font-size: 1rem; text-decoration: none;
+      transition: border-color 0.3s, color 0.3s, background 0.3s;
+    }
+    .social-icon:hover {
+      border-color: var(--gold); color: var(--gold);
+      background: rgba(201,168,76,0.08);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--vault-black);
+      border-top: 1px solid rgba(201,168,76,0.15);
+      padding: 3rem 1.5rem;
+    }
+    .footer-inner {
+      max-width: 1300px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 2rem; flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; letter-spacing: 0.35em;
+      color: var(--gold); text-transform: uppercase;
+    }
+    .footer-copy {
+      font-size: 0.72rem; color: rgba(189,181,166,0.45); letter-spacing: 0.05em;
+    }
+    .footer-nav {
+      display: flex; gap: 2rem;
+    }
+    .footer-nav a {
+      font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: rgba(189,181,166,0.5); text-decoration: none;
+      transition: color 0.3s;
+    }
+    .footer-nav a:hover { color: var(--gold); }
+
+    /* ─── TOAST ─── */
+    #toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 9000;
+      background: var(--charcoal); border: 1px solid var(--gold-dim);
+      border-left: 3px solid var(--gold);
+      padding: 1rem 1.5rem; max-width: 320px;
+      transform: translateY(20px); opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.95rem; color: var(--ivory); margin-bottom: 0.25rem;
+    }
+    #toast-msg { font-size: 0.8rem; color: var(--ivory-dim); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(0.85); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.15s; }
+    .reveal-delay-2 { transition-delay: 0.3s; }
+    .reveal-delay-3 { transition-delay: 0.45s; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .story-grid,
+      .reservation-wrap,
+      .findus-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .ambiance-grid { grid-template-columns: 1fr 1fr; height: auto; }
+      .ambiance-cell { aspect-ratio: 4/3; }
+      .events-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-title { font-size: clamp(2.8rem, 12vw, 5rem); }
+      .hero-cta-group { flex-direction: column; align-items: center; }
+      .ambiance-grid { grid-template-columns: 1fr; height: auto; }
+      .events-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .menu-tabs { gap: 0; }
+      .menu-tab-btn { padding: 0.8rem 1rem; font-size: 0.65rem; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-nav { flex-wrap: wrap; justify-content: center; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="logo-text">
+      The Vault
+      <span class="logo-sub">Bengaluru · Est. 2019</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#menu" class="nav-link">Menu</a>
+      <a href="#story" class="nav-link">Our Story</a>
+      <a href="#events" class="nav-link">Events</a>
+      <a href="#find-us" class="nav-link">Find Us</a>
+      <a href="#reservation" class="btn-reserve"><span>Book a Table</span></a>
+    </div>
+
+    <div class="hamburger" id="hamburger" role="button" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#menu" class="nav-link" onclick="closeMobileMenu()">Menu</a>
+  <a href="#story" class="nav-link" onclick="closeMobileMenu()">Our Story</a>
+  <a href="#events" class="nav-link" onclick="closeMobileMenu()">Events</a>
+  <a href="#find-us" class="nav-link" onclick="closeMobileMenu()">Find Us</a>
+  <a href="#reservation" class="btn-reserve" style="font-size:0.8rem" onclick="closeMobileMenu()"><span>Book a Table</span></a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Bengaluru's Most Intimate Speakeasy</p>
+    <h1 class="hero-title">Where the <em>Night</em><br>Finds Its Voice</h1>
+    <p class="hero-tagline">Hidden beneath the city's hum — cocktails, cuisine, and conversation</p>
+    <div class="hero-cta-group">
+      <a href="#reservation" class="btn-primary"><span>Reserve Your Evening</span></a>
+      <a href="#menu" class="btn-outline">Explore the Menu</a>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <span class="scroll-label">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     AMBIANCE STRIP
+═══════════════════════════════════════════ -->
+<div id="ambiance">
+  <div class="ambiance-grid">
+    <div class="ambiance-cell">
+      <img
+        src="https://images.unsplash.com/photo-1585518419759-7fe2e0fbf8a6?w=900&q=75&auto=format&fit=crop"
+        alt="Dimly lit bar interior" loading="lazy" />
+      <span class="ambiance-label">The Bar</span>
+    </div>
+    <div class="ambiance-cell">
+      <img
+        src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=700&q=75&auto=format&fit=crop"
+        alt="Signature cocktail" loading="lazy" />
+      <span class="ambiance-label">Craft Cocktails</span>
+    </div>
+    <div class="ambiance-cell">
+      <img
+        src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=75&auto=format&fit=crop"
+        alt="Plated fine dining course" loading="lazy" />
+      <span class="ambiance-label">The Kitchen</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     MENU
+═══════════════════════════════════════════ -->
+<section id="menu">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Culinary Experience</p>
+      <h2 class="section-title">The <em>Menu</em></h2>
+    </div>
+    <div class="gold-divider reveal reveal-delay-1"><div class="gold-diamond"></div></div>
+    <p class="section-body reveal reveal-delay-2">
+      Every plate tells a story — our kitchen marries regional Indian produce with European technique, while the bar brings old-world spirits into dialogue with tropical infusions.
+    </p>
+
+    <!-- TABS -->
+    <div class="menu-tabs" style="margin-top: 3rem;">
+      <button class="menu-tab-btn active" data-tab="cocktails">Cocktails</button>
+      <button class="menu-tab-btn" data-tab="appetizers">Appetisers</button>
+      <button class="menu-tab-btn" data-tab="mains">Mains</button>
+      <button class="menu-tab-btn" data-tab="spirits">Spirits</button>
+      <button class="menu-tab-btn" data-tab="desserts">Desserts</button>
+    </div>
+
+    <!-- ── COCKTAILS ── -->
+    <div class="menu-panel active" id="tab-cocktails">
+      <div class="menu-grid">
+        <!-- Swap item data here as JSON objects → rendered below -->
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=600&q=70&auto=format&fit=crop" alt="The Veil cocktail" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">The Veil</p>
+            <p class="menu-item-desc">Cold brew bourbon, smoked honey syrup, cardamom bitters, single malt float. Served in a smoked coupe.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 850</span>
+              <span class="menu-badge">Signature</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1548504695-25de67af3e3a?w=600&q=70&auto=format&fit=crop" alt="Malabar Sour" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Malabar Sour</p>
+            <p class="menu-item-desc">Coconut-washed rum, tamarind reduction, curry leaf oil, egg white foam, Angostura.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 720</span>
+              <span class="menu-badge">House Pick</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e?w=600&q=70&auto=format&fit=crop" alt="Midnight Garden" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Midnight Garden</p>
+            <p class="menu-item-desc">Violet gin, elderflower, fresh lime, cucumber ribbon, butterfly pea foam, activated charcoal.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 780</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1563223771-375783ee91ad?w=600&q=70&auto=format&fit=crop" alt="Brass Serpent" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Brass Serpent</p>
+            <p class="menu-item-desc">Mezcal, jalapeño tincture, passion fruit, agave, smoked salt rim, dehydrated chilli garnish.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 890</span>
+              <span class="menu-badge">Bold</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=600&q=70&auto=format&fit=crop" alt="Velvet Noir" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Velvet Noir</p>
+            <p class="menu-item-desc">Cognac, dark cherry liqueur, cold brew, mole bitters, Champagne rinse. A dessert in a glass.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 960</span>
+              <span class="menu-badge">After Dark</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=70&auto=format&fit=crop" alt="Detox Mirage" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Saffron Virgin</p>
+            <p class="menu-item-desc">Saffron-infused lemonade, kaffir lime, rose water, ginger foam. A non-alcoholic indulgence.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 520</span>
+              <span class="menu-badge">Zero Proof</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── APPETISERS ── -->
+    <div class="menu-panel" id="tab-appetizers">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&q=70&auto=format&fit=crop" alt="Burrata" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Burrata e Pomodoro</p>
+            <p class="menu-item-desc">Hand-torn burrata, Ooty heritage tomatoes, basil oil, Maldon salt, grilled sourdough.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 680</span>
+              <span class="menu-badge">Seasonal</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=600&q=70&auto=format&fit=crop" alt="Lamb Chops" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Raan Tikka Bites</p>
+            <p class="menu-item-desc">24-hour marinated lamb rack bites, Rajasthani spice crust, mint chutney foam, pickled onion.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 1,100</span>
+              <span class="menu-badge">Chef's Table</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=70&auto=format&fit=crop" alt="Ceviche" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Kerala Ceviche</p>
+            <p class="menu-item-desc">Tiger prawns, coconut milk leche de tigre, green mango, curry oil, black sesame crisp.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 920</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&q=70&auto=format&fit=crop" alt="Truffle flatbread" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Truffle Kulcha</p>
+            <p class="menu-item-desc">Clay-oven flatbread, black truffle mascarpone, caramelised shallots, micro herbs, truffle oil.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 750</span>
+              <span class="menu-badge">Vegetarian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MAINS ── -->
+    <div class="menu-panel" id="tab-mains">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=70&auto=format&fit=crop" alt="Ribeye" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Black Angus Ribeye</p>
+            <p class="menu-item-desc">300g Australian ribeye, smoked bone marrow butter, porcini jus, truffle pomme purée, charred broccolini.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 3,200</span>
+              <span class="menu-badge">Dry Aged</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=70&auto=format&fit=crop" alt="Duck Confit" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Duck Confit Biryani</p>
+            <p class="menu-item-desc">72-hour confit duck leg, aged basmati, saffron broth, fried shallot crisp, pomegranate raita.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 1,850</span>
+              <span class="menu-badge">Vault Classic</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&q=70&auto=format&fit=crop" alt="Seafood" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Mangalorean Seafood Platter</p>
+            <p class="menu-item-desc">Grilled pomfret, masala prawns, clam curry, toddy shop neer dosa, kokum rasam shot.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 2,400</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=600&q=70&auto=format&fit=crop" alt="Mushroom Tasting" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Wild Mushroom Tasting</p>
+            <p class="menu-item-desc">Portobello tart, lion's mane crisps, oyster mushroom ragù, aged parmesan cream, chestnut gnocchi.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 1,450</span>
+              <span class="menu-badge">Vegetarian</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SPIRITS ── -->
+    <div class="menu-panel" id="tab-spirits">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1510627498534-cf7e9002facc?w=600&q=70&auto=format&fit=crop" alt="Whisky" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Whisky Collection</p>
+            <p class="menu-item-desc">Curated selection of 40+ single malts, blends, and rare Indian whiskies. Ask your host for our off-menu cask reserves.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">From ₹ 450</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600&q=70&auto=format&fit=crop" alt="Gin selection" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Gin Vault</p>
+            <p class="menu-item-desc">30+ gins from Jaisalmer to Hendrick's to Navy Strength Goa. Each paired with a tonics and botanicals of the season.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">From ₹ 480</span>
+              <span class="menu-badge">Popular</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1569529465841-dfecdab7503b?w=600&q=70&auto=format&fit=crop" alt="Rum" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Aged Rum Selection</p>
+            <p class="menu-item-desc">Caribbean, South American, and Indian aged rums. Served neat or over a 7cm hand-carved sphere of crystal ice.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">From ₹ 520</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1474722883778-792e7990302f?w=600&q=70&auto=format&fit=crop" alt="Wine" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Wine Cellar</p>
+            <p class="menu-item-desc">Old World and New World wines selected by our sommelier. Nashik, Bordeaux, Barossa Valley. Glass or bottle service.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">From ₹ 600</span>
+              <span class="menu-badge">Sommelier Pick</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DESSERTS ── -->
+    <div class="menu-panel" id="tab-desserts">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1611329857570-f02f340e7378?w=600&q=70&auto=format&fit=crop" alt="Chocolate dessert" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Midnight Chocolate</p>
+            <p class="menu-item-desc">Valrhona 72% ganache, kala namak caramel, hazelnut praline, gold leaf, warm chocolate sorbet.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 650</span>
+              <span class="menu-badge">Signature</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=70&auto=format&fit=crop" alt="Mango dessert" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Alphonso Mango Soufflé</p>
+            <p class="menu-item-desc">Seasonal Alphonso coulis, coconut crème anglaise, toasted sesame tuile, mango granita.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 580</span>
+              <span class="menu-badge">Seasonal</span>
+            </div>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-img">
+            <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=70&auto=format&fit=crop" alt="Cheese board" loading="lazy"/>
+          </div>
+          <div class="menu-item-content">
+            <p class="menu-item-name">Artisan Cheese Cart</p>
+            <p class="menu-item-desc">Three handpicked Indian and international cheeses, honeycomb, Gouda truffled, walnut crackers, quince paste.</p>
+            <div class="menu-item-footer">
+              <span class="menu-item-price">₹ 890</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     STORY
+═══════════════════════════════════════════ -->
+<section id="story">
+  <div class="section-inner">
+    <div class="story-grid">
+      <div class="story-visual reveal">
+        <img
+          src="https://images.unsplash.com/photo-1538488881038-e252a119ace7?w=900&q=75&auto=format&fit=crop"
+          alt="The Vault bar interior" loading="lazy"/>
+        <div class="story-visual-frame"></div>
+      </div>
+      <div>
+        <p class="section-label reveal">Our Story</p>
+        <div class="story-number reveal reveal-delay-1">01</div>
+        <h2 class="section-title reveal reveal-delay-1">Behind the <em>Brass Door</em></h2>
+        <blockquote class="story-quote reveal reveal-delay-2">
+          "The best conversations happen in rooms where the world outside is briefly forgotten."
+        </blockquote>
+        <p class="section-body reveal reveal-delay-2" style="margin-bottom:1.5rem;">
+          Tucked behind a nondescript brass door on Residency Road, The Vault was conceived as an antidote to the loud and the obvious. We believe a great evening is earned slowly — through a perfectly balanced Negroni, a dish that surprises you, and a playlist that understands the room.
+        </p>
+        <p class="section-body reveal reveal-delay-3">
+          Our kitchen is led by Chef Arjun Menon, whose background spans Bombay Canteen, Noma Copenhagen, and the backyards of his grandmother in Kozhikode. The bar programme is crafted by mixologist Zara Khan — previously of Sidecar, Delhi.
+        </p>
+        <div class="hero-cta-group" style="justify-content:flex-start; margin-top:2.5rem; opacity:1; transform:none;">
+          <a href="#reservation" class="btn-primary reveal reveal-delay-3"><span>Meet Us Tonight</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     RESERVATION
+═══════════════════════════════════════════ -->
+<section id="reservation">
+  <div class="section-inner">
+    <p class="section-label reveal">Reserve Your Evening</p>
+    <h2 class="section-title reveal reveal-delay-1">Book a <em>Table</em></h2>
+    <div class="gold-divider reveal reveal-delay-2"><div class="gold-diamond"></div></div>
+
+    <div class="reservation-wrap" style="margin-top:3rem;">
+      <!-- FORM -->
+      <div class="reveal">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-control" placeholder="Arjun" id="fname"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-control" placeholder="Sharma" id="lname"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input type="date" class="form-control" id="rdate"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Time</label>
+            <select class="form-control" id="rtime">
+              <option value="">Select a time</option>
+              <option>7:00 PM</option>
+              <option>7:30 PM</option>
+              <option>8:00 PM</option>
+              <option>8:30 PM</option>
+              <option>9:00 PM</option>
+              <option>9:30 PM</option>
+              <option>10:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Guests</label>
+            <select class="form-control" id="rguests">
+              <option>1 Guest</option>
+              <option>2 Guests</option>
+              <option>3 Guests</option>
+              <option>4 Guests</option>
+              <option>5–6 Guests</option>
+              <option>7–10 Guests</option>
+              <option>Private Event (10+)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Occasion</label>
+            <select class="form-control" id="roccasion">
+              <option>Dinner</option>
+              <option>Date Night</option>
+              <option>Birthday</option>
+              <option>Anniversary</option>
+              <option>Business Dinner</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-control" placeholder="+91 98765 43210" id="rphone"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Special Requests</label>
+          <textarea class="form-control" rows="3" placeholder="Dietary requirements, seating preference, celebrations..." id="rnotes"></textarea>
+        </div>
+        <p class="form-note">Reservations are held for 15 minutes past the booked time. For same-day bookings, please WhatsApp us.</p>
+        <button class="btn-primary" style="margin-top:1.5rem; border:none;" onclick="handleReservation()">
+          <span>Confirm Reservation →</span>
+        </button>
+      </div>
+
+      <!-- ASIDE -->
+      <div class="reservation-aside reveal reveal-delay-1">
+        <p class="aside-title">Good to Know</p>
+
+        <div class="info-item">
+          <div class="info-icon">⏰</div>
+          <div>
+            <p class="info-text-label">Hours</p>
+            <p class="info-text-val">Tuesday – Sunday<br>7:00 PM — 1:30 AM<br>Kitchen closes at 11:30 PM</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📍</div>
+          <div>
+            <p class="info-text-label">Location</p>
+            <p class="info-text-val">Basement 1, The Leela Galleria<br>23 Old Airport Road, Domlur<br>Bengaluru — 560 017</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">📞</div>
+          <div>
+            <p class="info-text-label">Call Us</p>
+            <p class="info-text-val">+91 80 4567 8900</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">👔</div>
+          <div>
+            <p class="info-text-label">Dress Code</p>
+            <p class="info-text-val">Smart Casual. We gently discourage sportswear and flip-flops — the ambiance deserves it.</p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/918045678900?text=Hi%2C%20I'd%20like%20to%20make%20a%20reservation%20at%20The%20Vault%2C%20Bengaluru" target="_blank" class="whatsapp-btn">
+          <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Reserve via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     EVENTS
+═══════════════════════════════════════════ -->
+<section id="events">
+  <div class="section-inner">
+    <p class="section-label reveal">Private & Group Experiences</p>
+    <h2 class="section-title reveal reveal-delay-1">Beyond the <em>Ordinary Evening</em></h2>
+    <p class="section-body reveal reveal-delay-2" style="margin-top:1rem;">
+      The Vault's private vault room seats up to 22 guests — ideal for corporate dinners, milestone celebrations, and intimate performances. A dedicated host, bespoke menu, and custom cocktail programme are included.
+    </p>
+
+    <div class="events-grid">
+      <div class="event-card reveal">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=700&q=70&auto=format&fit=crop" alt="Corporate event" loading="lazy"/>
+        <div class="event-overlay"></div>
+        <div class="event-content">
+          <p class="event-tag">Corporate</p>
+          <p class="event-title">Business Suppers</p>
+          <p class="event-desc">Impress clients in a space that speaks of ambition and taste. AV and presentation capabilities available.</p>
+        </div>
+        <div class="event-arrow">↗</div>
+      </div>
+      <div class="event-card reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=700&q=70&auto=format&fit=crop" alt="Birthday celebration" loading="lazy"/>
+        <div class="event-overlay"></div>
+        <div class="event-content">
+          <p class="event-tag">Celebrations</p>
+          <p class="event-title">Milestone Events</p>
+          <p class="event-desc">Birthdays, anniversaries, and life's best moments — made unforgettable with a bespoke tasting menu.</p>
+        </div>
+        <div class="event-arrow">↗</div>
+      </div>
+      <div class="event-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=700&q=70&auto=format&fit=crop" alt="Jazz night" loading="lazy"/>
+        <div class="event-overlay"></div>
+        <div class="event-content">
+          <p class="event-tag">Live Performance</p>
+          <p class="event-title">Jazz & Spirits Evenings</p>
+          <p class="event-desc">Monthly curated jazz sessions with whisky pairing — limited to 40 covers. Inquire for the next date.</p>
+        </div>
+        <div class="event-arrow">↗</div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:3.5rem;" class="reveal">
+      <a href="mailto:events@thevaultblr.com" class="btn-reserve" style="display:inline-block;padding:1rem 2.5rem;"><span>Enquire About Private Events</span></a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FIND US
+═══════════════════════════════════════════ -->
+<section id="find-us">
+  <div class="section-inner">
+    <div class="findus-grid">
+      <div>
+        <p class="section-label reveal">Find Us</p>
+        <h2 class="section-title reveal reveal-delay-1">Come <em>Find</em> the Door</h2>
+        <p class="section-body reveal reveal-delay-2" style="margin: 1.5rem 0 2rem;">
+          We're in the basement of The Leela Galleria on Old Airport Road, Domlur. Look for the brass door beside the escalators — there is no signage by design.
+        </p>
+
+        <div class="info-item reveal reveal-delay-2">
+          <div class="info-icon">📍</div>
+          <div>
+            <p class="info-text-label">Address</p>
+            <p class="info-text-val">Basement 1, The Leela Galleria<br>23 Old Airport Road, Domlur<br>Bengaluru, Karnataka 560 017</p>
+          </div>
+        </div>
+        <div class="info-item reveal reveal-delay-3">
+          <div class="info-icon">🚇</div>
+          <div>
+            <p class="info-text-label">Getting Here</p>
+            <p class="info-text-val">5 mins from Indiranagar Metro<br>Namma Metro: Purple Line, HAL Station<br>Valet parking available nightly</p>
+          </div>
+        </div>
+
+        <div class="social-row reveal reveal-delay-3">
+          <!-- Instagram -->
+          <a href="https://instagram.com/thevaultblr" target="_blank" class="social-icon" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="18" height="18">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <circle cx="12" cy="12" r="5"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="#" target="_blank" class="social-icon" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+            </svg>
+          </a>
+          <!-- X / Twitter -->
+          <a href="#" target="_blank" class="social-icon" aria-label="X (Twitter)">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <!-- WhatsApp -->
+          <a href="https://wa.me/918045678900" target="_blank" class="social-icon" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- MAP -->
+      <div class="reveal reveal-delay-1">
+        <a href="https://goo.gl/maps/bengaluru-the-vault" target="_blank">
+          <iframe
+            class="map-embed"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.9748!2d77.6408!3d12.9679!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15a9a7c42f6d%3A0x11b9f8a1!2sOld%20Airport%20Rd%2C%20Domlur%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+            allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="The Vault Location, Bengaluru">
+          </iframe>
+        </a>
+        <p style="margin-top:0.75rem; font-size:0.72rem; color:var(--ivory-dim); letter-spacing:0.05em;">
+          ↗ Open in Google Maps for directions
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <p class="footer-logo">The Vault</p>
+      <p style="font-size:0.65rem; color:var(--ivory-dim); margin-top:0.3rem; letter-spacing:0.08em;">Bengaluru · Est. 2019</p>
+    </div>
+    <nav class="footer-nav">
+      <a href="#hero">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#story">Story</a>
+      <a href="#reservation">Reserve</a>
+      <a href="#events">Events</a>
+      <a href="#find-us">Find Us</a>
+    </nav>
+    <p class="footer-copy">© 2025 The Vault, Bengaluru. All rights reserved.</p>
+  </div>
+</footer>
+
+
+<!-- TOAST NOTIFICATION -->
+<div id="toast">
+  <p id="toast-title">Reservation Received</p>
+  <p id="toast-msg">We'll confirm your table within 30 minutes.</p>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+  /* ─── NAVBAR SCROLL ─── */
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  /* ─── PARALLAX HERO ─── */
+  const heroBg = document.getElementById('heroBg');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    if (y < window.innerHeight) {
+      heroBg.style.transform = `scale(1.08) translateY(${y * 0.25}px)`;
+    }
+  }, { passive: true });
+
+  /* ─── HAMBURGER MENU ─── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+  });
+  function closeMobileMenu() {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ─── MENU TABS ─── */
+  const tabBtns = document.querySelectorAll('.menu-tab-btn');
+  const tabPanels = document.querySelectorAll('.menu-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + target).classList.add('active');
+    });
+  });
+
+  /* ─── SCROLL REVEAL ─── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  revealEls.forEach(el => observer.observe(el));
+
+  /* ─── RESERVATION FORM ─── */
+  function handleReservation() {
+    const fname = document.getElementById('fname').value.trim();
+    const ldate = document.getElementById('rdate').value;
+    const ltime = document.getElementById('rtime').value;
+    const lphone = document.getElementById('rphone').value.trim();
+    if (!fname || !ldate || !ltime || !lphone) {
+      showToast('Please complete the form', 'Name, date, time, and phone are required.', true);
+      return;
+    }
+    showToast('Reservation Received ✦', `Thank you, ${fname}. We'll confirm your table via WhatsApp shortly.`);
+  }
+
+  /* ─── TOAST ─── */
+  let toastTimer;
+  function showToast(title, msg, isError = false) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-title').textContent = title;
+    document.getElementById('toast-msg').textContent = msg;
+    toast.style.borderLeftColor = isError ? 'var(--amber)' : 'var(--gold)';
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
+  }
+
+  /* ─── LAZY IMAGES: native loading="lazy" used throughout ─── */
+  /* ─── IMAGE HOVER: done purely with CSS, zero JS needed ─── */
+</script>
+</body>
+</html>

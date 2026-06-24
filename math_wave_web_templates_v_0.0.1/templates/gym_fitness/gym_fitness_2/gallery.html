@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery | TITAN INDUSTRIAL GYM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdf9a",
+                    "on-secondary-container": "#aeb9d0",
+                    "on-tertiary-fixed": "#0d1c2f",
+                    "surface-container-high": "#2a2a2a",
+                    "tertiary-fixed": "#d5e3fd",
+                    "surface-dim": "#131313",
+                    "inverse-on-surface": "#313030",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-bright": "#393939",
+                    "on-error": "#690005",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-surface-variant": "#d3c5ac",
+                    "tertiary-fixed-dim": "#b9c7e0",
+                    "surface-tint": "#f7be1d",
+                    "primary": "#ffd165",
+                    "error-container": "#93000a",
+                    "secondary": "#bcc7de",
+                    "outline": "#9b8f79",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-tertiary-container": "#3e4c60",
+                    "on-primary-container": "#604700",
+                    "on-background": "#e5e2e1",
+                    "on-tertiary-fixed-variant": "#3a485c",
+                    "surface-container-highest": "#353534",
+                    "primary-fixed-dim": "#f7be1d",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#785a00",
+                    "primary-container": "#eab308",
+                    "surface": "#131313",
+                    "secondary-container": "#3e495d",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#5a4300",
+                    "on-primary-fixed": "#251a00",
+                    "on-primary": "#3f2e00",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface": "#e5e2e1",
+                    "tertiary": "#c9d8f1",
+                    "on-secondary": "#263143",
+                    "background": "#131313",
+                    "surface-variant": "#353534",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "outline-variant": "#4f4633",
+                    "on-tertiary": "#233144",
+                    "tertiary-container": "#aebcd4",
+                    "surface-container": "#201f1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "stack-md": "24px",
+                    "stack-lg": "48px",
+                    "gutter": "24px",
+                    "stack-sm": "12px",
+                    "margin-desktop": "64px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Oswald"],
+                    "headline-lg-mobile": ["Oswald"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Oswald"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Oswald"],
+                    "label-bold": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+            scroll-behavior: smooth;
+        }
+        .masonry-grid {
+            columns: 1;
+        }
+        @media (min-width: 768px) {
+            .masonry-grid { columns: 2; }
+        }
+        @media (min-width: 1024px) {
+            .masonry-grid { columns: 3; }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 24px;
+        }
+        .industrial-tag {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+        }
+        .header-accent {
+            border-left: 4px solid #ffd165;
+        }
+        .gallery-image-container {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #4f4633;
+            transition: all 0.3s ease;
+        }
+        .gallery-image-container:hover {
+            border-color: #ffd165;
+            box-shadow: inset 0 0 15px rgba(255, 209, 101, 0.2);
+        }
+        .gallery-image-container img {
+            transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gallery-image-container:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            background: linear-gradient(0deg, rgba(19,19,19,0.9) 0%, rgba(19,19,19,0) 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-image-container:hover .gallery-overlay {
+            opacity: 1;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #4f4633; }
+        ::-webkit-scrollbar-thumb:hover { background: #ffd165; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tighter" href="index.html">TITAN INDUSTRIAL GYM</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="index.html">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="trainers.html">Our Trainers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="membership_plans.html">Membership Plans</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300" href="gallery.html">Gallery</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="contact_location.html">Contact</a>
+</div>
+<a class="bg-primary text-on-primary-fixed font-label-bold text-label-bold px-6 py-2 industrial-tag hover:scale-95 transition-transform duration-200 inline-block" href="membership_plans.html">
+                Join Now
+            </a>
+</div>
+</nav>
+<main class="pt-32 pb-stack-lg px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<!-- Header Section -->
+<header class="mb-stack-lg max-w-3xl">
+<div class="flex items-center gap-2 text-primary mb-4">
+<span class="material-symbols-outlined text-xl">camera</span>
+<span class="font-label-bold text-label-bold tracking-widest uppercase">Visual Experience</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg md:text-display-lg md:font-display-lg leading-tight mb-6">
+                THE ARENA <span class="text-primary">IN FOCUS</span>
+</h1>
+<div class="header-accent pl-6">
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                    Experience the raw, industrial energy of Titan Industrial Gym. From our high-precision equipment to the atmospheric recovery lounge, every corner is designed for peak performance and elite discipline.
+                </p>
+</div>
+</header>
+<!-- Gallery Categories / Filter Chips -->
+<div class="flex flex-wrap gap-4 mb-stack-md">
+<button class="px-6 py-2 bg-primary text-on-primary-fixed font-label-bold text-label-bold industrial-tag">ALL SPACES</button>
+<button class="px-6 py-2 border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary font-label-bold text-label-bold transition-colors industrial-tag">INTERIOR</button>
+<button class="px-6 py-2 border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary font-label-bold text-label-bold transition-colors industrial-tag">EQUIPMENT</button>
+<button class="px-6 py-2 border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary font-label-bold text-label-bold transition-colors industrial-tag">JUICE BAR</button>
+<button class="px-6 py-2 border border-outline-variant text-on-surface-variant hover:border-primary hover:text-primary font-label-bold text-label-bold transition-colors industrial-tag">CLASSES</button>
+</div>
+<!-- Masonry Gallery Grid -->
+<div class="masonry-grid">
+<!-- Item 1: Industrial Interior -->
+<div class="masonry-item">
+<div class="gallery-image-container">
+<img class="w-full h-auto object-cover" data-alt="A wide-angle, atmospheric view of a luxury industrial gym in Delhi. The space features exposed dark concrete walls, high ceilings with metal trusses, and dramatic yellow LED accent lighting that cuts through the shadows. The mood is intense, moody, and premium, emphasizing clean architectural lines and a raw urban aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-_kDD2zpLBaKpeF1FrLuBKcIuI-du_GgIdGq49OgoGiSZWNhmeTbkNp8nzXaHMFXrNcEWyczzEfTQF_oy4YZTkqM0dBq4Wv_hD4oJimZ9pSyri38kEkcaOjoLVg56sSSzQfz0ODQILebhWL8s6lFXh-GKZhRd7VofQNuOWZU4DEyy0OycYD4yzqSiUyPyWxYDQf-F3hh1DNvjoaHrb0j0yxD39UwQTmo5sLfmrKBpQWsUO6v38V041UieO44F4nmEVHLTSOfRhA"/>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<span class="text-primary font-label-bold text-label-bold uppercase mb-2">Interior</span>
+<h3 class="font-headline-md text-headline-md text-white">THE IRON VAULT</h3>
+</div>
+</div>
+</div>
+<!-- Item 2: High End Equipment -->
+<div class="masonry-item">
+<div class="gallery-image-container">
+<img class="w-full h-auto object-cover" data-alt="A close-up, high-contrast shot of professional-grade matte black gym equipment at Titan Industrial Gym. The scene is lit with side-key lighting that highlights the metallic texture and precision engineering of the machines. The background is a dark, moody gym floor with subtle yellow highlights reflecting off the polished surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBknSO5M3XshybJJ5eJGqx8U5c937VcN4dIHRFvyK8XtT3w6arTAjrMPLkt4wmGG-GCmm5jCoQo-EpIASVgbNyioj8BGVFDe2gdpk-SQi4krDoZ87upKaW2ssrbYfuEx_SYUdDjNb1qzJ1wgvcQA0s0TDHG-2c3I_5TBFBj2mP4PDaYSflU_tqcwjNTSnPWqoHTmUlOKNRq9kqWVKvRf5YzF1dgy1U8OSQbYnYSeGaCKywSABeJin4_P7LF0viGQTniV8oQNOzj6w"/>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<span class="text-primary font-label-bold text-label-bold uppercase mb-2">Equipment</span>
+<h3 class="font-headline-md text-headline-md text-white">PRECISION RIGS</h3>
+</div>
+</div>
+</div>
+<!-- Item 3: Juice Bar -->
+<div class="masonry-item">
+<div class="gallery-image-container">
+<img class="w-full h-auto object-cover" data-alt="A sophisticated juice bar inside a premium fitness club, designed with dark charcoal marble and industrial steel accents. Vibrant yellow fruit infusions sit on the counter under sleek pendant lights. The atmosphere is upscale and revitalizing, blending luxury hospitality with a modern, high-energy gym environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxVM6lMRNbyEo4niMAQDbmS3iaS5gEv528xPo3X41dHavaHmLtp5QRvGobDPAATmanoN_Ra2Wmw4GRQCOLsKysxzMD7xybBhKyKBQErwPWayZR7rsMYpnOM72I3Y-7NiFVlSDuS84e4u6jNxveRhlIbX11wrARCOujQMGQj4C7BqHCass_Kl8PRrFY_T6evkTFndWWxuIiuDp2jcsaszz2apzN7gyTg_7DNswg7kCziD75yYROXCOaK6N49Ct_6Pse4UkIrt7-rQ"/>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<span class="text-primary font-label-bold text-label-bold uppercase mb-2">Juice Bar</span>
+<h3 class="font-headline-md text-headline-md text-white">RECOVERY LOUNGE</h3>
+</div>
+</div>
+</div>
+<!-- Item 4: Group Classes -->
+<div class="masonry-item">
+<div class="gallery-image-container">
+<img class="w-full h-auto object-cover" data-alt="An action-packed group training session in a dark, industrial gym space. Silhouetted athletes move in unison through a high-intensity workout, illuminated by focused overhead yellow spotlights that create long, dramatic shadows. The floor is dark rubber, and the energy of the room is palpable and elite." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCx_HfU1I3tXDLGf8IH2WuNCYd5msNblsBRe2RZVXaUEVeXtthim28X-fDqYMsGo_7u45Rl9CSUVyTV_Bn-6vx3I5jgfrspBr_RHPInRNbyWp7vptGd_Ulzbr84BGzgrr9o6oFGZrNNiQY37E_3nlgVx8gH25MwRvt355Uilgdez-QLSakaLIAqvGaJmxUzKxe0ILMp2fx8W8ELi8wl55fbRHCTCUIdycWe6GTsZ9zyxJ9wtji1nuddZP8Fl9-gJ5eGTuV-26P4cg"/>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<span class="text-primary font-label-bold text-label-bold uppercase mb-2">Classes</span>
+<h3 class="font-headline-md text-headline-md text-white">TITAN TRIBE</h3>
+</div>
+</div>
+</div>
+<!-- Item 5: Weights Detail -->
+<div class="masonry-item">
+<div class="gallery-image-container">
+<img class="w-full h-auto object-cover" data-alt="A row of heavy, professional dumbbells perfectly aligned on a steel rack in a dark fitness studio. The focus is sharp on the metal knurling, with a deep depth of field blurring the industrial background. A single strip of yellow light runs along the rack, reinforcing the gym's premium branding and intense mood." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbGAqw22gBlbOLC-HFNQaeVN0vvthsd4qlyL7aGemX-WZ090MuwJuJ2EkooX6f87j0Uq8lEVcAhmF2pQWp-9Fu0IvqdRt-JO9GT07-1zNViY-zwigsCwkCyFfQZzptpboUcagxAYWNEqGG0FJpCLuP9-TZNMoIFKPxCc2SVpQkQ6yBBKIS5YG335KhzO5pdK9vQCIP5DmSxzmJrh0DJJuQ7zLB3buo3A_aQWTnvP0aI-deeI4pGIP9uxg2ZMorC6l7JArHCqDYWg"/>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<span class="text-primary font-label-bold text-label-bold uppercase mb-2">Elite Strength</span>
+<h3 class="font-headline-md text-headline-md text-white">HEAVY METAL</h3>
+</div>
+</div>
+</div>
+<!-- Item 6: Locker Room / Luxury -->
+<div class="masonry-item">
+<div class="gallery-image-container">
+<img class="w-full h-auto object-cover" data-alt="An ultra-premium locker room with matte black lockers and warm, recessed yellow lighting. The floors are dark polished stone, and the space feels like a high-end spa within an industrial complex. The lighting is soft yet deliberate, emphasizing a sense of exclusivity and post-workout luxury for elite members." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMiJgbgffxoNouqmnpyUSBRZRpNrKRVkzU0yRYeKfWfCkCb4Gm_YIRzzNmBKATllxvXQ7dy6OQy7JOJbRYsMB4hSUVFyCp1re_o27Um1wC_7KDSJ4ZVS8Pd8w0jA9jgima1PbSQhcQY3tQqsvPxxV3m__sopu59NGq4tXd2aumHVun9Ao8p4c0Uk1qYoPX6Gnm3xBSlcgk1Pe-4km5m0fJPjw9sor9i9qMFb_m9C3dsHXeXcIlaM0LUEFAndkxfCaTNExBXSj51g"/>
+<div class="gallery-overlay absolute inset-0 flex flex-col justify-end p-6">
+<span class="text-primary font-label-bold text-label-bold uppercase mb-2">Luxury</span>
+<h3 class="font-headline-md text-headline-md text-white">THE REFINERY</h3>
+</div>
+</div>
+</div>
+</div>
+<!-- Call to Action Section -->
+<section class="mt-stack-lg bg-surface-container-high p-stack-md border border-outline-variant relative overflow-hidden">
+
+<div class="relative z-10 text-center">
+<h2 class="font-headline-lg text-headline-lg mb-4">READY TO BECOME A <span class="text-primary">TITAN</span>?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto mb-8">
+                    Join the most elite training community in Delhi. Experience the difference of premium equipment and industrial-grade discipline.
+                </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-primary text-on-primary-fixed font-label-bold text-label-bold px-10 py-4 industrial-tag hover:bg-primary-container transition-all">
+                        START FREE TRIAL
+                    </button>
+<button class="border-2 border-outline text-on-surface font-label-bold text-label-bold px-10 py-4 industrial-tag hover:border-primary hover:text-primary transition-all">
+                        BOOK A TOUR
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="md:col-span-2">
+<div class="font-headline-md text-headline-md text-on-surface mb-4">TITAN INDUSTRIAL GYM</div>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-sm">
+                    The premium destination for elite fitness in Delhi. Combining raw industrial aesthetics with luxury amenities and world-class training programs.
+                </p>
+</div>
+<div>
+<h4 class="text-primary font-label-bold text-label-bold mb-4 uppercase tracking-widest">Navigation</h4>
+<ul class="space-y-2">
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Location</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">FAQ</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Privacy Policy</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-primary font-label-bold text-label-bold mb-4 uppercase tracking-widest">Connect</h4>
+<div class="flex gap-4">
+<a class="text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">mail</span>
+</a>
+<a class="text-on-surface-variant hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined">call</span>
+</a>
+</div>
+<div class="mt-6">
+<p class="text-on-surface-variant font-label-sm text-label-sm">
+                        © 2024 Titan Industrial Gym Delhi. All Rights Reserved.
+                    </p>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for gallery hover
+        document.querySelectorAll('.gallery-image-container').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                // Potential JS logic for complex interactions
+            });
+        });
+
+        // Sticky Navbar reveal on scroll
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            const nav = document.querySelector('nav');
+            
+            if (currentScroll <= 0) {
+                nav.classList.remove('shadow-lg');
+                return;
+            }
+            
+            if (currentScroll > lastScroll) {
+                // Scrolling down
+                nav.style.transform = 'translateY(-100%)';
+            } else {
+                // Scrolling up
+                nav.style.transform = 'translateY(0)';
+                nav.classList.add('shadow-lg');
+            }
+            lastScroll = currentScroll;
+            nav.style.transition = 'transform 0.3s ease';
+        });
+    </script>
+</body></html>

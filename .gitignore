@@ -1,0 +1,47 @@
+# --- Dependencies ---
+node_modules/
+backend/node_modules/
+
+# --- Build output ---
+backend/dist/
+
+# --- Environment files ---
+.env
+backend/.env
+backend/.env.production
+backend/.env.local
+backend/.env.*.local
+
+# --- OS files ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.sublime-*
+*.code-workspace
+
+# --- Logs ---
+logs/
+*.log
+backend/logs/
+
+# --- Uploaded files (runtime) ---
+uploads/
+backend/uploads/
+
+# --- Test coverage ---
+coverage/
+backend/coverage/
+
+# --- Temp files ---
+tmp/
+temp/
+*.tmp
+
+# --- Benchmark results ---
+backend/benchmarks/results/

@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>ELIXIR &amp; OAK | Artisanal Brewery &amp; Gastronomy - Mumbai</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&amp;display=swap" rel="stylesheet"/>
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+    <!-- Tailwind CDN + inline config (replaces compiled style.css) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000000",
+            "surface-container-highest": "#e4e2e2",
+            "on-surface-variant": "#444748",
+            "on-tertiary-fixed-variant": "#5d4201",
+            "inverse-on-surface": "#f2f0f0",
+            "secondary-container": "#e1dfdb",
+            "on-tertiary-fixed": "#261900",
+            "background": "#fbf9f8",
+            "on-primary-container": "#858383",
+            "surface-dim": "#dbd9d9",
+            "on-primary-fixed": "#1c1b1b",
+            "on-surface": "#1b1c1c",
+            "secondary": "#5e5e5b",
+            "tertiary": "#000000",
+            "on-primary-fixed-variant": "#474646",
+            "on-error-container": "#93000a",
+            "surface": "#fbf9f8",
+            "on-secondary-container": "#63635f",
+            "surface-variant": "#e4e2e2",
+            "primary-container": "#1c1b1b",
+            "tertiary-container": "#261900",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-error": "#ffffff",
+            "on-secondary": "#ffffff",
+            "error-container": "#ffdad6",
+            "surface-container": "#efeded",
+            "surface-container-high": "#eae8e7",
+            "on-tertiary-container": "#a17f3b",
+            "primary-fixed": "#e5e2e1",
+            "on-background": "#1b1c1c",
+            "on-primary": "#ffffff",
+            "secondary-fixed-dim": "#c8c6c2",
+            "inverse-primary": "#c8c6c5",
+            "secondary-fixed": "#e4e2dd",
+            "on-tertiary": "#ffffff",
+            "on-secondary-fixed-variant": "#474744",
+            "surface-bright": "#fbf9f8",
+            "tertiary-fixed": "#ffdea5",
+            "inverse-surface": "#303030",
+            "error": "#ba1a1a",
+            "surface-container-lowest": "#ffffff",
+            "outline": "#747878",
+            "surface-tint": "#5f5e5e",
+            "tertiary-fixed-dim": "#e9c176",
+            "outline-variant": "#c4c7c7",
+            "surface-container-low": "#f5f3f3",
+            "on-secondary-fixed": "#1b1c19"
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "unit": "8px",
+            "margin-mobile": "24px",
+            "margin-desktop": "64px",
+            "container-max": "1200px",
+            "gutter": "24px"
+          },
+          fontFamily: {
+            "body-md": ["DM Sans"],
+            "label-caps": ["DM Sans"],
+            "display-lg": ["Bodoni Moda"],
+            "headline-lg": ["Bodoni Moda"],
+            "body-lg": ["DM Sans"],
+            "headline-md": ["Bodoni Moda"],
+            "display-lg-mobile": ["Bodoni Moda"]
+          },
+          fontSize: {
+            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "700"}],
+            "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+            "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+            "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}]
+          },
+          keyframes: {
+            slideshow: {
+              "0%, 100%": { opacity: "1" },
+              "33%": { opacity: "0" },
+              "66%": { opacity: "0" }
+            },
+            "menu-item-fade": {
+              "0%": { opacity: "0", transform: "translateY(20px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" }
+            }
+          },
+          animation: {
+            slideshow: "slideshow 12s infinite",
+            "menu-item-fade": "menu-item-fade 0.6s ease-out forwards"
+          }
+        }
+      }
+    };
+    </script>
+    <style>
+      .nav-link-underline {
+        position: relative;
+      }
+      .nav-link-underline::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: currentColor;
+        transition: width 0.3s ease;
+      }
+      .nav-link-underline:hover::after {
+        width: 100%;
+      }
+      .transition-500 {
+        transition: all 0.5s ease;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+      }
+      .table-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1.5rem;
+        border: 1px solid var(--primary, #000);
+        color: var(--primary, #000);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .table-btn:hover {
+        background: var(--primary, #000);
+        color: white;
+      }
+      .animate-slideshow {
+        animation: slideshow 12s infinite;
+      }
+      .menu-item-fade {
+        animation: menu-item-fade 0.6s ease-out forwards;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-fixed selection:text-on-tertiary-fixed overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-on-surface/5 transition-all duration-300 py-4 md:py-6" id="main-header">
+<nav class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center">
+<span class="font-display-lg text-[18px] md:text-[28px] text-primary tracking-tighter transition-all duration-300" id="logo">ELIXIR &amp; OAK</span>
+</div>
+<div class="hidden md:flex items-center space-x-10">
+<a class="nav-link-underline font-label-caps text-[11px] text-primary transition-all duration-300 hover:scale-105" href="#">Home</a>
+<a class="nav-link-underline font-label-caps text-[11px] text-secondary hover:text-primary transition-all duration-300 hover:scale-105" href="#" onclick="toggleMenu()">Menu</a>
+<a class="nav-link-underline font-label-caps text-[11px] text-secondary hover:text-primary transition-all duration-300 hover:scale-105" href="#">Reservations</a>
+<a class="nav-link-underline font-label-caps text-[11px] text-secondary hover:text-primary transition-all duration-300 hover:scale-105" href="#">Journal</a>
+</div>
+<div class="flex items-center">
+<button class="border border-primary text-primary px-6 py-2 font-label-caps text-[11px] hover:bg-primary hover:text-on-primary transition-500 whitespace-nowrap">
+                Book a Table
+            </button>
+<button class="md:hidden ml-4 text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+</header>
+<!-- Floor Plan Modal (Preserved but hidden link removed from Nav) -->
+<div class="fixed inset-0 z-[60] hidden flex items-center justify-center p-4" id="floor-plan-modal">
+<div class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="toggleFloorPlan()"></div>
+<div class="relative bg-surface w-full max-w-2xl p-10 border border-on-surface/10 shadow-2xl transition-500 transform scale-95 opacity-0" id="modal-content">
+<div class="flex justify-between items-center mb-8">
+<h2 class="font-headline-lg text-primary">Cafe Floor Plan</h2>
+<button class="material-symbols-outlined hover:rotate-90 transition-500" onclick="toggleFloorPlan()">close</button>
+</div>
+<div class="grid grid-cols-4 gap-4 aspect-video bg-surface-container p-8 rounded-lg">
+<!-- Row 1 -->
+<button class="table-btn bg-white border border-primary/20 flex flex-col items-center justify-center transition-500 hover:bg-tertiary-fixed/30 hover:border-tertiary-fixed group" onclick="selectTable(this, 'M-1', 4)">
+<span class="font-label-caps text-[10px]">M-1</span>
+<span class="font-body-md text-xs opacity-60">4 Guests</span>
+</button>
+<button class="table-btn bg-white border border-primary/20 flex flex-col items-center justify-center transition-500 hover:bg-tertiary-fixed/30 group" onclick="selectTable(this, 'M-2', 4)">
+<span class="font-label-caps text-[10px]">M-2</span>
+<span class="font-body-md text-xs opacity-60">4 Guests</span>
+</button>
+<div class="bg-transparent border border-dashed border-primary/10 flex items-center justify-center"><span class="font-label-caps text-[8px] opacity-20">AISLE</span></div>
+<button class="table-btn bg-white border border-primary/20 flex flex-col items-center justify-center transition-500 hover:bg-tertiary-fixed/30 group" onclick="selectTable(this, 'B-4', 6)">
+<span class="font-label-caps text-[10px]">B-4</span>
+<span class="font-body-md text-xs opacity-60">6 Guests</span>
+</button>
+<!-- Row 2 -->
+<button class="table-btn bg-white border border-primary/20 flex flex-col items-center justify-center transition-500 hover:bg-tertiary-fixed/30 group" onclick="selectTable(this, 'S-1', 2)">
+<span class="font-label-caps text-[10px]">S-1</span>
+<span class="font-body-md text-xs opacity-60">2 Guests</span>
+</button>
+<button class="table-btn bg-white border border-primary/20 flex flex-col items-center justify-center transition-500 hover:bg-tertiary-fixed/30 group" onclick="selectTable(this, 'S-2', 2)">
+<span class="font-label-caps text-[10px]">S-2</span>
+<span class="font-body-md text-xs opacity-60">2 Guests</span>
+</button>
+<div class="bg-transparent"></div>
+<button class="table-btn bg-white border border-primary/20 flex flex-col items-center justify-center transition-500 hover:bg-tertiary-fixed/30 group" onclick="selectTable(this, 'B-5', 6)">
+<span class="font-label-caps text-[10px]">B-5</span>
+<span class="font-body-md text-xs opacity-60">6 Guests</span>
+</button>
+</div>
+<div class="mt-8 text-center font-label-caps text-[10px] tracking-widest text-secondary h-4" id="selection-status">
+            SELECT A PREFERRED TABLE
+        </div>
+<button class="w-full mt-6 bg-primary text-on-primary py-4 font-label-caps text-label-caps transition-500 hover:brightness-125">CONFIRM SELECTION</button>
+</div>
+</div>
+<!-- Menu Overlay -->
+<div class="fixed inset-0 z-[70] hidden opacity-0 transition-opacity duration-500 overflow-y-auto" id="menu-overlay">
+<canvas id="menu-canvas"></canvas>
+<div class="min-h-screen w-full flex flex-col items-center justify-center p-8 bg-black/20">
+<button class="fixed top-12 right-12 text-white hover:rotate-90 transition-500 group" onclick="toggleMenu()">
+<span class="material-symbols-outlined text-[48px]">close</span>
+</button>
+<div class="max-w-4xl w-full text-center text-white">
+<span class="font-label-caps text-label-caps text-tertiary-fixed mb-8 block tracking-[0.6em] menu-item-fade">ELIXIR &amp; OAK MENU</span>
+<h2 class="font-display-lg text-[64px] mb-20 italic menu-item-fade">The Mumbai Collection</h2>
+<div class="grid md:grid-cols-2 gap-x-24 gap-y-12 text-left">
+<div class="menu-item-fade group cursor-pointer">
+<div class="flex justify-between items-baseline border-b border-white/20 pb-2 mb-2">
+<h4 class="font-headline-md">Malabar Cold Brew</h4>
+<span class="font-display-lg text-headline-md">₹450</span>
+</div>
+<p class="font-body-md text-white/60">House-steeped 18 hours with hints of cardamom and dark chocolate.</p>
+</div>
+<div class="menu-item-fade group cursor-pointer">
+<div class="flex justify-between items-baseline border-b border-white/20 pb-2 mb-2">
+<h4 class="font-headline-md">Bombay Brioche</h4>
+<span class="font-display-lg text-headline-md">₹850</span>
+</div>
+<p class="font-body-md text-white/60">Masala-spiced berry compote, clotted cream, gold leaf.</p>
+</div>
+<div class="menu-item-fade group cursor-pointer">
+<div class="flex justify-between items-baseline border-b border-white/20 pb-2 mb-2">
+<h4 class="font-headline-md">Saffron Risotto</h4>
+<span class="font-display-lg text-headline-md">₹1,250</span>
+</div>
+<p class="font-body-md text-white/60">Kashmiri saffron, toasted pine nuts, local artisanal parmesan.</p>
+</div>
+<div class="menu-item-fade group cursor-pointer">
+<div class="flex justify-between items-baseline border-b border-white/20 pb-2 mb-2">
+<h4 class="font-headline-md">Cacao &amp; Sea Salt</h4>
+<span class="font-display-lg text-headline-md">₹650</span>
+</div>
+<p class="font-body-md text-white/60">72% dark single-origin chocolate mousse, Alibaug sea salt.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden pt-16">
+<div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGgDcaugP8CMwTU474n001OGz6hgHxv63OOjQ072B8veAB5yC9E2u7ndxzvl3OTDNSL9Jze86QLhdjy8VZpwBl6sISNE4ZNlYM9OJxN_XHQBUlVKBl7roqteFL19Y3d8eLkbykpj9edo2C_KbcQc4IV7G1T7owbQTz7dftlkTA6GmI8bzrhJTOq_ci9GHNASxYfU0LYM9k8F8daWtJr9zX7o9RJ3RRS0v9RYYfyZKe4-myPZrTXJnjxJKRZwhnN_0s1DH4sa3Hnr8');">
+<div class="absolute inset-0 hero-overlay"></div>
+</div>
+<div class="relative z-10 text-center max-w-4xl px-margin-mobile">
+<p class="font-label-caps text-label-caps text-white mb-6 tracking-[0.3em] opacity-80">ESTABLISHED 2024 • MUMBAI</p>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-12 drop-shadow-sm">
+                Artisanal Coffee &amp; <br class="hidden md:block"/> Refined Gastronomy
+            </h1>
+<div class="flex flex-col md:flex-row items-center justify-center gap-8">
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-12 py-5 font-label-caps text-label-caps tracking-widest hover:brightness-110 transition-500">
+                    RESERVE A TABLE
+                </button>
+<a class="group flex items-center gap-3 text-white font-label-caps text-label-caps tracking-widest" href="#" onclick="toggleMenu()">
+<span>VIEW MENU</span>
+<div class="w-12 h-[1px] bg-white group-hover:w-16 transition-500"></div>
+</a>
+</div>
+</div>
+<div class="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 text-white opacity-40">
+<span class="font-label-caps text-[10px] tracking-widest">SCROLL</span>
+<div class="w-[1px] h-12 bg-white"></div>
+</div>
+</section>
+<!-- Intro Section -->
+<section class="py-32 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid md:grid-cols-12 gap-gutter items-center">
+<div class="md:col-span-5 space-y-8">
+<span class="font-label-caps text-label-caps text-on-tertiary-container bg-tertiary-fixed/30 px-3 py-1 inline-block">THE PHILOSOPHY</span>
+<h2 class="font-headline-lg text-headline-lg text-primary">Slow living in a fast world.</h2>
+<p class="font-body-lg text-body-lg text-secondary">
+                At Elixir &amp; Oak Mumbai, we believe time is the most precious luxury. Every bean is sourced through direct-trade partnerships, and every plate is a tribute to seasonal Indian micro-producers.
+            </p>
+</div>
+<div class="md:col-span-6 md:col-start-8 relative">
+<div class="aspect-[4/5] bg-surface-container-high overflow-hidden border border-on-surface/5">
+<img class="w-full h-full object-cover grayscale-[20%]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZnccOiNno7i2csgtVtaJulXi4vendaN6KbfTGKGQQEezMLQGfmp_X6eKRgWPiGepmaBVr9g2lN-Q5jvWjtU4-WK6Ah_gPVexaJ4Ko_kB8q7RLj9gg4da9FFBLD6OxAty0PKT_9fq7OySpa839L9X7ViB8SZno2vNAkSndj8_cmksT56PHvA01CPwVp812NP0GVJYKqza5qXnGimq_W8VDCUgtjxclB5vAw3D60CS1TOMwmGOfP3YNy1gy2miveNqw9Ljoq_dDpwE"/>
+</div>
+<div class="absolute -bottom-8 -left-8 bg-surface p-8 border border-on-surface/10 hidden md:block">
+<p class="font-display-lg text-[48px] text-primary italic leading-none">96.5</p>
+<p class="font-label-caps text-[10px] text-secondary mt-2">CUPPING SCORE</p>
+</div>
+</div>
+</section>
+<!-- Bento Grid -->
+<section class="bg-surface-container-low py-32 px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+<div class="max-w-xl">
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-primary mb-4">The Rituals</h2>
+<p class="font-body-md text-body-md text-secondary">Curated experiences designed to awaken the senses, from Mumbai dawn till dusk.</p>
+</div>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 transition-500" href="#">EXPLORE THE JOURNAL</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[800px]">
+<!-- Large Feature -->
+<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden bg-black">
+<img class="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASuZVixKepTDux-PgU2fibPIGNvNu2v1yU58wdgp-io-aqGmFsDbaigybRR793MDGbMOy0Kttg4fMXAx3cl7Sqs5HO5sVbakK_jfzaOVQRyaBvDH0CCuUcWrrEjuVIY3QHhcZ6iHzoz5szmMRerpRhglFMus-sIZ7ls8GLKMh_rUodF5SGmHn3cZ2ynWlUR0Zmh5_wDuQ88JtzM5g6LYegrSQ7Oc2QDgxL2TfcOtDKKevJdmsI_vtxbyGuhgUNE8G96JYY1dZT6n0"/>
+<div class="absolute inset-0 p-10 flex flex-col justify-end text-white bg-gradient-to-t from-black/60 to-transparent">
+<span class="font-label-caps text-[10px] tracking-widest mb-2">MORNING</span>
+<h3 class="font-headline-lg text-headline-lg mb-4">Precision Brewing</h3>
+<p class="font-body-md text-body-md opacity-80 max-w-sm">Single-origin beans roasted in small batches to preserve their unique terroir.</p>
+</div>
+</div>
+<!-- Top Right: Slideshow Replacement -->
+<div class="md:col-span-2 relative group overflow-hidden border border-on-surface/10 bg-surface">
+<div class="grid grid-cols-2 h-full">
+<div class="p-8 flex flex-col justify-center bg-surface relative z-10">
+<span class="font-label-caps text-[10px] tracking-widest mb-2 text-on-tertiary-container">ARTISANAL</span>
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Refined Plates</h3>
+<p class="font-body-md text-body-md text-secondary">Molecular techniques met with heirloom ingredients.</p>
+</div>
+<div class="relative overflow-hidden">
+<div class="flex h-full w-[300%] animate-slideshow">
+<img class="w-1/3 h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLvyXZcPMPPapELbSAbgmlxeizmWtFe61brajYRRSb7Rc3jF60FEdSJoZTBpblXp7CghxDYn1ETRFPQ9LSZ5pm5qw9Srbc6CPn6pXXLDsu5m6kiwgg6foUMCv5tMf16skA_yCbIEpDB5ONAXN2cHTwpIEcmgss7Ydi1_tX9Okuij_BlbV5hrD7IoA_6FoHlcce6zNXA5fe78S82qHLIFj3Lcl0lum34U7Z8Cl8Tq6swOPQS-wdQ1ZUBdlC0"/>
+<img class="w-1/3 h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLso-X44Ziy1kuAjr0Huaj5WtAw-q7VariVNrm4IxxdQ7jXlqZAdS0CCb3jq614uo92q5yeTFdHvirzUSzFmJZtV5FiKekONwtTf7MqTCIaQrHXydPaBXt7CIeegl2JTjYOg1TjSumb4T4iX5jN-IFEB0o67pt3tW6lrReSDMHI3JNt9HXUp-avw2dWvUJk4daBtJ68BCQtAS1PpoGX9OUV4Twlaq_Vv1CB2abKn4Uzvd8XmAH_RNmSg8Ec"/>
+<img class="w-1/3 h-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLtWihTsJan5rOIWqgRQtFR-i8cg6_qikTyVwax2wWD09GJcDpP5ubo60s_AoahMv-dEMqCQHRJ02kHKa-lhyAlbpwVQxUbwYdi4eGfq-jtocyR797HLuvYWyYW0sPkgbdHKiQXcqTplc3cU1013YAiT6yKpuvmP53j6X921o0hZ9qhwpWmYOihtYQPtLLTd54hVVh4jib2gpxoite37JWKjT4atJTvMnfBaA_Kxg_6d01BKuAbEXbPNaVQ"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Middle -->
+<div class="relative group overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp6BFvZh7cAAth0tK6KbqxpEL35N_GXpXsyH_SmSyM2ZJWfpPdS_vQzOlCJIYisOmfR7HU9R2QQ0qX6GdnK9r1nvw-xIeZT7N-DdfBIraXK4Bl9TI9w5o9Mf0nIekZQfCWefGABcspSN51MJl-kBymM9h3E0tIDfuNn1FtIPCFuiavjs_zpQPoDL9ZNnTDrIyyz5CfoWRu4FVsc6Fi71_gWkFA43JA9YuicCr0E-fZq9mDkOPqODSGSCE9TGHwDeSctnIWt3otLg4"/>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<h3 class="font-label-caps text-label-caps text-primary">ATMOSPHERE</h3>
+</div>
+</div>
+<!-- Bottom Right -->
+<div class="relative group overflow-hidden bg-primary text-on-primary">
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div>
+<span class="font-label-caps text-[10px] tracking-widest mb-4 block opacity-60">EVENING</span>
+<h3 class="font-headline-md text-headline-md">Botanical Elixirs</h3>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-label-caps text-label-caps">AFTER 6PM</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Menu Highlight -->
+<section class="py-32 bg-surface">
+<div class="max-w-3xl mx-auto px-margin-mobile text-center">
+<span class="font-label-caps text-label-caps text-secondary mb-8 block tracking-[0.4em]">THE SELECTION</span>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-primary mb-16 italic">Summer Micro-Batch</h2>
+<div class="space-y-12">
+<div class="flex justify-between items-baseline border-b border-on-surface/10 pb-4 group cursor-default">
+<div class="text-left">
+<h4 class="font-headline-md text-headline-md text-primary group-hover:text-tertiary-container transition-500">Yirgacheffe Pour Over</h4>
+<p class="font-body-md text-body-md text-secondary mt-1">Notes of jasmine, lemongrass, and white peach.</p>
+</div>
+<span class="font-display-lg text-headline-md text-primary">12</span>
+</div>
+<div class="flex justify-between items-baseline border-b border-on-surface/10 pb-4 group cursor-default">
+<div class="text-left">
+<h4 class="font-headline-md text-headline-md text-primary group-hover:text-tertiary-container transition-500">Truffle Brioche Toast</h4>
+<p class="font-body-md text-body-md text-secondary mt-1">Whipped cultured butter, honey, and shaved black truffle.</p>
+</div>
+<span class="font-display-lg text-headline-md text-primary">24</span>
+</div>
+</div>
+<div class="mt-16">
+<button class="border border-primary text-primary px-12 py-4 font-label-caps text-label-caps hover:bg-primary hover:text-on-primary hover:scale-105 transition-500" onclick="toggleMenu()">
+                    EXPLORE THE FULL COLLECTION
+                </button>
+</div>
+</div>
+</section>
+<!-- Customer Reviews Section -->
+<section class="py-32 bg-background border-y border-on-surface/5">
+<div class="max-w-container-max mx-auto px-margin-mobile">
+<div class="text-center mb-24">
+<span class="font-label-caps text-label-caps text-tertiary-fixed-dim tracking-[0.4em] mb-4 block">GUEST TESTIMONIALS</span>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg text-primary italic">The Echoes of Experience</h2>
+</div>
+<div class="grid md:grid-cols-3 gap-16 md:gap-gutter">
+<div class="space-y-6 flex flex-col items-center text-center">
+<div class="flex gap-1 text-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+</div>
+<p class="font-body-lg italic text-on-surface/80 leading-relaxed">
+                        "An ethereal sanctuary amidst the Colaba bustle. The Malabar Cold Brew is quite simply the finest extraction I have tasted in Mumbai."
+                    </p>
+<div>
+<span class="font-label-caps text-[10px] tracking-widest text-primary block">ARJUN MEHRA</span>
+<span class="font-body-md text-[12px] text-secondary opacity-60">COFFEE CRITIC</span>
+</div>
+</div>
+<div class="space-y-6 flex flex-col items-center text-center">
+<div class="flex gap-1 text-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+</div>
+<p class="font-body-lg italic text-on-surface/80 leading-relaxed">
+                        "The Bombay Brioche is a masterpiece of textures. The pairing of local artisanal cream with gold leaf creates a ritual of true luxury."
+                    </p>
+<div>
+<span class="font-label-caps text-[10px] tracking-widest text-primary block">PRIYA SHARMA</span>
+<span class="font-body-md text-[12px] text-secondary opacity-60">GASTRONOMY WRITER</span>
+</div>
+</div>
+<div class="space-y-6 flex flex-col items-center text-center">
+<div class="flex gap-1 text-tertiary-fixed-dim">
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+<span class="material-symbols-outlined text-[18px] fill-1">star</span>
+</div>
+<p class="font-body-lg italic text-on-surface/80 leading-relaxed">
+                        "Rare to find a space that understands silence as much as it understands service. The attention to detail in every pour is remarkable."
+                    </p>
+<div>
+<span class="font-label-caps text-[10px] tracking-widest text-primary block">DAVID CHEN</span>
+<span class="font-body-md text-[12px] text-secondary opacity-60">CURATOR</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Plan an Event Section -->
+<section class="py-32 bg-primary text-on-primary">
+<div class="max-w-container-max mx-auto px-margin-mobile grid md:grid-cols-2 gap-24 items-center">
+<div>
+<span class="font-label-caps text-label-caps opacity-60 mb-6 block">BESPOKE GATHERINGS</span>
+<h2 class="font-display-lg text-headline-lg md:text-display-lg mb-8">Plan an Event</h2>
+<p class="font-body-lg opacity-80 mb-12">From private tastings to intimate weddings, let our space be the canvas for your most significant moments.</p>
+<div class="flex flex-wrap gap-6">
+<a class="bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 font-label-caps text-label-caps flex items-center gap-3 hover:brightness-110 transition-500" href="#">
+<span class="material-symbols-outlined">chat</span> CHAT ON WHATSAPP
+                    </a>
+<a class="border border-on-primary text-on-primary px-10 py-4 font-label-caps text-label-caps flex items-center gap-3 hover:bg-on-primary hover:text-primary transition-500" href="#">
+<span class="material-symbols-outlined">call</span> CALL US
+                    </a>
+</div>
+</div>
+<div class="aspect-square bg-surface-container/10 overflow-hidden">
+<img class="w-full h-full object-cover mix-blend-luminosity hover:mix-blend-normal transition-500 duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDp6BFvZh7cAAth0tK6KbqxpEL35N_GXpXsyH_SmSyM2ZJWfpPdS_vQzOlCJIYisOmfR7HU9R2QQ0qX6GdnK9r1nvw-xIeZT7N-DdfBIraXK4Bl9TI9w5o9Mf0nIekZQfCWefGABcspSN51MJl-kBymM9h3E0tIDfuNn1FtIPCFuiavjs_zpQPoDL9ZNnTDrIyyz5CfoWRu4FVsc6Fi71_gWkFA43JA9YuicCr0E-fZq9mDkOPqODSGSCE9TGHwDeSctnIWt3otLg4"/>
+</div>
+</div>
+</section>
+<!-- Reservations CTA -->
+<section class="py-40 bg-surface-container overflow-hidden relative">
+<div class="max-w-container-max mx-auto px-margin-mobile text-center relative z-10">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-8">Secure your place at our table.</h2>
+<p class="font-body-lg text-body-lg text-secondary mb-12 max-w-2xl mx-auto">
+                Limited seating in our Mumbai outpost ensures an intimate environment. Walk-ins are welcomed as availability permits.
+            </p>
+<div class="flex flex-col md:flex-row justify-center items-center gap-6">
+<div class="w-full md:w-auto">
+<label class="block font-label-caps text-[10px] text-left text-secondary mb-1">DATE</label>
+<input class="bg-transparent border-t-0 border-x-0 border-b border-primary w-full md:w-48 py-3 focus:ring-0 focus:border-tertiary-container font-body-md transition-500" placeholder="Select Date" type="text"/>
+</div>
+<div class="w-full md:w-auto">
+<label class="block font-label-caps text-[10px] text-left text-secondary mb-1">GUESTS</label>
+<input class="bg-transparent border-t-0 border-x-0 border-b border-primary w-full md:w-32 py-3 focus:ring-0 focus:border-tertiary-container font-body-md transition-500" placeholder="2 Guests" type="text"/>
+</div>
+<button class="w-full md:w-auto bg-primary text-on-primary px-12 py-4 mt-4 md:mt-0 font-label-caps text-label-caps self-end transition-500 active:scale-95 hover:brightness-125">
+                    BOOK NOW
+                </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface border-t border-on-surface/5">
+<div class="flex flex-col md:flex-row justify-between items-start w-full px-margin-desktop py-16 mt-32 max-w-container-max mx-auto">
+<div class="mb-12 md:mb-0">
+<span class="font-display-lg text-display-lg text-primary block mb-6">ELIXIR &amp; OAK</span>
+<p class="font-body-md text-body-md text-secondary max-w-xs">
+                Colaba, Mumbai, India. <br/> Crafting moments of quiet luxury through the art of the brew.
+            </p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-16">
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">EXPLORE</h5>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-500" href="#">Journal</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-500" href="#">Gallery</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-500" href="#">Artisans</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-caps text-label-caps text-primary mb-6">VISIT</h5>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-500" href="#">Colaba Causeway, Mumbai</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-500" href="#">Hours: 8 AM - 11 PM</a></li>
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-500" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-1">
+<h5 class="font-label-caps text-label-caps text-primary mb-6">SOCIAL</h5>
+<ul class="space-y-4">
+<li><a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-500" href="#">Instagram</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-margin-desktop py-8 border-t border-on-surface/5 flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-4">
+<span class="font-label-caps text-[10px] text-secondary tracking-widest uppercase">© 2024 ELIXIR &amp; OAK. ARTISANAL BREWERY. MUMBAI.</span>
+<div class="flex gap-8">
+<a class="font-label-caps text-[10px] text-secondary hover:text-primary transition-500" href="#">PRIVACY</a>
+<a class="font-label-caps text-[10px] text-secondary hover:text-primary transition-500" href="#">TERMS</a>
+</div>
+</div>
+</footer>
+<script>
+    // Header scroll behavior
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('main-header');
+        const logo = document.getElementById('logo');
+        if (window.scrollY > 20) {
+            header.classList.remove('py-4', 'md:py-6', 'bg-surface/60');
+            header.classList.add('py-2', 'md:py-3', 'bg-surface/80');
+            logo.style.fontSize = '20px';
+        } else {
+            header.classList.remove('py-2', 'md:py-3', 'bg-surface/80');
+            header.classList.add('py-4', 'md:py-6', 'bg-surface/60');
+            logo.style.fontSize = '';
+        }
+    });
+
+    // Floor Plan Logic
+    function toggleFloorPlan() {
+        const modal = document.getElementById('floor-plan-modal');
+        const content = document.getElementById('modal-content');
+        if (modal.classList.contains('hidden')) {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        } else {
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+        }
+    }
+
+    function selectTable(btn, code, capacity) {
+        document.querySelectorAll('.table-btn').forEach(b => b.classList.remove('bg-tertiary-fixed', 'text-on-tertiary-fixed'));
+        btn.classList.add('bg-tertiary-fixed', 'text-on-tertiary-fixed');
+        document.getElementById('selection-status').innerText = `SELECTED: TABLE ${code} (${capacity} GUESTS)`;
+    }
+
+    // Menu Overlay Logic
+    let animationStarted = false;
+    function toggleMenu() {
+        const overlay = document.getElementById('menu-overlay');
+        const items = document.querySelectorAll('.menu-item-fade');
+        
+        if (overlay.classList.contains('hidden')) {
+            overlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => {
+                overlay.classList.add('opacity-100');
+                items.forEach((item, index) => {
+                    setTimeout(() => item.classList.add('show'), 200 + (index * 100));
+                });
+            }, 10);
+            if (!animationStarted) startMenuAnimation();
+        } else {
+            overlay.classList.remove('opacity-100');
+            items.forEach(item => item.classList.remove('show'));
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 500);
+        }
+    }
+
+    function startMenuAnimation() {
+        const canvas = document.getElementById('menu-canvas');
+        const gl = canvas.getContext('webgl');
+        if (!gl) return;
+
+        const vs = `
+            attribute vec2 position;
+            varying vec2 v_texCoord;
+            void main() {
+                v_texCoord = position * 0.5 + 0.5;
+                v_texCoord.y = 1.0 - v_texCoord.y;
+                gl_Position = vec4(position, 0.0, 1.0);
+            }
+        `;
+        const fs = `
+            precision highp float;
+            varying vec2 v_texCoord;
+            uniform float u_time;
+            uniform vec2 u_resolution;
+
+            void main() {
+                vec2 uv = v_texCoord;
+                float noise = sin(uv.x * 10.0 + u_time) * cos(uv.y * 8.0 - u_time * 0.5);
+                noise += sin(uv.y * 15.0 + u_time * 0.7) * cos(uv.x * 12.0 + u_time * 0.3);
+                vec3 color1 = vec3(0.07, 0.07, 0.07);
+                vec3 color2 = vec3(0.12, 0.12, 0.12);
+                vec3 accent = vec3(0.8, 0.6, 0.3);
+                vec3 finalColor = mix(color1, color2, noise * 0.5 + 0.5);
+                finalColor += accent * pow(max(0.0, noise), 5.0) * 0.1;
+                gl_FragColor = vec4(finalColor, 1.0);
+            }
+        `;
+
+        const program = createProgram(gl, vs, fs);
+        const positionLoc = gl.getAttribLocation(program, 'position');
+        const timeLoc = gl.getUniformLocation(program, 'u_time');
+        const resLoc = gl.getUniformLocation(program, 'u_resolution');
+
+        const buffer = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+
+        function render(time) {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            gl.useProgram(program);
+            gl.enableVertexAttribArray(positionLoc);
+            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+            gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+            gl.uniform1f(timeLoc, time * 0.001);
+            gl.uniform2f(resLoc, canvas.width, canvas.height);
+            gl.drawArrays(gl.TRIANGLES, 0, 6);
+            requestAnimationFrame(render);
+        }
+        requestAnimationFrame(render);
+        animationStarted = true;
+    }
+
+    function createProgram(gl, vsSource, fsSource) {
+        const vs = gl.createShader(gl.VERTEX_SHADER);
+        gl.shaderSource(vs, vsSource);
+        gl.compileShader(vs);
+        const fs = gl.createShader(gl.FRAGMENT_SHADER);
+        gl.shaderSource(fs, fsSource);
+        gl.compileShader(fs);
+        const prog = gl.createProgram();
+        gl.attachShader(prog, vs);
+        gl.attachShader(prog, fs);
+        gl.linkProgram(prog);
+        return prog;
+    }
+</script>
+</body></html>

@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MathWave Template Gallery</title>
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #070a13;
+      --bg-card: #0f1524;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      
+      /* Accent colors */
+      --accent-cafe: #f59e0b; /* Amber */
+      --accent-gym: #ef4444; /* Red */
+      --accent-health: #10b981; /* Emerald */
+      --accent-law: #6366f1; /* Indigo */
+      --accent-primary: #3b82f6; /* Blue */
+      
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h1, h2, h3, .brand {
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 2rem;
+      background: rgba(15, 21, 36, 0.7);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #ffffff, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .badge {
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .header-info {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    /* Main Container */
+    .container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Welcome Section */
+    .welcome-hero {
+      margin-bottom: 3rem;
+      background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.1), transparent 50%),
+                  radial-gradient(circle at bottom left, rgba(139, 92, 246, 0.05), transparent 50%);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .welcome-hero h2 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .welcome-hero p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 700px;
+      line-height: 1.6;
+    }
+
+    /* Categories Tabs */
+    .filter-tabs {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.6rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all var(--transition-fast);
+    }
+
+    .tab-btn:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      background: rgba(59, 130, 246, 0.15);
+      border-color: #3b82f6;
+      color: #60a5fa;
+    }
+
+    /* Gallery Grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all var(--transition-normal);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(59, 130, 246, 0.3);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Visual gradient top for cards */
+    .card-preview-mock {
+      height: 160px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-preview-mock::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(15, 21, 36, 0.95));
+      z-index: 1;
+    }
+
+    /* Gradient matches categories */
+    .card[data-category="Cafe & Diner"] .card-preview-mock {
+      background: linear-gradient(135deg, #78350f, #f59e0b, #451a03);
+    }
+    .card[data-category="Gym & Fitness"] .card-preview-mock {
+      background: linear-gradient(135deg, #7f1d1d, #ef4444, #450a0a);
+    }
+    .card[data-category="Health & Clinics"] .card-preview-mock {
+      background: linear-gradient(135deg, #064e3b, #10b981, #022c22);
+    }
+    .card[data-category="Consultation & Law"] .card-preview-mock {
+      background: linear-gradient(135deg, #1e1b4b, #6366f1, #0f172a);
+    }
+
+    .category-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      z-index: 2;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card[data-category="Cafe & Diner"] .category-tag {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .card[data-category="Gym & Fitness"] .category-tag {
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .card[data-category="Health & Clinics"] .category-tag {
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+    .card[data-category="Consultation & Law"] .category-tag {
+      background: rgba(99, 102, 241, 0.2);
+      color: #a5b4fc;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .mock-icon {
+      font-size: 3.5rem !important;
+      color: rgba(255, 255, 255, 0.7);
+      z-index: 2;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    }
+
+    .card-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .pages-indicator {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .view-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all var(--transition-fast);
+    }
+
+    .card:hover .view-btn {
+      background: #3b82f6;
+      border-color: #3b82f6;
+    }
+
+    /* Live Preview Screen (Overlay/Page replacement) */
+    .preview-mode {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: var(--bg-dark);
+      flex-direction: column;
+    }
+
+    .preview-header {
+      background: #0f1524;
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .preview-nav-left {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .back-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .back-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateX(-2px);
+    }
+
+    .preview-title-block h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .preview-title-block p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Responsive Viewport Switcher */
+    .viewport-controls {
+      display: flex;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.25rem;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+    }
+
+    .viewport-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      width: 36px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .viewport-btn:hover {
+      color: white;
+    }
+
+    .viewport-btn.active {
+      background: rgba(255, 255, 255, 0.1);
+      color: #60a5fa;
+    }
+
+    /* Page Selector */
+    .page-switcher-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .page-switcher-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .page-select {
+      background: #182032;
+      border: 1px solid var(--border-color);
+      color: white;
+      padding: 0.4rem 2rem 0.4rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      outline: none;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1rem;
+    }
+
+    .preview-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .external-link-btn {
+      background: #3b82f6;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: background var(--transition-fast);
+    }
+
+    .external-link-btn:hover {
+      background: #2563eb;
+    }
+
+    /* IFrame Body Area */
+    .preview-body {
+      flex: 1;
+      background: #07090e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .iframe-wrapper {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--border-color);
+      transition: width var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Device dimension widths */
+    .iframe-wrapper.desktop {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .iframe-wrapper.tablet {
+      width: 768px;
+      height: 90%;
+    }
+
+    .iframe-wrapper.mobile {
+      width: 375px;
+      height: 85%;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: white;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: auto;
+      background: rgba(15, 21, 36, 0.4);
+    }
+
+    footer a {
+      color: #3b82f6;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Empty search result style */
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .empty-state-icon {
+      font-size: 3rem !important;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .empty-state h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+      color: var(--text-muted);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .preview-header {
+        padding: 0.75rem 1rem;
+      }
+      .viewport-controls {
+        display: none; /* Hide device switcher on smaller physical devices */
+      }
+      .container {
+        padding: 1rem;
+      }
+      .welcome-hero {
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+      }
+      .welcome-hero h2 {
+        font-size: 1.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-container">
+      <div class="logo-icon">
+        <span class="material-symbols-outlined">waves</span>
+      </div>
+      <div>
+        <div class="brand">MathWave Templates</div>
+      </div>
+    </div>
+    <div class="header-info">
+      <span class="badge">V0.0.1</span>
+    </div>
+  </header>
+
+  <div class="container" id="gallery-view">
+    <section class="welcome-hero">
+      <h2>HTML Templates Showcase</h2>
+      <p>Browse, inspect, and preview beautiful modern HTML landing pages and multi-page layouts built for local businesses, clinics, cafes, and professional services. Click any card below to launch the live viewport emulator.</p>
+    </section>
+
+    <!-- Filters -->
+    <div class="filter-tabs" id="filter-tabs">
+      <button class="tab-btn active" data-filter="All">
+        <span class="material-symbols-outlined" style="font-size: 18px;">grid_view</span>
+        All Templates
+      </button>
+      <button class="tab-btn" data-filter="Cafe & Diner">
+        <span class="material-symbols-outlined" style="font-size: 18px;">restaurant</span>
+        Cafe & Diner
+      </button>
+      <button class="tab-btn" data-filter="Gym & Fitness">
+        <span class="material-symbols-outlined" style="font-size: 18px;">fitness_center</span>
+        Gym & Fitness
+      </button>
+      <button class="tab-btn" data-filter="Health & Clinics">
+        <span class="material-symbols-outlined" style="font-size: 18px;">medical_services</span>
+        Health & Clinics
+      </button>
+      <button class="tab-btn" data-filter="Consultation & Law">
+        <span class="material-symbols-outlined" style="font-size: 18px;">gavel</span>
+        Consultation & Law
+      </button>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Generated Dynamically -->
+    </div>
+  </div>
+
+  <!-- Live Preview Mode screen -->
+  <div class="preview-mode" id="preview-mode">
+    <div class="preview-header">
+      <div class="preview-nav-left">
+        <button class="back-btn" id="close-preview-btn" title="Back to Gallery">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <div class="preview-title-block">
+          <h3 id="preview-title">Template Name</h3>
+          <p id="preview-category">Category</p>
+        </div>
+      </div>
+
+      <!-- Viewport emulators -->
+      <div class="viewport-controls">
+        <button class="viewport-btn active" data-viewport="desktop" title="Desktop View">
+          <span class="material-symbols-outlined" style="font-size: 20px;">desktop_windows</span>
+        </button>
+        <button class="viewport-btn" data-viewport="tablet" title="Tablet View">
+          <span class="material-symbols-outlined" style="font-size: 20px;">tablet_mac</span>
+        </button>
+        <button class="viewport-btn" data-viewport="mobile" title="Mobile View">
+          <span class="material-symbols-outlined" style="font-size: 20px;">smartphone</span>
+        </button>
+      </div>
+
+      <!-- Page Switcher (Visible if multiple pages exist) -->
+      <div class="page-switcher-container" id="page-switcher-container">
+        <span class="page-switcher-label">View Page:</span>
+        <select class="page-select" id="page-select">
+          <!-- Populated dynamically -->
+        </select>
+      </div>
+
+      <div class="preview-actions">
+        <a href="#" target="_blank" class="external-link-btn" id="external-preview-link">
+          Open in New Tab
+          <span class="material-symbols-outlined" style="font-size: 16px;">open_in_new</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="preview-body">
+      <div class="iframe-wrapper desktop" id="iframe-wrapper">
+        <iframe id="preview-iframe" src="about:blank"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>MathWave Web Templates Suite &copy; 2026. Made with premium styling and design.</p>
+  </footer>
+
+  <script>
+    // Templates Data Array
+    const templates = [
+      {
+        id: "cafe_luxury_1",
+        name: "Cafe Luxury 1",
+        category: "Cafe & Diner",
+        icon: "coffee",
+        description: "Sleek and elegant design for luxury coffee shops, featuring dark accents and cozy image blocks.",
+        path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_1/cafe_luxury_1.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_1/cafe_luxury_1.html" }
+        ]
+      },
+      {
+        id: "cafe_luxury_2",
+        name: "Cafe Luxury 2",
+        category: "Cafe & Diner",
+        icon: "restaurant_menu",
+        description: "Sophisticated multi-page bistro layout with a dedicated high-fidelity food menu template.",
+        path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_2/cafe_luxury_2.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_2/cafe_luxury_2.html" },
+          { name: "Menu Page", path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_2/menu.html" }
+        ]
+      },
+      {
+        id: "cafe_luxury_3",
+        name: "Cafe Luxury 3",
+        category: "Cafe & Diner",
+        icon: "local_cafe",
+        description: "Warm and inviting layout for neighborhood roasteries with photo grids and order banners.",
+        path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_3/cafe_luxury_3.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_3/cafe_luxury_3.html" }
+        ]
+      },
+      {
+        id: "cafe_luxury_4",
+        name: "Cafe Luxury 4",
+        category: "Cafe & Diner",
+        icon: "bakery_dining",
+        description: "Modern, minimalistic aesthetic highlighting artisanal bakery goods and opening hours.",
+        path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_4/cafe_luxury_4.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_4/cafe_luxury_4.html" }
+        ]
+      },
+      {
+        id: "cafe_luxury_5",
+        name: "Cafe Luxury 5",
+        category: "Cafe & Diner",
+        icon: "wine_bar",
+        description: "A dark theme showcasing high-end dining, reserve table forms, and chef specials.",
+        path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_5/cafe_luxury_5.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_5/cafe_luxury_5.html" }
+        ]
+      },
+      {
+        id: "cafe_luxury_6",
+        name: "Cafe Luxury 6",
+        category: "Cafe & Diner",
+        icon: "brunch_dining",
+        description: "Chic, grid-oriented presentation for boutique brunch cafes and event spaces.",
+        path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_6/cafe_luxury_6.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/cafe_diner/cafe_luxury_6/cafe_luxury_6.html" }
+        ]
+      },
+      {
+        id: "law_consultation_1",
+        name: "Law Consultation 1",
+        category: "Consultation & Law",
+        icon: "gavel",
+        description: "Trustworthy, structured design with consultation bookings, attorney profiles, and testimonials.",
+        path: "math_wave_web_templates_v_0.0.1/templates/consultation/law_consultation_1.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/consultation/law_consultation_1.html" }
+        ]
+      },
+      {
+        id: "gym_fitness_1",
+        name: "Gym & Fitness 1",
+        category: "Gym & Fitness",
+        icon: "fitness_center",
+        description: "Energetic multi-page design including detailed pages for facility highlights, trainer Bios, and class timetables.",
+        path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_1/gym_fitness_1.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_1/gym_fitness_1.html" },
+          { name: "Facilities", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_1/gym_facilities.html" },
+          { name: "Schedule Table", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_1/gym_schedule.html" },
+          { name: "Our Trainers", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_1/gym_trainers.html" }
+        ]
+      },
+      {
+        id: "gym_fitness_2",
+        name: "Gym & Fitness 2",
+        category: "Gym & Fitness",
+        icon: "sports_kabaddi",
+        description: "Premium high-impact theme featuring a complete set of sub-pages for membership tiers, gallery grids, and gym locator forms.",
+        path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_2/index.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_2/index.html" },
+          { name: "Trainers List", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_2/trainers.html" },
+          { name: "Membership Plans", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_2/membership_plans.html" },
+          { name: "Photo Gallery", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_2/gallery.html" },
+          { name: "Contact & Map", path: "math_wave_web_templates_v_0.0.1/templates/gym_fitness/gym_fitness_2/contact_location.html" }
+        ]
+      },
+      {
+        id: "pharmacy_clinic_hospital_1",
+        name: "Pharmacy & Clinic 1",
+        category: "Health & Clinics",
+        icon: "medical_services",
+        description: "Clean medical layout with doctor consultation appointment booking, pharmacy store listings, and department listings.",
+        path: "math_wave_web_templates_v_0.0.1/templates/health_services_clinics/pharmacy_clinic_hospital_1.html",
+        pages: [
+          { name: "Home Page", path: "math_wave_web_templates_v_0.0.1/templates/health_services_clinics/pharmacy_clinic_hospital_1.html" }
+        ]
+      }
+    ];
+
+    const galleryGrid = document.getElementById('gallery-grid');
+    const filterTabs = document.getElementById('filter-tabs');
+    const previewMode = document.getElementById('preview-mode');
+    const galleryView = document.getElementById('gallery-view');
+    const closePreviewBtn = document.getElementById('close-preview-btn');
+    const previewTitle = document.getElementById('preview-title');
+    const previewCategory = document.getElementById('preview-category');
+    const previewIframe = document.getElementById('preview-iframe');
+    const externalPreviewLink = document.getElementById('external-preview-link');
+    const iframeWrapper = document.getElementById('iframe-wrapper');
+    const pageSelect = document.getElementById('page-select');
+    const pageSwitcherContainer = document.getElementById('page-switcher-container');
+
+    let currentFilter = 'All';
+
+    // Render templates function
+    function renderTemplates(filter) {
+      galleryGrid.innerHTML = '';
+      const filtered = filter === 'All' ? templates : templates.filter(t => t.category === filter);
+      
+      if (filtered.length === 0) {
+        galleryGrid.innerHTML = `
+          <div class="empty-state">
+            <span class="material-symbols-outlined empty-state-icon">search_off</span>
+            <h3>No Templates Found</h3>
+            <p>We couldn't find any templates for "${filter}".</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(template => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.setAttribute('data-category', template.category);
+        card.innerHTML = `
+          <div class="card-preview-mock">
+            <span class="category-tag">${template.category}</span>
+            <span class="material-symbols-outlined mock-icon">${template.icon || 'web'}</span>
+          </div>
+          <div class="card-content">
+            <h3>${template.name}</h3>
+            <p>${template.description}</p>
+            <div class="card-footer">
+              <span class="pages-indicator">
+                <span class="material-symbols-outlined" style="font-size: 16px;">auto_stories</span>
+                ${template.pages.length} Page${template.pages.length > 1 ? 's' : ''}
+              </span>
+              <button class="view-btn">
+                Live Preview
+                <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        `;
+        card.addEventListener('click', () => launchPreview(template));
+        galleryGrid.appendChild(card);
+      });
+    }
+
+    // Filter Click Handlers
+    filterTabs.addEventListener('click', (e) => {
+      const button = e.target.closest('.tab-btn');
+      if (!button) return;
+
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      currentFilter = button.getAttribute('data-filter');
+      renderTemplates(currentFilter);
+    });
+
+    // Launch Iframe Preview Mode
+    function launchPreview(template) {
+      previewTitle.textContent = template.name;
+      previewCategory.textContent = template.category;
+      
+      // Clear and rebuild page selector
+      pageSelect.innerHTML = '';
+      if (template.pages.length > 1) {
+        pageSwitcherContainer.style.display = 'flex';
+        template.pages.forEach(page => {
+          const opt = document.createElement('option');
+          opt.value = page.path;
+          opt.textContent = page.name;
+          pageSelect.appendChild(opt);
+        });
+      } else {
+        pageSwitcherContainer.style.display = 'none';
+      }
+
+      // Initial page load
+      const initialPath = template.path;
+      previewIframe.src = initialPath;
+      externalPreviewLink.href = initialPath;
+
+      // Handle page selection change
+      pageSelect.onchange = () => {
+        const selectedPath = pageSelect.value;
+        previewIframe.src = selectedPath;
+        externalPreviewLink.href = selectedPath;
+      };
+
+      // Show Preview panel
+      galleryView.style.display = 'none';
+      document.querySelector('header').style.display = 'none';
+      document.querySelector('footer').style.display = 'none';
+      previewMode.style.display = 'flex';
+    }
+
+    // Close Preview Mode
+    closePreviewBtn.addEventListener('click', () => {
+      previewIframe.src = 'about:blank';
+      previewMode.style.display = 'none';
+      galleryView.style.display = 'flex';
+      document.querySelector('header').style.display = 'flex';
+      document.querySelector('footer').style.display = 'flex';
+    });
+
+    // Viewport Toggle Actions
+    document.querySelectorAll('.viewport-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.viewport-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const device = btn.getAttribute('data-viewport');
+        iframeWrapper.className = `iframe-wrapper ${device}`;
+      });
+    });
+
+    // Init Page Load
+    renderTemplates('All');
+  </script>
+</body>
+</html>

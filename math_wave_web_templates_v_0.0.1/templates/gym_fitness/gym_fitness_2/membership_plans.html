@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Membership Plans | TITAN INDUSTRIAL GYM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdf9a",
+                    "on-secondary-container": "#aeb9d0",
+                    "on-tertiary-fixed": "#0d1c2f",
+                    "surface-container-high": "#2a2a2a",
+                    "tertiary-fixed": "#d5e3fd",
+                    "surface-dim": "#131313",
+                    "inverse-on-surface": "#313030",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-bright": "#393939",
+                    "on-error": "#690005",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-surface-variant": "#d3c5ac",
+                    "tertiary-fixed-dim": "#b9c7e0",
+                    "surface-tint": "#f7be1d",
+                    "primary": "#ffd165",
+                    "error-container": "#93000a",
+                    "secondary": "#bcc7de",
+                    "outline": "#9b8f79",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-tertiary-container": "#3e4c60",
+                    "on-primary-container": "#604700",
+                    "on-background": "#e5e2e1",
+                    "on-tertiary-fixed-variant": "#3a485c",
+                    "surface-container-highest": "#353534",
+                    "primary-fixed-dim": "#f7be1d",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#785a00",
+                    "primary-container": "#eab308",
+                    "surface": "#131313",
+                    "secondary-container": "#3e495d",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#5a4300",
+                    "on-primary-fixed": "#251a00",
+                    "on-primary": "#3f2e00",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface": "#e5e2e1",
+                    "tertiary": "#c9d8f1",
+                    "on-secondary": "#263143",
+                    "background": "#131313",
+                    "surface-variant": "#353534",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "outline-variant": "#4f4633",
+                    "on-tertiary": "#233144",
+                    "tertiary-container": "#aebcd4",
+                    "surface-container": "#201f1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "stack-md": "24px",
+                    "stack-lg": "48px",
+                    "gutter": "24px",
+                    "stack-sm": "12px",
+                    "margin-desktop": "64px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Oswald"],
+                    "headline-lg-mobile": ["Oswald"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Oswald"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Oswald"],
+                    "label-bold": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .industrial-tag {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 85% 100%, 0 100%);
+        }
+        .membership-card {
+            border-left: 4px solid transparent;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .membership-card:hover {
+            border-left-color: #ffd165;
+            background-color: #1E293B;
+            box-shadow: inset 0 0 10px rgba(255, 209, 101, 0.1);
+        }
+        .active-plan {
+            border-left-color: #ffd165;
+            background-color: #1E293B;
+            position: relative;
+        }
+        .active-plan::after {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: #eab308;
+            color: #000;
+            padding: 2px 12px;
+            font-family: 'Inter';
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background selection:bg-primary selection:text-black">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface border-b border-outline-variant fixed top-0 w-full z-50">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tighter" href="index.html">TITAN INDUSTRIAL GYM</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="index.html">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="trainers.html">Our Trainers</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300" href="membership_plans.html">Membership Plans</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="gallery.html">Gallery</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="contact_location.html">Contact</a>
+</div>
+<a class="bg-primary-container text-on-primary-container px-6 py-2 industrial-tag font-label-bold text-label-bold active:scale-95 transition-transform duration-200 inline-block" href="membership_plans.html">
+                Join Now
+            </a>
+</div>
+</nav>
+<main class="pt-32 pb-stack-lg">
+<!-- Hero Header -->
+<section class="max-w-container-max mx-auto px-margin-desktop mb-stack-lg">
+<div class="border-l-4 border-primary pl-6">
+<h1 class="font-display-lg text-display-lg uppercase leading-none mb-4">Choose Your <span class="text-primary">Discipline</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    High-performance training in a premium industrial environment. Select the tier that matches your commitment level and elite aspirations.
+                </p>
+</div>
+</section>
+<!-- Pricing Bento/Grid -->
+<section class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Essential Plan -->
+<div class="membership-card bg-surface-container border border-outline-variant p-8 flex flex-col h-full">
+<div class="mb-8">
+<span class="font-label-bold text-label-bold text-primary tracking-widest uppercase">Base Tier</span>
+<h2 class="font-headline-md text-headline-md mt-2">Essential</h2>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">₹3,499</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/month</span>
+</div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">24/7 Facility Access</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Industrial Strength Zone</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Locker Room Access</span>
+</li>
+<li class="flex items-center gap-3 opacity-30">
+<span class="material-symbols-outlined text-[20px]" data-icon="block">block</span>
+<span class="font-body-md text-body-md">Personal Training</span>
+</li>
+<li class="flex items-center gap-3 opacity-30">
+<span class="material-symbols-outlined text-[20px]" data-icon="block">block</span>
+<span class="font-body-md text-body-md">Nutrition Planning</span>
+</li>
+</ul>
+<a href="contact_location.html" class="w-full inline-block text-center bg-transparent border-2 border-outline-variant hover:border-primary text-on-surface py-4 industrial-tag font-label-bold text-label-bold transition-all duration-300">
+                        SELECT PLAN
+                    </a>
+</div>
+<!-- Titan Plan (Most Popular) -->
+<div class="active-plan bg-surface-container border border-primary p-8 flex flex-col h-full transform scale-105 z-10 shadow-2xl">
+<div class="mb-8">
+<span class="font-label-bold text-label-bold text-primary tracking-widest uppercase">Performance Tier</span>
+<h2 class="font-headline-md text-headline-md mt-2">Titan</h2>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-primary">₹5,999</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/month</span>
+</div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">24/7 Priority Access</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">4 PT Sessions /Month</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Recovery Zone Access</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Standard Nutrition Plan</span>
+</li>
+<li class="flex items-center gap-3 opacity-30">
+<span class="material-symbols-outlined text-[20px]" data-icon="block">block</span>
+<span class="font-body-md text-body-md">Medical Grade Testing</span>
+</li>
+</ul>
+<a href="contact_location.html" class="w-full inline-block text-center bg-primary text-black py-4 industrial-tag font-label-bold text-label-bold hover:bg-primary-container transition-all duration-300 active:scale-95">
+                        SELECT PLAN
+                    </a>
+</div>
+<!-- Elite Plan -->
+<div class="membership-card bg-surface-container border border-outline-variant p-8 flex flex-col h-full">
+<div class="mb-8">
+<span class="font-label-bold text-label-bold text-primary tracking-widest uppercase">Luxury Tier</span>
+<h2 class="font-headline-md text-headline-md mt-2">Elite</h2>
+<div class="mt-4 flex items-baseline gap-1">
+<span class="font-headline-md text-headline-md text-on-surface">₹9,999</span>
+<span class="font-body-md text-body-md text-on-surface-variant">/month</span>
+</div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">All Titan Benefits</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Unlimited Personal Training</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Bespoke Nutrition &amp; Gear</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Cryotherapy Sessions</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Guest Passes (5/month)</span>
+</li>
+</ul>
+<a href="contact_location.html" class="w-full inline-block text-center bg-transparent border-2 border-outline-variant hover:border-primary text-on-surface py-4 industrial-tag font-label-bold text-label-bold transition-all duration-300">
+                        SELECT PLAN
+                    </a>
+</div>
+</div>
+</section>
+<!-- Feature Spotlight -->
+<section class="mt-stack-lg max-w-container-max mx-auto px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-gutter items-center">
+<div class="relative h-[500px] overflow-hidden border border-outline-variant industrial-tag">
+<img alt="Titan Recovery Zone" class="w-full h-full object-cover grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-700" data-alt="A high-contrast, professional architectural photograph of a luxury gym recovery zone in Delhi. The space features industrial-chic elements like exposed steel beams, dark charcoal walls, and high-intensity overhead lighting. Modern recovery pods and cryotherapy chambers are visible. The aesthetic is clean, elite, and atmospheric with deep shadows and vibrant electric yellow accents reflected in polished surfaces." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYMEM-GGPmU-QGcXohg-YSF9a-pxx7ET1sy9EB1Gx-L8K1hswIBApV3DNoyi4hQNYXDTHBkixg_xe1g-UUjvW6vNrZV0KDihs5Aj-OJpO2u77xlCYcUeg99BWx0juMWf9gmvaMB6APlRAnh3mZNFd4TTPAlEMfCuvTOKNocyVY7kXMgyDZ4Vtiab_5bT0sE6D5fZKKT1EyO1nxc3XdGBi5b47Bkf7lGumUGQpIA0QF2lrhjwlabyOP1DUsyeKw9Gwn7mqJ2hvNjQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-60"></div>
+<div class="absolute bottom-8 left-8">
+<span class="bg-primary text-black px-4 py-1 font-label-bold text-label-bold mb-2 inline-block">PREMIUM ACCESS</span>
+<h3 class="font-headline-md text-headline-md text-white">THE RECOVERY ZONE</h3>
+</div>
+</div>
+<div class="space-y-8">
+<div class="group">
+<h4 class="font-headline-md text-headline-md mb-2 group-hover:text-primary transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="nutrition">nutrition</span>
+                        Nutrition Protocol
+                    </h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Fuel your evolution with science-backed meal plans designed by professional sports nutritionists. Included in Titan and Elite tiers.
+                    </p>
+</div>
+<div class="group">
+<h4 class="font-headline-md text-headline-md mb-2 group-hover:text-primary transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+                        24/7 Industrial Access
+                    </h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Train on your schedule. Our facility never sleeps, mirroring the relentless drive of Delhi's elite achievers.
+                    </p>
+</div>
+<div class="group">
+<h4 class="font-headline-md text-headline-md mb-2 group-hover:text-primary transition-colors flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="fitness_center">fitness_center</span>
+                        Bespoke Training
+                    </h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                        Leverage the expertise of our certified coaches. From biomechanics to performance peaking, we build your best self.
+                    </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="font-headline-md text-headline-md text-on-surface font-bold tracking-tighter mb-4">TITAN INDUSTRIAL GYM</div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs mb-8">
+                    The ultimate destination for those who demand more from their training. Premium equipment. Elite atmosphere.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:border-primary hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</a>
+<a class="w-10 h-10 border border-outline-variant flex items-center justify-center hover:border-primary hover:text-primary transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+</a>
+</div>
+</div>
+<div>
+<h5 class="font-label-bold text-label-bold text-primary mb-6 uppercase tracking-widest">Navigation</h5>
+<ul class="space-y-3">
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Location</a></li>
+<li><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label-bold text-label-bold text-primary mb-6 uppercase tracking-widest">Contact</h5>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-2">South Extension II, New Delhi</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">+91 11-TITAN-GYM</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-8">© 2024 Titan Industrial Gym Delhi. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () => {
+                button.classList.remove('scale-95');
+            });
+        });
+
+        // Simple scroll reveal
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('translate-y-10');
+                    entry.target.classList.remove('opacity-0');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.membership-card, .active-plan').forEach(el => {
+            el.classList.add('opacity-0', 'translate-y-10', 'transition-all', 'duration-700');
+            observer.observe(el);
+        });
+    </script>
+</body></html>

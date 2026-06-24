@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Trainers | TITAN INDUSTRIAL GYM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .industrial-tag {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+        }
+        .trainer-card-overlay {
+            background: linear-gradient(0deg, rgba(18,18,18,1) 0%, rgba(18,18,18,0.8) 40%, rgba(18,18,18,0) 100%);
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#ffdf9a",
+                      "on-secondary-container": "#aeb9d0",
+                      "on-tertiary-fixed": "#0d1c2f",
+                      "surface-container-high": "#2a2a2a",
+                      "tertiary-fixed": "#d5e3fd",
+                      "surface-dim": "#131313",
+                      "inverse-on-surface": "#313030",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-bright": "#393939",
+                      "on-error": "#690005",
+                      "surface-container-low": "#1c1b1b",
+                      "on-secondary-fixed": "#111c2d",
+                      "on-surface-variant": "#d3c5ac",
+                      "tertiary-fixed-dim": "#b9c7e0",
+                      "surface-tint": "#f7be1d",
+                      "primary": "#ffd165",
+                      "error-container": "#93000a",
+                      "secondary": "#bcc7de",
+                      "outline": "#9b8f79",
+                      "secondary-fixed-dim": "#bcc7de",
+                      "on-tertiary-container": "#3e4c60",
+                      "on-primary-container": "#604700",
+                      "on-background": "#e5e2e1",
+                      "on-tertiary-fixed-variant": "#3a485c",
+                      "surface-container-highest": "#353534",
+                      "primary-fixed-dim": "#f7be1d",
+                      "on-error-container": "#ffdad6",
+                      "inverse-primary": "#785a00",
+                      "primary-container": "#eab308",
+                      "surface": "#131313",
+                      "secondary-container": "#3e495d",
+                      "error": "#ffb4ab",
+                      "on-primary-fixed-variant": "#5a4300",
+                      "on-primary-fixed": "#251a00",
+                      "on-primary": "#3f2e00",
+                      "surface-container-lowest": "#0e0e0e",
+                      "on-surface": "#e5e2e1",
+                      "tertiary": "#c9d8f1",
+                      "on-secondary": "#263143",
+                      "background": "#131313",
+                      "surface-variant": "#353534",
+                      "secondary-fixed": "#d8e3fb",
+                      "on-secondary-fixed-variant": "#3c475a",
+                      "outline-variant": "#4f4633",
+                      "on-tertiary": "#233144",
+                      "tertiary-container": "#aebcd4",
+                      "surface-container": "#201f1f"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "container-max": "1280px",
+                      "margin-mobile": "20px",
+                      "stack-md": "24px",
+                      "stack-lg": "48px",
+                      "gutter": "24px",
+                      "stack-sm": "12px",
+                      "margin-desktop": "64px",
+                      "unit": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Oswald"],
+                      "headline-lg-mobile": ["Oswald"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Oswald"],
+                      "body-md": ["Inter"],
+                      "display-lg": ["Oswald"],
+                      "label-bold": ["Inter"],
+                      "label-sm": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                      "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 glass-nav border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tighter" href="index.html">TITAN INDUSTRIAL GYM</a>
+<nav class="hidden md:flex items-center space-x-gutter">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="index.html">Home</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300" href="trainers.html">Our Trainers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="membership_plans.html">Membership Plans</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="gallery.html">Gallery</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="contact_location.html">Contact</a>
+</nav>
+<a class="bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2 industrial-tag active:scale-95 transition-transform duration-200 inline-block" href="membership_plans.html">
+                Join Now
+            </a>
+</div>
+</header>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-stack-lg relative overflow-hidden">
+<div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-[100px]"></div>
+<div class="relative z-10 border-l-4 border-primary pl-gutter">
+<span class="text-primary font-label-bold text-label-bold uppercase tracking-widest block mb-4">Elite Personal Coaching</span>
+<h1 class="font-display-lg text-headline-lg md:text-display-lg mb-stack-sm text-on-surface max-w-4xl">Delhi's Most Elite Fitness Experts</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Our roster consists of certified professionals, competitive athletes, and rehabilitation specialists dedicated to pushing your limits in a high-intensity industrial environment.
+                </p>
+</div>
+</section>
+<!-- Trainer Grid -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-stack-lg">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Trainer 1 -->
+<div class="group relative bg-surface-container-low border border-outline-variant overflow-hidden hover:border-primary/50 transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Professional Fitness Trainer" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A powerful portrait of a professional male fitness trainer with a muscular build standing in a gritty industrial gym in Delhi. He is wearing a black performance tank top, lit by dramatic high-contrast side lighting that emphasizes muscle definition. The background features exposed brick, steel beams, and heavy weights, creating a premium elite atmosphere with deep charcoal tones and sharp highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKlNYPXLGdFxHV7pLg8gkFuyo8Tk_0Y_QkQ_Sv0gEih4J2Xl8t6YjlRqbt2DbCe0VyU50ARSobPSLZmbptmJtHumsLO06jxtXO0riiXwkIwSZ4Aub4SOOWcSE4jRuD485xvF4XKankl8iHZK7vZVDitD4AAKk-I_09kdlTOPQLwghWt3Dx_zC1qp9CEnV1rkv7ABa_FuxLLkFy46BQ8QgWgRQpEkovokrgsbIOkGX_3hn-RR0gmo50zKesDnPbRaD_WSg3e0qcIA"/>
+<div class="absolute inset-0 trainer-card-overlay opacity-80"></div>
+</div>
+<!-- Header-Accent Line -->
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+<div class="absolute bottom-0 left-0 p-gutter w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter">Elite Level</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter border border-outline-variant">Strength &amp; Conditioning</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Vikram "The Titan" Singh</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 group-hover:line-clamp-none transition-all duration-300">
+                            Former national bodybuilding champion with 12+ years of experience in transformative strength programming and hyper-intensive hypertrophy.
+                        </p>
+<div class="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">fitness_center</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">timer</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+</div>
+</div>
+</div>
+<!-- Trainer 2 -->
+<div class="group relative bg-surface-container-low border border-outline-variant overflow-hidden hover:border-primary/50 transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Female HIIT Trainer" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A striking portrait of a professional female fitness expert in a high-tech gym setting in New Delhi. She is focused and intense, wearing premium athletic gear in a dark setting with amber rim lighting. The aesthetic is industrial yet luxurious, with professional lighting that creates a deep, atmospheric vibe consistent with a high-performance training facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8XtzlYEIOe07bCpVD3wxd7eaW3eSgFS1EfRYj1GvwxIyXIh3jqBZm7kpqa929IXJ7EkaKEBgjTVwtHQMR5joRNQOAE_7eAobh1C5nPAknyfzjZRTnHkzn3QASNfo0eWX8NE2GAhnLOSoToR7-t6ZAaYswF16GlwbsXxK46yI5jNVPGQkT0Ro7HPRs9mH-tY2IQSjOgo6WkhuqXgz-NBQJGWickCZvLiZNKS3SqbAGbMQYtyZBhTwFzS0gWp8CigV3HmZoB_i9mg"/>
+<div class="absolute inset-0 trainer-card-overlay opacity-80"></div>
+</div>
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+<div class="absolute bottom-0 left-0 p-gutter w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter">Pro Athlete</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter border border-outline-variant">HIIT &amp; Athleticism</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Ananya Sharma</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 group-hover:line-clamp-none transition-all duration-300">
+                            Elite track athlete specializing in metabolic conditioning and explosive power development for high-performance individuals.
+                        </p>
+<div class="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">bolt</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">speed</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+</div>
+</div>
+</div>
+<!-- Trainer 3 -->
+<div class="group relative bg-surface-container-low border border-outline-variant overflow-hidden hover:border-primary/50 transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Yoga and Mobility Specialist" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="An expert yoga and mobility specialist demonstrating a complex pose in a minimalist, industrial studio space. The lighting is low-key and dramatic, casting shadows across the concrete floor. The environment is dark and atmospheric, focusing on the precision of movement. The color palette is restricted to blacks, greys, and warm golden highlights on the skin and floor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPDr4SaOFpTtpPDqXn-vew83IdEaIGtOyobu6yQMizKL3HwfLUjTO7HI98izAuR4tSoaev3cbbpX43jcFqW2vnOuRe24GzhS35jKz_pBJQuTzozCvv6XtZnhlI-M7Sr2l5d69WvZomyirWsoSrlrtdA-WjGhUCpzL_dCfaSVXzltYmApSMDSI893cUil9nsKMzrNNSEBcIZ5F-3GGsX0qMooIVfXVGB7UoCzreRCnd4h89G3gIeKQTmOAdqzaG-YLDEpRej4z_Qg"/>
+<div class="absolute inset-0 trainer-card-overlay opacity-80"></div>
+</div>
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+<div class="absolute bottom-0 left-0 p-gutter w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter">Movement Master</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter border border-outline-variant">Yoga &amp; Mobility</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Rohan Mehra</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 group-hover:line-clamp-none transition-all duration-300">
+                            Integrating traditional yogic philosophy with modern bio-mechanics to enhance functional range and injury prevention.
+                        </p>
+<div class="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">self_improvement</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">spa</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+</div>
+</div>
+</div>
+<!-- Trainer 4 -->
+<div class="group relative bg-surface-container-low border border-outline-variant overflow-hidden hover:border-primary/50 transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="CrossFit Coach" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A professional CrossFit coach in a gritty, industrial gym environment, surrounded by heavy chains and metal structures. The trainer has a focused expression, highlighted by sharp, dramatic lighting that creates deep blacks and bright highlights. The style is premium and high-performance, reflecting a top-tier training facility in Delhi." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiiZnfVQwDy6RvR0dbfkEoj5lcU4GRoKEfDxbdxUlB_yB10amggttTyouiVCvUWjHpXzu2t0Yny1fT2zSBII47HnmKVivQAv9fioXe6JQg4mg08Gp5eHsq-fa5CV0kM-WtKfBYnwtv8Ab0Nsm6HBV-YBTNZ-xadBMY_EU-R7VCMJTY379O3HEoaawaMfU3ivu-0KvTAyyZUF4EbN4dNNiJpA3yhV2ZC-LL18VaiN41Ij1Ysexgle7Ob_jFT84WtvABJrOuwqyLwQ"/>
+<div class="absolute inset-0 trainer-card-overlay opacity-80"></div>
+</div>
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+<div class="absolute bottom-0 left-0 p-gutter w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter">Power Coach</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter border border-outline-variant">CrossFit &amp; Powerlifting</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Kabir Malhotra</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 group-hover:line-clamp-none transition-all duration-300">
+                            Specializing in technical mastery of the compound lifts and high-intensity metabolic conditioning circuits.
+                        </p>
+<div class="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">groups</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">military_tech</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+</div>
+</div>
+</div>
+<!-- Trainer 5 -->
+<div class="group relative bg-surface-container-low border border-outline-variant overflow-hidden hover:border-primary/50 transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Calisthenics Expert" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="A portrait of a male calisthenics expert in a dark, urban industrial gym. He is performing a bodyweight skill, showing incredible control and strength. The lighting is cinematic, with orange glow reflecting off industrial metal surfaces. The scene is elite and sophisticated, conveying a sense of mastery and discipline in a premium fitness context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdpB3c8i1MAOfsVhHaTUUQ9NNTkUHeskAk5nzSTLrATxkZQ_zTBsZ8bJ2gQOsMKPuruB15n4DYj7791NYtCHahgRTSP_JgzPZME9d_0QdmeDf9ego8yx9tszwDUGDBqX_rUA2Zz6p1xioIY5iG2mVJL-MudJmhYivlsl1UBidM5R1_PZLaV3_TmWMjT82N9GlPzO0ap3Nw9T8EDgXA-s1B_xuPrz8wbrWhOS1hX2Cq8dS1nf26V5thh-7svvcV37shIix3eK3XHg"/>
+<div class="absolute inset-0 trainer-card-overlay opacity-80"></div>
+</div>
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+<div class="absolute bottom-0 left-0 p-gutter w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter">Bodyweight Master</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter border border-outline-variant">Calisthenics &amp; Control</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Arjun Kapoor</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 group-hover:line-clamp-none transition-all duration-300">
+                            Master of gymnastic strength training and advanced bodyweight skills, focusing on relative strength and core stability.
+                        </p>
+<div class="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">architecture</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">sports_gymnastics</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+</div>
+</div>
+</div>
+<!-- Trainer 6 -->
+<div class="group relative bg-surface-container-low border border-outline-variant overflow-hidden hover:border-primary/50 transition-all duration-500">
+<div class="aspect-[4/5] overflow-hidden">
+<img alt="Nutrition and Transformation Coach" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700" data-alt="Portrait of a female nutrition and transformation coach in a sleek, modern industrial office within a high-end gym. She looks professional and approachable, with soft but clear lighting. The background features technical fitness equipment blurred out, suggesting a data-driven approach to health. The mood is sophisticated, focused, and premium." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVca_k_eduYeiSOwszvsXRGBH9J0ZS5ggz1WRYkw7C3MecWzVUM4nVwvMd0ZqiB_CPCoska_lihrpWnbDFULxoq9nIyxkHk-XbSllNnNgSW-LxTAyGhok1GnmWYbHppZPj2y39720RrZfjC2-kGGah-PETLozKVEwrmpNrSTh0WE7ZLuF83wtj9NVztTqLxe9s3maKR7kw7sPJDupBkxajlIa13jT_ESO-81TVy4CHCbQoRiMqNc0cHdG0ifOn4pOwY8SPRmAoSA"/>
+<div class="absolute inset-0 trainer-card-overlay opacity-80"></div>
+</div>
+<div class="absolute top-0 left-0 w-1 h-full bg-primary transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+<div class="absolute bottom-0 left-0 p-gutter w-full">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-primary text-on-primary text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter">Data Specialist</span>
+<span class="bg-surface-container-highest text-on-surface-variant text-[10px] font-bold px-2 py-0.5 uppercase tracking-tighter border border-outline-variant">Nutrition &amp; Transformation</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Dr. Priya Verma</h3>
+<p class="font-body-md text-body-md text-on-surface-variant line-clamp-2 mb-4 group-hover:line-clamp-none transition-all duration-300">
+                            PhD in Sports Nutrition, providing data-driven metabolic coaching and holistic lifestyle transformation protocols.
+                        </p>
+<div class="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">nutrition</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">monitoring</span>
+<span class="material-symbols-outlined text-primary cursor-pointer hover:scale-110 transition-transform">share</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Call to Action Section -->
+<section class="px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto mb-stack-lg">
+<div class="bg-surface-container-low border border-outline-variant p-stack-lg relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/3 h-full bg-primary/5 -skew-x-12 transform translate-x-20"></div>
+<div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-gutter">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-4">Ready to train with the best?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+                            Our elite trainers are ready to design a custom blueprint for your evolution. Book a complimentary discovery session today.
+                        </p>
+</div>
+<div class="flex gap-4">
+<button class="bg-primary text-on-primary font-label-bold text-label-bold px-8 py-4 industrial-tag hover:bg-primary-container transition-colors">
+                            BOOK A SESSION
+                        </button>
+<button class="border-2 border-outline text-on-surface font-label-bold text-label-bold px-8 py-4 industrial-tag hover:border-primary transition-colors">
+                            VIEW PROGRAMS
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-mobile md:px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tighter">TITAN</span>
+<p class="font-body-md text-body-md text-on-surface-variant">The absolute standard of industrial fitness in the capital. Forge your legacy.</p>
+<div class="flex gap-4 mt-2">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">public</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">alternate_email</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary cursor-pointer">location_on</span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold text-label-bold text-on-surface uppercase">Company</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">About Us</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Terms of Service</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold text-label-bold text-on-surface uppercase">Quick Links</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Location</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">FAQ</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Schedule</a>
+</nav>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="font-label-bold text-label-bold text-on-surface uppercase">Newsletter</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Get elite training tips and exclusive updates.</p>
+<div class="flex">
+<input class="bg-surface-container-low border-b border-outline-variant focus:border-primary focus:ring-0 text-on-surface w-full p-2 outline-none" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-on-primary px-4 py-2 hover:bg-primary-container transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-margin-mobile md:px-margin-desktop py-stack-sm max-w-container-max mx-auto border-t border-outline-variant text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Titan Industrial Gym Delhi. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+        // Micro-interactions for buttons and cards
+        document.querySelectorAll('button, .group').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'scale(0.98)';
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = '';
+            });
+        });
+
+        // Smooth scroll implementation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body></html>

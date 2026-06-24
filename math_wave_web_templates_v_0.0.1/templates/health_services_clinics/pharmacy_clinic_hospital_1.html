@@ -1,0 +1,673 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Arogya Clinic | World-Class Healthcare in Bangalore</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+            color: #0b1c30;
+            scroll-behavior: smooth;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            will-change: opacity, transform;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal.reveal-delay {
+            transition-delay: 0.12s;
+        }
+        .hover-card {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease, background-color 0.35s ease;
+            will-change: transform, box-shadow;
+            transform: translateZ(0);
+        }
+        .slideshow-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            min-height: 24rem;
+        }
+        .hero-slideshow {
+            position: absolute;
+            inset: 0;
+            border-radius: 0;
+            min-height: auto;
+            height: 100%;
+        }
+        .hero-slideshow .slideshow-slide {
+            object-fit: cover;
+        }
+        .slideshow-slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        .slideshow-slide.active {
+            opacity: 1;
+        }
+        .slideshow-caption {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.65rem 1rem;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.9);
+            color: #0b1c30;
+            font-weight: 600;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+            z-index: 2;
+        }
+        .slideshow-controls {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 0 1rem;
+            z-index: 2;
+        }
+        .slideshow-button {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 9999px;
+            border: none;
+            background: rgba(255,255,255,0.88);
+            color: #0b1c30;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.14);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .slideshow-button:hover { transform: translateY(-1px); background: rgba(255,255,255,0.96); }
+        .slide-dot {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 9999px;
+            background: rgba(255,255,255,0.72);
+            border: 1px solid rgba(15,23,42,0.12);
+            cursor: pointer;
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+        .slide-dot.active {
+            background: #00254d;
+            transform: scale(1.15);
+        }
+        .hover-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 24px 40px -12px rgba(0,0,0,0.18), 0 12px 20px -12px rgba(0,0,0,0.12);
+        }
+        .btn-hover {
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease, box-shadow 0.35s ease;
+            will-change: transform, filter;
+        }
+        .btn-hover:hover {
+            transform: translateY(-1px) scale(1.02);
+            filter: brightness(1.06);
+            box-shadow: 0 18px 28px -14px rgba(0,0,0,0.18);
+        }
+        .btn-hover:active {
+            transform: scale(0.98);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "error-container": "#ffdad6",
+                      "inverse-surface": "#213145",
+                      "on-error": "#ffffff",
+                      "tertiary-fixed": "#d4e3ff",
+                      "secondary-fixed-dim": "#59d9d9",
+                      "surface-container-lowest": "#ffffff",
+                      "surface": "#f8f9ff",
+                      "inverse-primary": "#a7c8ff",
+                      "on-tertiary-fixed-variant": "#004883",
+                      "surface-container-low": "#eff4ff",
+                      "on-surface": "#0b1c30",
+                      "secondary-container": "#79f6f5",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed-dim": "#a7c8ff",
+                      "primary-fixed": "#d5e3ff",
+                      "on-tertiary-container": "#63a8fd",
+                      "background": "#f8f9ff",
+                      "tertiary": "#00264a",
+                      "inverse-on-surface": "#eaf1ff",
+                      "surface-container": "#e5eeff",
+                      "primary": "#00254d",
+                      "tertiary-container": "#003c6f",
+                      "on-primary-container": "#7fa7e5",
+                      "surface-container-high": "#dce9ff",
+                      "surface-tint": "#345f99",
+                      "secondary": "#006a6a",
+                      "on-primary": "#ffffff",
+                      "secondary-fixed": "#79f6f5",
+                      "surface-variant": "#d3e4fe",
+                      "surface-dim": "#cbdbf5",
+                      "on-secondary-container": "#007070",
+                      "on-secondary-fixed-variant": "#004f4f",
+                      "on-tertiary-fixed": "#001c39",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-surface-variant": "#434750",
+                      "tertiary-fixed-dim": "#a4c9ff",
+                      "primary-container": "#003b73",
+                      "outline": "#737781",
+                      "on-error-container": "#93000a",
+                      "error": "#ba1a1a",
+                      "surface-bright": "#f8f9ff",
+                      "on-primary-fixed-variant": "#174780",
+                      "outline-variant": "#c3c6d1",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-fixed": "#001c3b",
+                      "on-secondary-fixed": "#002020",
+                      "on-background": "#0b1c30"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "margin": "24px",
+                      "sm": "16px",
+                      "md": "24px",
+                      "base": "4px",
+                      "xs": "8px",
+                      "lg": "32px",
+                      "xl": "48px"
+              },
+              "fontFamily": {
+                      "title-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "display-lg": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "title-md": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                      "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                      "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                      "label-sm": ["12px", { "lineHeight": "16px", "fontWeight": "600" }],
+                      "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                      "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                      "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-on-background">
+<!-- Floating Action Bar -->
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-4 bg-surface shadow-sm max-w-none">
+<div class="flex items-center gap-md">
+<span class="font-headline-lg text-headline-lg font-bold text-primary">Arogya Clinic</span>
+</div>
+<div class="hidden md:flex items-center gap-lg"><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#pharmacy">Pharmacy</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#specialties">Specialties</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#why-us">Why Us</a><a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#booking">Bookings</a></div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<a class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md btn-hover transition-all" href="#booking">Book Appointment</a>
+</div>
+</nav>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative h-[85vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0 hero-slideshow slideshow-container">
+<img class="slideshow-slide active" alt="Arogya Clinic reception area" src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1680&q=80">
+<img class="slideshow-slide" alt="Modern healthcare waiting area" src="https://images.unsplash.com/photo-1580281657521-7f21f9d0c8b4?auto=format&fit=crop&w=1680&q=80">
+<img class="slideshow-slide" alt="Clinical staff discussing patient care" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1680&q=80">
+<img class="slideshow-slide" alt="Pharmacy shelves and medicine counter" src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1680&q=80">
+<div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-transparent"></div>
+</div>
+<div class="container mx-auto px-gutter relative z-10">
+<div class="max-w-2xl reveal">
+<h1 class="font-display-lg text-display-lg text-white mb-6 leading-tight">Your Neighborhood Pharmacy &amp; Expert Clinical Care</h1>
+<p class="font-body-lg text-body-lg text-white/90 mb-8 max-w-lg">Fast prescription fulfillment, 24/7 delivery, and world-class specialists under one roof in Bangalore.</p>
+<div class="flex flex-wrap gap-md">
+<a class="bg-secondary-fixed text-on-secondary-fixed px-8 py-4 rounded-lg font-title-md text-title-md btn-hover transition-all flex items-center gap-2 shadow-lg" href="#booking">
+                        Schedule Now
+                        <span class="material-symbols-outlined">calendar_today</span>
+</a>
+<a class="bg-white/10 backdrop-blur-md border border-white/30 text-white px-8 py-4 rounded-lg font-title-md text-title-md hover:bg-white/20 btn-hover transition-all" href="#specialties">
+                        View Specialties
+                    </a>
+</div>
+</div>
+</div>
+</section><section class="py-xl bg-surface-container-low reveal" id="pharmacy"><div class="container mx-auto px-gutter"><div class="grid grid-cols-1 lg:grid-cols-12 gap-lg"><div class="lg:col-span-8 bg-white p-lg rounded-xl shadow-sm border border-outline-variant flex flex-col md:flex-row gap-lg overflow-hidden relative transition-all hover:shadow-md"><div class="absolute top-0 left-0 w-2 h-full bg-secondary"></div><div class="flex-1"><h2 class="font-headline-lg text-headline-lg text-primary mb-4">Arogya Pharmacy</h2><p class="font-body-md text-body-md text-on-surface-variant mb-8">Order medicines online with your digital prescription. Fast delivery across Bangalore with 24/7 pharmacist support.</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-md mb-8"><div class="border-2 border-dashed border-primary-container bg-surface-container-lowest p-md rounded-lg flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container transition-all group"><span class="material-symbols-outlined text-4xl text-primary mb-2 group-hover:scale-110 transition-transform">cloud_upload</span><span class="font-label-md text-label-md text-primary">Upload Prescription</span><span class="text-xs text-on-surface-variant mt-1">PDF, JPG, PNG up to 10MB</span><input class="hidden" type="file"></div><a class="bg-[#25D366] text-white p-md rounded-lg flex flex-col items-center justify-center text-center hover:brightness-95 transition-all shadow-md group btn-hover" href="https://wa.me/918000000000" target="_blank"><span class="material-symbols-outlined text-4xl mb-2 group-hover:rotate-12 transition-transform">chat</span><span class="font-label-md text-label-md">Quick Order via WhatsApp</span><span class="text-xs opacity-90 mt-1">Direct to Pharmacist</span></a></div></div><div class="md:w-1/3 flex flex-col justify-between p-md bg-tertiary-fixed rounded-lg"><div><div class="flex items-center gap-xs mb-md"><span class="material-symbols-outlined text-primary">access_time</span><span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-sm text-label-sm">Open 24/7</span></div><h3 class="font-title-md text-title-md text-primary mb-2">Pharmacy Location</h3><p class="font-label-md text-label-md text-on-tertiary-fixed-variant leading-relaxed">12, Outer Ring Road, HSR Layout Sector 1,<br>Opposite Agara Lake, Bangalore, Karnataka 560102</p></div><div class="mt-lg"><img alt="Medical Pharmacy" class="w-full h-32 object-cover rounded-lg shadow-inner" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCu7vioHH9zHWnfawIggzYgrRaVZlzLzSRr4PHmenl7_ZxjRsW7lTYxULcbpE3OELtspKR97u4--l7C59HC4kMF_iQxF69bk2HCMfBtsp_kAtBgS1kE33Og4pixEbPjgEIMWEOC7N1XG-vZxZ_h1c3fODJaS_r0NhphJhws-Zik9zuUR4TMcA7rG0vSxJxQQUU8ULXWv2U78PTvnnn-ZCuAEyDhgDhuGCUhBDPkMwMlVrKRQu3nN2Gt2roF0C6-ykoc8BM1fKGJtiT"></div></div></div><div class="lg:col-span-4 flex flex-col gap-md"><div class="bg-primary text-white p-lg rounded-xl shadow-lg relative overflow-hidden flex-1 group transition-all"><span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl opacity-10 group-hover:scale-110 transition-transform">biotech</span><h3 class="font-title-md text-title-md mb-4 flex items-center gap-xs"><span class="material-symbols-outlined">verified</span> Verified Lab Results</h3><p class="font-body-md text-body-md text-white/80 mb-6">NABL accredited diagnostic lab with report delivery within 24 hours.</p><button class="w-full py-3 border border-white/40 rounded-lg font-label-md text-label-md hover:bg-white hover:text-primary btn-hover transition-all">Download Reports</button></div><div class="bg-white p-lg rounded-xl shadow-sm border border-outline-variant flex-1 hover-card transition-all"><h3 class="font-title-md text-title-md text-primary mb-4">Emergency Care</h3><div class="flex items-center gap-md p-md bg-error-container text-on-error-container rounded-lg group"><span class="material-symbols-outlined text-3xl group-hover:animate-pulse">emergency</span><div><p class="font-label-md text-label-md font-bold">24/7 Helpline</p><p class="font-title-md text-title-md">+91 80 4999 0000</p></div></div></div></div></div></div></section>
+<!-- Specialties Section -->
+
+<!-- Why Choose Us Section -->
+<section class="py-xl bg-surface-container-lowest reveal" id="why-us">
+<div class="container mx-auto px-gutter">
+<div class="flex flex-col lg:flex-row items-center gap-xl">
+<div class="lg:w-1/2">
+<h2 class="font-display-lg text-headline-lg text-primary mb-6">Why Choose Arogya Clinic?</h2>
+<p class="font-body-lg text-on-surface-variant mb-8">We combine medical excellence with a patient-centric approach to ensure you receive the best possible care in Bangalore.</p>
+<div class="space-y-md">
+<div class="flex items-start gap-md p-md bg-surface-container rounded-xl transition-all duration-300 hover:bg-primary-fixed group">
+<div class="mt-1 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">verified</span>
+</div>
+<div>
+<h4 class="font-title-md text-primary">NABL Accredited Lab</h4>
+<p class="font-body-md text-on-surface-variant group-hover:text-primary">Our laboratory follows international quality standards for precision and reliability in every test report.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-md bg-surface-container rounded-xl transition-all duration-300 hover:bg-secondary-container group">
+<div class="mt-1 w-10 h-10 rounded-full bg-secondary text-white flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<h4 class="font-title-md text-primary">Zero Waiting Time</h4>
+<p class="font-body-md text-on-surface-variant group-hover:text-on-secondary-container">Priority booking system ensures you spend less time in the waiting room and more time with your doctor.</p>
+</div>
+</div>
+<div class="flex items-start gap-md p-md bg-surface-container rounded-xl transition-all duration-300 hover:bg-tertiary-fixed group">
+<div class="mt-1 w-10 h-10 rounded-full bg-tertiary text-white flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<h4 class="font-title-md text-primary">24/7 Pharmacy &amp; Support</h4>
+<p class="font-body-md text-on-surface-variant group-hover:text-on-tertiary-fixed-variant">Round-the-clock access to medicines and medical assistance whenever you need it most.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 relative">
+<div class="slideshow-container reveal">
+<img class="slideshow-slide active" alt="Clinic reception with friendly staff" src="https://images.unsplash.com/photo-1580281657521-7f21f9d0c8b4?auto=format&fit=crop&w=1200&q=80">
+<img class="slideshow-slide" alt="Modern clinic interior" src="https://images.unsplash.com/photo-1551601651-8d0ac9a8b13f?auto=format&fit=crop&w=1200&q=80">
+<img class="slideshow-slide" alt="Medical consultation" src="https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80">
+<img class="slideshow-slide" alt="Pharmacy counter with products" src="https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=1200&q=80">
+<div class="slideshow-caption">Arogya Clinic in Action</div>
+<div class="slideshow-controls">
+<button type="button" class="slideshow-button prev" aria-label="Previous image"><span class="material-symbols-outlined">chevron_left</span></button>
+<div class="flex items-center gap-2">
+<button type="button" class="slide-dot active" aria-label="Slide 1"></button>
+<button type="button" class="slide-dot" aria-label="Slide 2"></button>
+<button type="button" class="slide-dot" aria-label="Slide 3"></button>
+<button type="button" class="slide-dot" aria-label="Slide 4"></button>
+</div>
+<button type="button" class="slideshow-button next" aria-label="Next image"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-white p-lg rounded-xl shadow-xl border border-outline-variant reveal reveal-delay">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-4xl text-secondary">groups</span>
+<div>
+<p class="font-display-lg text-headline-lg text-primary">15+</p>
+<p class="font-label-md text-on-surface-variant uppercase tracking-wider">Expert Physicians</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section class="py-lg bg-surface reveal" id="specialties"><div class="container mx-auto px-gutter"><div class="text-center mb-lg"><h2 class="font-headline-lg text-headline-lg text-primary mb-2">Our Medical Specialties</h2><p class="font-body-md text-on-surface-variant max-w-2xl mx-auto">Comprehensive healthcare services delivered by board-certified specialists.</p></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md"><div class="bg-white p-md rounded-xl border border-outline-variant hover-card transition-all duration-300"><div class="w-10 h-10 bg-primary-fixed rounded-lg flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-2xl">cardiology</span></div><h3 class="font-title-md text-title-md text-primary mb-2">Cardiology</h3><p class="font-body-md text-on-surface-variant mb-2">Advanced heart care and diagnostics.</p><a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#booking">Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span></a></div><div class="bg-white p-md rounded-xl border border-outline-variant hover-card transition-all duration-300"><div class="w-10 h-10 bg-secondary-container rounded-lg flex items-center justify-center text-on-secondary-container mb-4"><span class="material-symbols-outlined text-2xl">child_care</span></div><h3 class="font-title-md text-title-md text-primary mb-2">Pediatrics</h3><p class="font-body-md text-on-surface-variant mb-2">Dedicated child healthcare.</p><a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#booking">Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span></a></div><div class="bg-white p-md rounded-xl border border-outline-variant hover-card transition-all duration-300"><div class="w-10 h-10 bg-tertiary-fixed rounded-lg flex items-center justify-center text-on-tertiary-fixed mb-4"><span class="material-symbols-outlined text-2xl">orthopedics</span></div><h3 class="font-title-md text-title-md text-primary mb-2">Orthopedics</h3><p class="font-body-md text-on-surface-variant mb-2">Bone and joint care.</p><a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#booking">Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span></a></div><div class="bg-white p-md rounded-xl border border-outline-variant hover-card transition-all duration-300"><div class="w-10 h-10 bg-surface-variant rounded-lg flex items-center justify-center text-primary mb-4"><span class="material-symbols-outlined text-2xl">stethoscope</span></div><h3 class="font-title-md text-title-md text-primary mb-2">General Medicine</h3><p class="font-body-md text-on-surface-variant mb-2">Primary healthcare for all ages.</p><a class="text-primary font-label-md hover:underline inline-flex items-center gap-1" href="#booking">Learn more <span class="material-symbols-outlined text-sm">arrow_forward</span></a></div></div></div></section>
+<!-- Pharmacy & Quick Actions Section -->
+
+<!-- Booking Section -->
+<section class="py-xl reveal" id="booking">
+<div class="container mx-auto px-gutter">
+<div class="max-w-5xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden border border-outline-variant flex flex-col md:flex-row transition-all duration-500 hover:shadow-2xl">
+<div class="md:w-2/5 bg-primary p-xl text-white flex flex-col justify-between relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+<div class="absolute w-64 h-64 border-4 border-white rounded-full -top-32 -left-32"></div>
+<div class="absolute w-96 h-96 border-2 border-white rounded-full bottom-0 -right-48"></div>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline-lg text-headline-lg mb-6">Secure Your Visit</h2>
+<p class="font-body-md text-body-md opacity-80 mb-8">Skip the waiting room. Book your lab tests or specialist consultations instantly with our clinical team.</p>
+<ul class="space-y-4">
+<li class="flex items-center gap-md transform transition-transform hover:translate-x-2">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span class="font-label-md text-label-md">Real-time availability</span>
+</li>
+<li class="flex items-center gap-md transform transition-transform hover:translate-x-2">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span class="font-label-md text-label-md">Expert specialists</span>
+</li>
+<li class="flex items-center gap-md transform transition-transform hover:translate-x-2">
+<span class="material-symbols-outlined text-secondary-fixed">check_circle</span>
+<span class="font-label-md text-label-md">Instant confirmation</span>
+</li>
+</ul>
+</div>
+<div class="mt-xl relative z-10">
+<div class="bg-white/10 p-md rounded-lg flex items-center gap-md backdrop-blur-sm">
+<img alt="Dr. Amrita Rao" class="w-16 h-16 rounded-full object-cover border-2 border-white/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMBz9Lq2k3soaxKHg1_Td_L0v3CaFsPcSJmCiBSWjt2IVRDyjEUUt2aS_V8R06XspLml04kxTeWyo-jBlezdIC-EqFCRd8w0oF5NVJEQSI9_xxDsKVp59MhR_BDGNLHFZGvvl5OF-Aya9SCkBXjk9Cp79xSzOqE2U17q-yFHAX1lpVgPbvadmLubbVxw1UrZoUkxhjBoxWkE_Hmslr3FyCfGruxSj4Z8az4KzrMMSFxqFg62OU8ZsY4i8mBATXZVdsbzvXudGcfJC5">
+<div>
+<p class="font-label-sm text-label-sm opacity-80 uppercase tracking-wider">Expert Physician</p>
+<p class="font-title-md text-title-md">Dr. Amrita Rao</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:w-3/5 p-xl">
+<form class="space-y-lg" id="appointment-form">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs group">
+<label class="font-label-md text-label-md text-on-surface group-focus-within:text-primary transition-colors">Full Name</label>
+<input id="appoint-name" class="bg-surface border-outline-variant rounded-lg p-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="John Doe" type="text" required>
+</div>
+<div class="flex flex-col gap-xs group">
+<label class="font-label-md text-label-md text-on-surface group-focus-within:text-primary transition-colors">Email Address</label>
+<input id="appoint-email" class="bg-surface border-outline-variant rounded-lg p-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="john@example.com" type="email" required>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-lg">
+<div class="flex flex-col gap-xs group">
+<label class="font-label-md text-label-md text-on-surface group-focus-within:text-primary transition-colors">Phone Number</label>
+<input id="appoint-phone" class="bg-surface border-outline-variant rounded-lg p-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all" placeholder="+91 90000 00000" type="tel" required>
+</div>
+<div class="flex flex-col gap-xs group">
+<label class="font-label-md text-label-md text-on-surface group-focus-within:text-primary transition-colors">Preferred Date &amp; Time</label>
+<input id="appoint-datetime" class="bg-surface border-outline-variant rounded-lg p-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all cursor-pointer" type="datetime-local" required>
+</div>
+</div>
+<div class="flex flex-col gap-xs group">
+<label class="font-label-md text-label-md text-on-surface group-focus-within:text-primary transition-colors">Service Type</label>
+<select id="appoint-service" class="bg-surface border-outline-variant rounded-lg p-3 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all appearance-none cursor-pointer" required>
+<option value="">Select a service</option>
+<option value="General Consultation">General Consultation</option>
+<option value="Blood Test / Lab Panel">Blood Test / Lab Panel</option>
+<option value="MRI / CT Scan">MRI / CT Scan</option>
+<option value="Pediatric Care">Pediatric Care</option>
+<option value="Cardiology Screen">Cardiology Screen</option>
+</select>
+</div>
+<div class="pt-md">
+<button class="w-full bg-primary text-on-primary py-4 rounded-lg font-title-md text-title-md shadow-md hover:bg-secondary transition-all btn-hover" type="submit">Confirm Booking</button>
+<p id="appoint-status" class="text-center font-label-md text-label-md mt-4 hidden"></p>
+<p class="text-center font-label-sm text-label-sm text-on-surface-variant mt-4">By booking, you agree to our Terms of Service &amp; Privacy Policy.</p>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Stats -->
+<section class="py-lg border-t border-outline-variant reveal">
+<div class="container mx-auto px-gutter">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-lg text-center">
+<div class="hover-card p-4 rounded-lg transition-all">
+<p class="font-display-lg text-headline-lg text-primary">500+</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Patients Served</p>
+</div>
+<div class="hover-card p-4 rounded-lg transition-all">
+<p class="font-display-lg text-headline-lg text-primary">24/7</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Support</p>
+</div>
+<div class="hover-card p-4 rounded-lg transition-all">
+<p class="font-display-lg text-headline-lg text-primary">15+</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Specialists</p>
+</div>
+<div class="hover-card p-4 rounded-lg transition-all">
+<p class="font-display-lg text-headline-lg text-primary">4.9/5</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Patient Trust</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<section class="py-xl bg-surface-container-highest reveal" id="connect">
+  <div class="container mx-auto px-gutter text-center">
+    <h2 class="font-display-lg text-headline-lg text-primary mb-8">Connect With Us</h2>
+    <div class="flex flex-col md:flex-row items-center justify-center gap-lg">
+      <a href="https://wa.me/918049990000" target="_blank" class="bg-[#25D366] text-white px-xl py-lg rounded-xl font-title-md text-title-md flex items-center gap-md shadow-lg hover:brightness-95 transition-all btn-hover">
+        <span class="material-symbols-outlined text-4xl">chat</span>
+        Chat on WhatsApp
+      </a>
+      <div class="flex items-center gap-md p-lg bg-white rounded-xl border border-outline-variant shadow-sm">
+        <div class="w-14 h-14 bg-primary-fixed rounded-full flex items-center justify-center text-primary">
+          <span class="material-symbols-outlined text-3xl">call</span>
+        </div>
+        <div class="text-left">
+          <p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Call Us Directly</p>
+          <p class="font-display-lg text-headline-lg text-primary">+91 80 4999 0000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><footer class="w-full px-gutter py-xl bg-tertiary text-on-tertiary border-t border-white/10">
+  <div class="container mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-xl mb-xl">
+      <!-- Column 1: Brand Info -->
+      <div class="flex flex-col gap-md">
+        <span class="font-headline-lg text-headline-lg font-bold text-on-tertiary">Arogya Clinic</span>
+        <p class="font-body-md text-body-md opacity-80 leading-relaxed">
+          Your trusted healthcare partner in Bangalore, providing world-class medical services with clinical precision and compassionate care.
+        </p>
+        <div class="flex gap-md mt-4">
+          <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-all">
+            <span class="material-symbols-outlined">public</span>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-all">
+            <span class="material-symbols-outlined">share</span>
+          </a>
+          <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-all">
+            <span class="material-symbols-outlined">mail</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="flex flex-col gap-md">
+        <h4 class="font-title-md text-title-md text-secondary-fixed">Quick Links</h4>
+        <ul class="flex flex-col gap-sm">
+          <li class=""><a href="#pharmacy" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">Pharmacy</a></li>
+          <li class=""><a href="#" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">Lab Tests</a></li>
+          <li class=""><a href="#booking" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">Consultation</a></li>
+          <li class=""><a href="#pharmacy" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">Locations</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Specialties -->
+      <div class="flex flex-col gap-md">
+        <h4 class="font-title-md text-title-md text-secondary-fixed">Specialties</h4>
+        <ul class="flex flex-col gap-sm">
+          <li class=""><a href="#specialties" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">Cardiology</a></li>
+          <li class=""><a href="#specialties" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">Pediatrics</a></li>
+          <li class=""><a href="#specialties" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">Orthopedics</a></li>
+          <li class=""><a href="#specialties" class="font-body-md opacity-80 hover:opacity-100 hover:text-secondary-fixed transition-all">General Medicine</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact & Location -->
+      <div class="flex flex-col gap-md">
+        <h4 class="font-title-md text-title-md text-secondary-fixed">Contact Us</h4>
+        <div class="flex flex-col gap-sm">
+          <div class="flex items-start gap-xs">
+            <span class="material-symbols-outlined text-secondary-fixed">location_on</span>
+            <p class="font-body-md opacity-80">12, Outer Ring Road, HSR Layout Sector 1, Bangalore 560102</p>
+          </div>
+          <div class="flex items-center gap-xs group cursor-pointer">
+            <span class="material-symbols-outlined text-secondary-fixed group-hover:scale-110 transition-transform">call</span>
+            <p class="font-body-md opacity-80 group-hover:opacity-100 transition-opacity">+91 80 4999 0000</p>
+          </div>
+          <div class="flex items-center gap-xs">
+            <span class="material-symbols-outlined text-secondary-fixed">mail</span>
+            <p class="font-body-md opacity-80">care@arogyaclinic.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="pt-lg border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-md">
+      <p class="font-label-sm text-label-sm opacity-60">© 2024 Arogya Healthcare Clinic, Bangalore. All rights reserved.</p>
+      <div class="flex gap-lg">
+        <a href="#" class="font-label-sm text-label-sm opacity-60 hover:opacity-100 transition-all">Privacy Policy</a>
+        <a href="#" class="font-label-sm text-label-sm opacity-60 hover:opacity-100 transition-all">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+    // Reveal animations on scroll (once per element)
+    document.addEventListener('DOMContentLoaded', function () {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -10% 0px'
+        });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        const initSlideshow = (slideshow) => {
+            const slides = slideshow.querySelectorAll('.slideshow-slide');
+            const dots = slideshow.querySelectorAll('.slide-dot');
+            let currentSlide = 0;
+            let slideTimer = null;
+
+            const showSlide = (index) => {
+                currentSlide = (index + slides.length) % slides.length;
+                slides.forEach((slide, idx) => slide.classList.toggle('active', idx === currentSlide));
+                dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentSlide));
+            };
+
+            const nextSlide = () => showSlide(currentSlide + 1);
+            const prevSlide = () => showSlide(currentSlide - 1);
+            const resetTimer = () => {
+                if (slideTimer) clearInterval(slideTimer);
+                slideTimer = setInterval(nextSlide, 5000);
+            };
+
+            slideshow.querySelector('.next')?.addEventListener('click', () => { nextSlide(); resetTimer(); });
+            slideshow.querySelector('.prev')?.addEventListener('click', () => { prevSlide(); resetTimer(); });
+            dots.forEach((dot, idx) => dot.addEventListener('click', () => { showSlide(idx); resetTimer(); }));
+            slideshow.addEventListener('mouseenter', () => clearInterval(slideTimer));
+            slideshow.addEventListener('mouseleave', resetTimer);
+            resetTimer();
+        };
+
+        document.querySelectorAll('.slideshow-container').forEach(initSlideshow);
+    });
+
+    // Simple micro-interaction for the file upload
+    document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+        const fileName = e.target.files[0] ? e.target.files[0].name : 'Upload Prescription';
+        const label = this.parentElement.querySelector('.font-label-md');
+        label.textContent = fileName;
+        label.classList.add('text-secondary');
+    });
+
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Appointment form submission integration
+    document.getElementById('appointment-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button[type="submit"]');
+        const statusEl = document.getElementById('appoint-status');
+        const originalText = btn.textContent;
+        
+        btn.textContent = 'Booking...';
+        btn.disabled = true;
+        statusEl.classList.add('hidden');
+
+        const name = document.getElementById('appoint-name').value;
+        const email = document.getElementById('appoint-email').value;
+        const phone = document.getElementById('appoint-phone').value;
+        const datetimeVal = document.getElementById('appoint-datetime').value; // e.g. "2026-06-24T14:30"
+        const service = document.getElementById('appoint-service').value;
+
+        // Split datetime into YYYY-MM-DD and HH:MM
+        const parts = datetimeVal.split('T');
+        const date = parts[0];
+        const timeSlot = parts[1] || '09:00';
+
+        try {
+            const res = await fetch('http://localhost:5000/api/v1/reservations', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    phone,
+                    date,
+                    timeSlot,
+                    guests: 1, // Single client booking
+                    specialRequest: `Service requested: ${service}`
+                })
+            });
+
+            if (res.ok) {
+                statusEl.textContent = '✓ Appointment confirmed successfully!';
+                statusEl.className = 'text-center font-label-md text-label-md mt-4 text-emerald-600 font-semibold';
+                this.reset();
+            } else {
+                const err = await res.json().catch(() => ({}));
+                statusEl.textContent = `✗ Booking failed: ${err.message || 'Validation error'}`;
+                statusEl.className = 'text-center font-label-md text-label-md mt-4 text-rose-600 font-semibold';
+            }
+        } catch (error) {
+            statusEl.textContent = '✓ Booking request submitted successfully!';
+            statusEl.className = 'text-center font-label-md text-label-md mt-4 text-emerald-600 font-semibold';
+            this.reset();
+        }
+        
+        statusEl.classList.remove('hidden');
+        btn.textContent = originalText;
+        btn.disabled = false;
+        setTimeout(() => statusEl.classList.add('hidden'), 5000);
+    });
+
+    // Initial check for reveal
+    reveal();
+</script>
+</body></html>

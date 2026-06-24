@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Bombay Brew House — Mumbai's finest boutique café in the heart of Bandra West. Colonial charm, modern craft coffee, and the soul of the city in every cup." />
+  <meta name="theme-color" content="#1a2e1a" />
+  <title>The Bombay Brew House — Bandra, Mumbai</title>
+
+  <!-- Tailwind via CDN for preview; replace with CLI build in production -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory:    '#FAF8F3',
+            parchment:'#F0EBE0',
+            ink:      '#1C1917',
+            jungle:   '#14532d',
+            jungleMid:'#166534',
+            jungleLight:'#dcfce7',
+            sunset:   '#b45309',
+            sunsetHover:'#92400e',
+            brass:    '#d97706',
+            mist:     '#78716c',
+          },
+          fontFamily: {
+            display: ['"Palatino Linotype"', 'Palatino', 'Georgia', 'serif'],
+            body:    ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          letterSpacing: {
+            widest2: '0.25em',
+          },
+          backgroundImage: {
+            'grain': "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E\")",
+          },
+          animation: {
+            'fade-up':    'fadeUp 0.7s ease-out both',
+            'fade-in':    'fadeIn 1.2s ease-out both',
+            'shimmer':    'shimmer 2.5s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp:  { '0%': { opacity: 0, transform: 'translateY(28px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+            fadeIn:  { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+            shimmer: { '0%,100%': { opacity: 0.6 }, '50%': { opacity: 1 } },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* ─── Custom global base ─── */
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { font-size: 16px; }
+
+    body {
+      background-color: #FAF8F3;
+      color: #1C1917;
+      font-family: Inter, system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Display serif only for headlines */
+    .font-display {
+      font-family: "Palatino Linotype", Palatino, Georgia, serif;
+    }
+
+    /* ─── Scroll-reveal ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease-out, transform 0.75s ease-out;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── Glassmorphism Nav ─── */
+    .glass-nav {
+      background: rgba(250, 248, 243, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(28, 25, 23, 0.07);
+    }
+
+    /* ─── Hero ─── */
+    .hero-img {
+      background-image:
+        linear-gradient(to bottom, rgba(20,18,15,0.25) 0%, rgba(20,18,15,0.62) 100%),
+        url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1400&q=75');
+      background-size: cover;
+      background-position: center 40%;
+      will-change: transform;
+    }
+
+    /* ─── Decorative rule ─── */
+    .ornament::before,
+    .ornament::after {
+      content: '';
+      display: inline-block;
+      width: 40px;
+      height: 1px;
+      background: currentColor;
+      vertical-align: middle;
+      margin: 0 12px;
+    }
+
+    /* ─── Menu card hover lift + bevel effect ─── */
+    .menu-card {
+      transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.5), inset -2px -2px 4px rgba(0,0,0,0.1), 0 4px 8px rgba(20,18,15,0.08);
+    }
+    .menu-card:hover {
+      transform: translateY(-4px);
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.6), inset -2px -2px 4px rgba(0,0,0,0.12), 0 16px 40px rgba(20,18,15,0.15);
+    }
+
+    /* ─── Parallax subtle ─── */
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-img { transition: background-position 0.1s linear; }
+    }
+
+    /* ─── Grain texture overlay ─── */
+    .grain-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* ─── Mobile nav menu ─── */
+    #mobile-menu { transition: max-height 0.45s ease-out, opacity 0.35s ease-out; max-height: 0; overflow: hidden; opacity: 0; }
+    #mobile-menu.open { max-height: 260px; opacity: 1; }
+
+    /* ─── Active nav underline ─── */
+    .nav-link {
+      position: relative;
+      padding-bottom: 2px;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: #14532d;
+      transition: width 0.35s ease-out;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* ─── Reservation form focus rings ─── */
+    .form-input:focus {
+      outline: 2px solid #14532d;
+      outline-offset: 2px;
+    }
+
+    /* ─── Map placeholder styling ─── */
+    .map-block {
+      background: linear-gradient(135deg, #e7e2d8 0%, #d6cfc0 100%);
+    }
+
+    /* ─── Scrollbar thin ─── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #FAF8F3; }
+    ::-webkit-scrollbar-thumb { background: #a8a29e; border-radius: 3px; }
+
+    /* ─── Decorated overlay text ─── */
+    .image-overlay-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(20, 83, 45, 0.35);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: 5;
+    }
+    .image-overlay-text:hover {
+      opacity: 1;
+    }
+    .overlay-text-content {
+      text-align: center;
+      color: white;
+      font-family: "Palatino Linotype", Palatino, Georgia, serif;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+      letter-spacing: 0.15em;
+    }
+    .overlay-text-content .text-label {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.25em;
+      opacity: 0.9;
+    }
+    .overlay-text-content .text-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── Footer responsive scaling ─── */
+    @media (max-width: 768px) {
+      .footer-content {
+        transform-origin: top center;
+      }
+    }
+
+    /* ─── Print / reduced motion ─── */
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .menu-card { transition: none !important; }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#FAF8F3] text-stone-900">
+
+  <!-- ═══════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════ -->
+  <header id="navbar" class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-6xl mx-auto px-5 sm:px-8 flex items-center justify-between h-16 sm:h-18">
+
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-3 group" aria-label="The Bombay Brew House home">
+        <!-- Coffee cup SVG icon -->
+        <svg class="w-8 h-8 text-[#14532d] group-hover:text-[#b45309] transition-colors duration-300" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 10h16l-2 13a2 2 0 01-2 2H10a2 2 0 01-2-2L6 10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M22 13h2a3 3 0 010 6h-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M4 25h24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M13 5c0 0 0 2 2 2s2 2 2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        </svg>
+        <span class="font-display text-[#1C1917] font-semibold text-lg sm:text-xl leading-tight tracking-wide">
+          The Bombay<br class="hidden xs:block sm:hidden"/>
+          <span class="sm:ml-1">Brew House</span>
+        </span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Primary navigation">
+        <a href="#story"        class="nav-link text-stone-700 hover:text-[#14532d] text-sm font-medium tracking-wide transition-colors duration-300">Our Story</a>
+        <a href="#menu"         class="nav-link text-stone-700 hover:text-[#14532d] text-sm font-medium tracking-wide transition-colors duration-300">The Menu</a>
+        <a href="#reservations" class="nav-link text-stone-700 hover:text-[#14532d] text-sm font-medium tracking-wide transition-colors duration-300">Reservations</a>
+        <a href="#reservations" class="ml-2 inline-flex items-center gap-2 bg-[#14532d] text-white text-sm font-medium px-5 py-2 rounded-sm hover:bg-[#166534] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+          Book a Table
+        </a>
+      </nav>
+
+      <!-- Mobile hamburger -->
+      <button id="menu-btn" class="md:hidden p-2 text-stone-700 hover:text-[#14532d] transition-colors" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg id="icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16"/>
+        </svg>
+        <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile dropdown -->
+    <div id="mobile-menu" role="menu" class="md:hidden border-t border-stone-100">
+      <nav class="flex flex-col px-5 py-3 gap-1 bg-[#FAF8F3]/96 backdrop-blur-md">
+        <a href="#story"        role="menuitem" class="py-3 text-stone-700 hover:text-[#14532d] text-sm font-medium border-b border-stone-100 transition-colors duration-200">Our Story</a>
+        <a href="#menu"         role="menuitem" class="py-3 text-stone-700 hover:text-[#14532d] text-sm font-medium border-b border-stone-100 transition-colors duration-200">The Menu</a>
+        <a href="#reservations" role="menuitem" class="py-3 text-stone-700 hover:text-[#14532d] text-sm font-medium border-b border-stone-100 transition-colors duration-200">Reservations</a>
+        <a href="#reservations" role="menuitem" class="mt-2 mb-1 inline-flex justify-center items-center gap-2 bg-[#14532d] text-white text-sm font-medium px-5 py-3 rounded-sm hover:bg-[#166534] transition-colors duration-200">
+          Book a Table
+        </a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HERO SECTION
+  ═══════════════════════════════════════════════ -->
+  <section id="hero" class="relative hero-img grain-overlay min-h-screen flex flex-col justify-end pb-20 sm:pb-28 px-5 sm:px-10" aria-label="Hero">
+    <!-- Subtle scroll indicator -->
+    <div class="absolute top-24 right-6 sm:right-10 text-white/50 text-[10px] tracking-widest2 uppercase rotate-90 origin-right hidden sm:block select-none">scroll</div>
+
+    <div class="relative z-10 max-w-3xl">
+      <!-- Eyebrow -->
+      <p class="text-amber-300/90 text-xs sm:text-sm tracking-widest2 uppercase font-medium mb-5 ornament">
+        Est. Bandra, 2019
+      </p>
+
+      <!-- Main headline -->
+      <h1 class="font-display text-white text-4xl sm:text-6xl md:text-7xl font-semibold leading-[1.08] mb-6 drop-shadow-lg">
+        Mumbai's Morning<br/>Ritual, Refined.
+      </h1>
+
+      <!-- Sub-headline -->
+      <p class="text-white/80 text-base sm:text-xl font-light leading-relaxed max-w-xl mb-10">
+        From the first light in Bandra to the last drop of midnight coffee — every cup carries the heartbeat of this city.
+      </p>
+
+      <!-- CTA row -->
+      <div class="flex flex-wrap gap-4">
+        <a href="#menu"
+           class="inline-flex items-center gap-2 bg-[#b45309] text-white text-sm font-semibold px-7 py-3.5 rounded-sm hover:bg-[#92400e] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
+          <!-- Fork & spoon icon -->
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path d="M3 3a1 1 0 011-1h1a1 1 0 011 1v5a2 2 0 01-1 1.73V17a1 1 0 01-2 0v-7.27A2 2 0 013 8V3z"/>
+            <path d="M8 3a1 1 0 011-1 5 5 0 015 5 5 5 0 01-4 4.9V17a1 1 0 01-2 0V11.9A5 5 0 018 7 5 5 0 0113 3a1 1 0 01-1 1 3 3 0 00-3 3 3 3 0 001.83 2.76A1 1 0 0111 10.74V17a1 1 0 01-2 0v-6.26A1 1 0 019.17 9.76 3 3 0 008 7a3 3 0 00-.17 1A1 1 0 017 7a5 5 0 01.08-.86A1 1 0 018 5.24V3z"/>
+          </svg>
+          Explore the Menu
+        </a>
+        <a href="#reservations"
+           class="inline-flex items-center gap-2 border border-white/60 text-white text-sm font-medium px-7 py-3.5 rounded-sm hover:bg-white/10 hover:border-white transition-all duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
+          <!-- Calendar icon -->
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+          </svg>
+          Reserve a Table
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom fade -->
+    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#FAF8F3] to-transparent pointer-events-none" aria-hidden="true"></div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       MARQUEE STRIP — vibe keywords
+  ═══════════════════════════════════════════════ -->
+  <div class="bg-[#14532d] text-white/80 py-3 overflow-hidden select-none" aria-hidden="true">
+    <div class="flex whitespace-nowrap animate-[marquee_28s_linear_infinite]">
+      <style>@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }</style>
+      <span class="inline-flex gap-10 pr-10 text-xs tracking-widest2 uppercase font-medium">
+        <span>Bandra West</span><span class="text-amber-300">✦</span>
+        <span>Irani Café Heritage</span><span class="text-amber-300">✦</span>
+        <span>Monsoon Romance</span><span class="text-amber-300">✦</span>
+        <span>Art Deco Interiors</span><span class="text-amber-300">✦</span>
+        <span>Single Origin Beans</span><span class="text-amber-300">✦</span>
+        <span>Marine Drive Sunsets</span><span class="text-amber-300">✦</span>
+        <span>Open 8 AM – 11 PM</span><span class="text-amber-300">✦</span>
+        <span>Cold Brew on Draft</span><span class="text-amber-300">✦</span>
+        <span>Bandra West</span><span class="text-amber-300">✦</span>
+        <span>Irani Café Heritage</span><span class="text-amber-300">✦</span>
+        <span>Monsoon Romance</span><span class="text-amber-300">✦</span>
+        <span>Art Deco Interiors</span><span class="text-amber-300">✦</span>
+        <span>Single Origin Beans</span><span class="text-amber-300">✦</span>
+        <span>Marine Drive Sunsets</span><span class="text-amber-300">✦</span>
+        <span>Open 8 AM – 11 PM</span><span class="text-amber-300">✦</span>
+        <span>Cold Brew on Draft</span><span class="text-amber-300">✦</span>
+      </span>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       OUR STORY — "THE VIBE"
+  ═══════════════════════════════════════════════ -->
+  <section id="story" class="relative py-24 sm:py-36 px-5 sm:px-10 overflow-hidden" aria-labelledby="story-heading">
+
+    <!-- Background pattern block -->
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-[#F0EBE0] -z-10 hidden lg:block" aria-hidden="true"></div>
+
+    <div class="max-w-6xl mx-auto">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-20 items-center">
+
+        <!-- Left: photo stack -->
+        <div class="relative mb-14 lg:mb-0 reveal">
+          <img
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=75"
+            alt="Warm café interior with arched windows in Mumbai"
+            loading="lazy"
+            decoding="async"
+            class="w-full rounded-sm shadow-2xl object-cover aspect-[4/5]"
+            width="800" height="1000"
+          />
+          <!-- floating accent card -->
+          <div class="absolute -bottom-6 -right-4 sm:-right-8 bg-[#14532d] text-white px-6 py-5 rounded-sm shadow-xl max-w-[200px] reveal reveal-delay-2">
+            <p class="font-display text-3xl font-semibold leading-none mb-1">5+</p>
+            <p class="text-xs text-white/70 uppercase tracking-widest2 leading-snug">Years Brewing<br/>Mumbai Magic</p>
+          </div>
+          <!-- small floating badge -->
+          <div class="absolute -top-4 -left-4 sm:-left-6 bg-amber-700 text-white px-4 py-3 rounded-sm shadow-lg reveal reveal-delay-1">
+            <p class="text-[11px] uppercase tracking-widest2 font-medium">Bandra, 400050</p>
+          </div>
+        </div>
+
+        <!-- Right: copy -->
+        <div class="reveal reveal-delay-1">
+          <p class="text-[#b45309] text-xs uppercase tracking-widest2 font-semibold mb-4">Our Story</p>
+          <h2 id="story-heading" class="font-display text-stone-900 text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight mb-8">
+            Where the City<br/>Comes to Breathe
+          </h2>
+
+          <p class="text-stone-600 text-base sm:text-lg leading-relaxed mb-6">
+            Born in the monsoon of 2019, The Bombay Brew House is a love letter to Mumbai — specifically to the Bandra that smells of street food and sea breeze, where Art Deco arches frame chaotic, beautiful streets.
+          </p>
+          <p class="text-stone-600 text-base sm:text-lg leading-relaxed mb-6">
+            We drew our soul from the grand Irani cafés of Colaba and Mohammed Ali Road — high ceilings, marble counters, ceiling fans that move like slow sighs — and stirred in the restless energy of a city that never truly sleeps.
+          </p>
+          <p class="text-stone-600 text-base sm:text-lg leading-relaxed mb-10">
+            When the monsoon arrives, our windows fog up and the scent of chai, wet earth, and baking bread mingles into something ineffable. That moment — that is why we exist.
+          </p>
+
+          <!-- Stat strip -->
+          <div class="grid grid-cols-3 gap-4 border-t border-stone-200 pt-8">
+            <div>
+              <p class="font-display text-2xl sm:text-3xl text-stone-900 font-semibold">12+</p>
+              <p class="text-stone-500 text-xs sm:text-sm mt-1 leading-snug">Single origin<br/>bean origins</p>
+            </div>
+            <div>
+              <p class="font-display text-2xl sm:text-3xl text-stone-900 font-semibold">400+</p>
+              <p class="text-stone-500 text-xs sm:text-sm mt-1 leading-snug">Cups poured<br/>daily</p>
+            </div>
+            <div>
+              <p class="font-display text-2xl sm:text-3xl text-stone-900 font-semibold">1</p>
+              <p class="text-stone-500 text-xs sm:text-sm mt-1 leading-snug">City that owns<br/>our heart</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       VIBE MOSAIC — full-bleed image bento with decorated text
+  ═══════════════════════════════════════════════ -->
+  <section class="py-4 sm:py-6 px-4 sm:px-6" aria-label="Atmosphere photography">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+
+      <div class="col-span-2 row-span-2 reveal overflow-hidden rounded-sm relative">
+        <img
+          src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=75"
+          alt="Barista pouring latte art in a warm café"
+          loading="lazy" decoding="async"
+          class="w-full h-full object-cover aspect-[1/1] hover:scale-105 transition-transform duration-700"
+          width="800" height="800"
+        />
+        <div class="image-overlay-text">
+          <div class="overlay-text-content">
+            <div class="text-label">~ The Craft ~</div>
+            <div class="text-title">Latte Art</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-1 overflow-hidden rounded-sm relative">
+        <img
+          src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=75"
+          alt="Espresso being prepared"
+          loading="lazy" decoding="async"
+          class="w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-700"
+          width="600" height="600"
+        />
+        <div class="image-overlay-text">
+          <div class="overlay-text-content">
+            <div class="text-label">✦ Premium ✦</div>
+            <div class="text-title">Espresso</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 overflow-hidden rounded-sm relative">
+        <img
+          src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=600&q=75"
+          alt="Coffee beans close up"
+          loading="lazy" decoding="async"
+          class="w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-700"
+          width="600" height="600"
+        />
+        <div class="image-overlay-text">
+          <div class="overlay-text-content">
+            <div class="text-label">~ Single Origin ~</div>
+            <div class="text-title">Beans</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-2 overflow-hidden rounded-sm relative">
+        <img
+          src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=600&q=75"
+          alt="Morning coffee in a sunlit café"
+          loading="lazy" decoding="async"
+          class="w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-700"
+          width="600" height="600"
+        />
+        <div class="image-overlay-text">
+          <div class="overlay-text-content">
+            <div class="text-label">✦ Golden Hour ✦</div>
+            <div class="text-title">Morning</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal reveal-delay-3 overflow-hidden rounded-sm relative">
+        <img
+          src="https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&w=600&q=75"
+          alt="Chai and bun maska on a marble table"
+          loading="lazy" decoding="async"
+          class="w-full h-full object-cover aspect-square hover:scale-105 transition-transform duration-700"
+          width="600" height="600"
+        />
+        <div class="image-overlay-text">
+          <div class="overlay-text-content">
+            <div class="text-label">~ Heritage ~</div>
+            <div class="text-title">Tradition</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       MENU SECTION
+  ═══════════════════════════════════════════════ -->
+  <section id="menu" class="py-24 sm:py-36 px-5 sm:px-10 bg-[#F0EBE0]" aria-labelledby="menu-heading">
+    <div class="max-w-6xl mx-auto">
+
+      <!-- Header -->
+      <div class="text-center mb-14 sm:mb-20 reveal">
+        <p class="text-[#b45309] text-xs uppercase tracking-widest2 font-semibold mb-4">Crafted with care</p>
+        <h2 id="menu-heading" class="font-display text-stone-900 text-3xl sm:text-4xl md:text-5xl font-semibold mb-5">
+          The Menu
+        </h2>
+        <p class="text-stone-500 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+          Each item traces a Mumbai memory — from Irani-café mornings to South Mumbai late nights. Seasonal. Soulful. Entirely ours.
+        </p>
+      </div>
+
+      <!-- Category tabs -->
+      <div class="flex justify-center gap-2 sm:gap-4 mb-10 sm:mb-14 flex-wrap reveal">
+        <button onclick="filterMenu('all')"    id="tab-all"   class="menu-tab active-tab px-5 py-2 text-sm font-medium rounded-full border border-stone-300 bg-[#14532d] text-white transition-all duration-300">All</button>
+        <button onclick="filterMenu('drinks')" id="tab-drinks" class="menu-tab px-5 py-2 text-sm font-medium rounded-full border border-stone-300 text-stone-600 hover:border-[#14532d] hover:text-[#14532d] transition-all duration-300">Drinks</button>
+        <button onclick="filterMenu('food')"   id="tab-food"   class="menu-tab px-5 py-2 text-sm font-medium rounded-full border border-stone-300 text-stone-600 hover:border-[#14532d] hover:text-[#14532d] transition-all duration-300">Food</button>
+        <button onclick="filterMenu('sweets')" id="tab-sweets" class="menu-tab px-5 py-2 text-sm font-medium rounded-full border border-stone-300 text-stone-600 hover:border-[#14532d] hover:text-[#14532d] transition-all duration-300">Sweets</button>
+      </div>
+
+      <!-- Menu grid -->
+      <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7">
+
+        <!-- Card 1 — Irani Chai -->
+        <article data-cat="drinks" class="menu-card menu-item bg-[#FAF8F3] rounded-sm overflow-hidden border border-stone-100 reveal">
+          <div class="relative overflow-hidden h-40 sm:h-48">
+            <img
+              src="https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?auto=format&fit=crop&w=800&q=75"
+              alt="Irani Chai with bun maska"
+              loading="lazy" decoding="async"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              width="800" height="480"
+            />
+            <span class="absolute top-4 left-4 bg-[#14532d] text-white text-[11px] font-semibold uppercase tracking-widest2 px-3 py-1 rounded-full">Signature</span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <h3 class="font-display text-stone-900 text-base sm:text-lg font-semibold leading-snug">Irani-Inspired Chai &amp; Bun Maska</h3>
+              <span class="text-[#14532d] font-semibold text-base whitespace-nowrap">₹ 180</span>
+            </div>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-3">
+              Slow-simmered masala chai brewed the Irani way — rich, spiced, and deeply amber — served with butter-soaked bun maska toasted on a griddle. Mumbai's original comfort.
+            </p>
+            <div class="flex items-center gap-3">
+              <div class="flex items-center gap-1 text-amber-500">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              </div>
+              <span class="text-stone-400 text-xs">4.9 · 312 reviews</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 2 — Colaba Cold Brew -->
+        <article data-cat="drinks" class="menu-card menu-item bg-[#FAF8F3] rounded-sm overflow-hidden border border-stone-100 reveal reveal-delay-1">
+          <div class="relative overflow-hidden h-40 sm:h-48">
+            <img
+              src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=75"
+              alt="Colaba Cold Brew coffee in a tall glass"
+              loading="lazy" decoding="async"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              width="800" height="480"
+            />
+            <span class="absolute top-4 left-4 bg-amber-700 text-white text-[11px] font-semibold uppercase tracking-widest2 px-3 py-1 rounded-full">Best Seller</span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <h3 class="font-display text-stone-900 text-base sm:text-lg font-semibold leading-snug">Colaba Cold Brew</h3>
+              <span class="text-[#14532d] font-semibold text-base whitespace-nowrap">₹ 250</span>
+            </div>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-3">
+              Single-origin Arabica from Coorg, steeped cold for 22 hours. Smooth as Colaba at 6 AM — no bitterness, no shortcuts. Served over hand-cut ice with a strip of orange peel.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">Vegan</span>
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">Coorg Arabica</span>
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">22-hr steep</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 3 — Marine Drive Avocado Toast -->
+        <article data-cat="food" class="menu-card menu-item bg-[#FAF8F3] rounded-sm overflow-hidden border border-stone-100 reveal reveal-delay-2">
+          <div class="relative overflow-hidden h-40 sm:h-48">
+            <img
+              src="https://images.unsplash.com/photo-1588137378633-dea1336ce1e2?auto=format&fit=crop&w=800&q=75"
+              alt="Avocado toast on sourdough with microgreens"
+              loading="lazy" decoding="async"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              width="800" height="480"
+            />
+          </div>
+          <div class="p-4 sm:p-5">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <h3 class="font-display text-stone-900 text-base sm:text-lg font-semibold leading-snug">Marine Drive Avocado Toast</h3>
+              <span class="text-[#14532d] font-semibold text-base whitespace-nowrap">₹ 450</span>
+            </div>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-3">
+              House-fermented sourdough, smashed Konkan avocado with chaat masala, pomegranate pearls, and a drizzle of lime oil. The Marine Drive promenade, plated.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs bg-emerald-50 text-emerald-700 border border-emerald-100 px-3 py-1 rounded-full">Vegetarian</span>
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">Konkan Avocado</span>
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">House Sourdough</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 — Versova Sea-Salt Brownie -->
+        <article data-cat="sweets" class="menu-card menu-item bg-[#FAF8F3] rounded-sm overflow-hidden border border-stone-100 reveal reveal-delay-3">
+          <div class="relative overflow-hidden h-40 sm:h-48">
+            <img
+              src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=75"
+              alt="Dark chocolate sea salt brownie"
+              loading="lazy" decoding="async"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              width="800" height="480"
+            />
+            <span class="absolute top-4 left-4 bg-stone-800 text-white text-[11px] font-semibold uppercase tracking-widest2 px-3 py-1 rounded-full">Chef's Pick</span>
+          </div>
+          <div class="p-4 sm:p-5">
+            <div class="flex items-start justify-between gap-3 mb-2">
+              <h3 class="font-display text-stone-900 text-base sm:text-lg font-semibold leading-snug">Versova Sea-Salt Brownie</h3>
+              <span class="text-[#14532d] font-semibold text-base whitespace-nowrap">₹ 320</span>
+            </div>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed mb-3">
+              Valrhona dark chocolate brownie baked with fleur de sel harvested from the Versova fishing coast. Dense, fudgy, and crackling with salted caramel. Pairs with anything.
+            </p>
+            <div class="flex gap-2 flex-wrap">
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">Valrhona 70%</span>
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">Versova Sea Salt</span>
+              <span class="text-xs bg-stone-100 text-stone-600 px-3 py-1 rounded-full">Gluten-free option</span>
+            </div>
+          </div>
+        </article>
+
+      </div><!-- /menu-grid -->
+
+      <!-- View full menu CTA -->
+      <div class="text-center mt-12 sm:mt-16 reveal">
+        <a href="#reservations" class="inline-flex items-center gap-2 border-2 border-[#14532d] text-[#14532d] text-sm font-semibold px-8 py-3.5 rounded-sm hover:bg-[#14532d] hover:text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+          View Full Menu &amp; Specials
+          <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       EXPERIENCE / QUOTE BREAK
+  ═══════════════════════════════════════════════ -->
+  <section class="relative py-24 sm:py-36 overflow-hidden" aria-label="Pull quote">
+    <!-- Full bleed background image -->
+    <div class="absolute inset-0 -z-10">
+      <img
+        src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1400&q=65"
+        alt=""
+        role="presentation"
+        loading="lazy" decoding="async"
+        class="w-full h-full object-cover"
+        width="1400" height="700"
+      />
+      <div class="absolute inset-0 bg-[#14532d]/85"></div>
+    </div>
+
+    <div class="max-w-3xl mx-auto px-5 sm:px-10 text-center reveal">
+      <!-- Quote mark -->
+      <svg class="w-10 h-10 text-amber-400/60 mx-auto mb-8" viewBox="0 0 40 40" fill="currentColor" aria-hidden="true">
+        <path d="M0 20C0 8.954 8.954 0 20 0s20 8.954 20 20-8.954 20-20 20S0 31.046 0 20zm13.5-6.5c-2.485 0-4.5 2.015-4.5 4.5s2.015 4.5 4.5 4.5c.354 0 .696-.041 1.024-.117C13.604 23.97 12.5 25.664 12.5 27.5a1 1 0 002 0c0-2.485 2.015-4.5 4.5-4.5V13.5a1 1 0 00-.048-.306A4.472 4.472 0 0013.5 13.5zm13 0c-2.485 0-4.5 2.015-4.5 4.5s2.015 4.5 4.5 4.5c.354 0 .696-.041 1.024-.117C27.104 23.97 26 25.664 26 27.5a1 1 0 002 0c0-2.485 2.015-4.5 4.5-4.5V13.5a1 1 0 00-.048-.306A4.472 4.472 0 0026.5 13.5z"/>
+      </svg>
+      <blockquote class="font-display text-white text-2xl sm:text-3xl md:text-4xl font-medium leading-snug mb-8 italic">
+        "In Mumbai, every cup of chai is a conversation, every meal is a story, and every café is a chapter of the city that never stops writing itself."
+      </blockquote>
+      <cite class="text-amber-300/80 text-sm uppercase tracking-widest2 font-medium not-italic">
+        — Roohi Kapoor, Founder &amp; Head Roaster
+      </cite>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       RESERVATIONS
+  ═══════════════════════════════════════════════ -->
+  <section id="reservations" class="py-24 sm:py-36 px-5 sm:px-10 bg-[#FAF8F3]" aria-labelledby="res-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-start">
+
+        <!-- Left: info -->
+        <div class="mb-14 lg:mb-0 reveal">
+          <p class="text-[#b45309] text-xs uppercase tracking-widest2 font-semibold mb-4">Come visit us</p>
+          <h2 id="res-heading" class="font-display text-stone-900 text-3xl sm:text-4xl md:text-5xl font-semibold leading-tight mb-8">
+            Reserve Your<br/>Table
+          </h2>
+          <p class="text-stone-500 text-base sm:text-lg leading-relaxed mb-10">
+            We hold eight tables in the café and a private verandah for up to twelve guests. For same-day bookings, give us a ring.
+          </p>
+
+          <!-- Info blocks -->
+          <div class="space-y-7">
+            <!-- Address -->
+            <div class="flex items-start gap-5">
+              <div class="flex-shrink-0 w-11 h-11 rounded-full bg-[#14532d]/10 flex items-center justify-center">
+                <!-- Map pin SVG -->
+                <svg class="w-5 h-5 text-[#14532d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                  <circle cx="12" cy="10" r="3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-stone-800 font-semibold text-sm mb-1">Find Us in Bandra West</p>
+                <p class="text-stone-500 text-sm leading-relaxed">12, Hill Road, Chapel Road Junction,<br/>Bandra West, Mumbai – 400 050,<br/>Maharashtra, India</p>
+              </div>
+            </div>
+
+            <!-- Hours -->
+            <div class="flex items-start gap-5">
+              <div class="flex-shrink-0 w-11 h-11 rounded-full bg-[#14532d]/10 flex items-center justify-center">
+                <!-- Clock SVG -->
+                <svg class="w-5 h-5 text-[#14532d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-stone-800 font-semibold text-sm mb-1">Opening Hours</p>
+                <p class="text-stone-500 text-sm leading-relaxed">
+                  Monday – Friday &nbsp;· &nbsp;8:00 AM – 11:00 PM<br/>
+                  Saturday &amp; Sunday &nbsp;· &nbsp;7:30 AM – 11:30 PM<br/>
+                  <span class="text-amber-700 font-medium">Open on all public holidays ✓</span>
+                </p>
+              </div>
+            </div>
+
+            <!-- Phone -->
+            <div class="flex items-start gap-5">
+              <div class="flex-shrink-0 w-11 h-11 rounded-full bg-[#14532d]/10 flex items-center justify-center">
+                <!-- Phone SVG -->
+                <svg class="w-5 h-5 text-[#14532d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-stone-800 font-semibold text-sm mb-1">Call for Same-Day Bookings</p>
+                <a href="tel:+912226404040" class="text-[#14532d] text-sm font-medium hover:underline">+91 22 2640 4040</a>
+              </div>
+            </div>
+
+            <!-- Instagram -->
+            <div class="flex items-start gap-5">
+              <div class="flex-shrink-0 w-11 h-11 rounded-full bg-[#14532d]/10 flex items-center justify-center">
+                <!-- Instagram SVG -->
+                <svg class="w-5 h-5 text-[#14532d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-stone-800 font-semibold text-sm mb-1">Follow Along</p>
+                <a href="https://instagram.com/bombaybrewhouse" target="_blank" rel="noopener noreferrer" class="text-[#14532d] text-sm font-medium hover:underline">@bombaybrewhouse</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: booking form -->
+        <div class="bg-[#F0EBE0] rounded-sm p-7 sm:p-10 shadow-sm reveal reveal-delay-2">
+          <h3 class="font-display text-stone-900 text-2xl font-semibold mb-6">Book Your Spot</h3>
+
+          <div class="space-y-5" id="booking-form">
+
+            <!-- Name row -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="fname" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">First Name</label>
+                <input id="fname" type="text" placeholder="Aarav" autocomplete="given-name"
+                  class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 placeholder-stone-400 transition-all duration-200 focus:border-[#14532d]" />
+              </div>
+              <div>
+                <label for="lname" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">Last Name</label>
+                <input id="lname" type="text" placeholder="Sharma" autocomplete="family-name"
+                  class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 placeholder-stone-400 transition-all duration-200 focus:border-[#14532d]" />
+              </div>
+            </div>
+
+            <!-- Email -->
+            <div>
+              <label for="email" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">Email Address</label>
+              <input id="email" type="email" placeholder="aarav@example.com" autocomplete="email"
+                class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 placeholder-stone-400 transition-all duration-200 focus:border-[#14532d]" />
+            </div>
+
+            <!-- Phone -->
+            <div>
+              <label for="phone" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">Phone Number</label>
+              <input id="phone" type="tel" placeholder="+91 98765 43210" autocomplete="tel"
+                class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 placeholder-stone-400 transition-all duration-200 focus:border-[#14532d]" />
+            </div>
+
+            <!-- Date & Time -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="date" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">Date</label>
+                <input id="date" type="date"
+                  class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 transition-all duration-200 focus:border-[#14532d]" />
+              </div>
+              <div>
+                <label for="time" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">Time</label>
+                <select id="time" class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 transition-all duration-200 focus:border-[#14532d] appearance-none cursor-pointer">
+                  <option value="">Select a time</option>
+                  <option>8:00 AM</option><option>8:30 AM</option>
+                  <option>9:00 AM</option><option>9:30 AM</option>
+                  <option>10:00 AM</option><option>10:30 AM</option>
+                  <option>11:00 AM</option><option>11:30 AM</option>
+                  <option>12:00 PM</option><option>12:30 PM</option>
+                  <option>1:00 PM</option><option>1:30 PM</option>
+                  <option>2:00 PM</option><option>2:30 PM</option>
+                  <option>3:00 PM</option><option>4:00 PM</option>
+                  <option>5:00 PM</option><option>6:00 PM</option>
+                  <option>7:00 PM</option><option>7:30 PM</option>
+                  <option>8:00 PM</option><option>8:30 PM</option>
+                  <option>9:00 PM</option><option>9:30 PM</option>
+                  <option>10:00 PM</option><option>10:30 PM</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Guests -->
+            <div>
+              <label for="guests" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">Number of Guests</label>
+              <select id="guests" class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 transition-all duration-200 focus:border-[#14532d] appearance-none cursor-pointer">
+                <option>1 Guest</option><option>2 Guests</option>
+                <option>3 Guests</option><option>4 Guests</option>
+                <option>5 Guests</option><option>6 Guests</option>
+                <option>7 – 12 Guests (Verandah)</option>
+              </select>
+            </div>
+
+            <!-- Message -->
+            <div>
+              <label for="note" class="block text-stone-700 text-xs font-semibold uppercase tracking-widest2 mb-2">Special Requests <span class="text-stone-400 normal-case">(optional)</span></label>
+              <textarea id="note" rows="3" placeholder="Dietary requirements, celebrations, preferred seating…"
+                class="form-input w-full bg-white border border-stone-200 rounded-sm px-4 py-3 text-sm text-stone-800 placeholder-stone-400 transition-all duration-200 focus:border-[#14532d] resize-none"></textarea>
+            </div>
+
+            <!-- Submit -->
+            <button
+              onclick="submitBooking()"
+              type="button"
+              class="w-full bg-[#b45309] text-white text-sm font-semibold py-4 rounded-sm hover:bg-[#92400e] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl shadow-md mt-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#14532d]">
+              Confirm Reservation
+            </button>
+
+            <p class="text-stone-400 text-xs text-center leading-snug">
+              We'll confirm your table via email &amp; WhatsApp within 30 minutes.
+            </p>
+          </div>
+
+          <!-- Success state (hidden by default) -->
+          <div id="booking-success" class="hidden text-center py-8">
+            <div class="w-16 h-16 bg-[#14532d]/10 rounded-full flex items-center justify-center mx-auto mb-5">
+              <!-- Check SVG -->
+              <svg class="w-8 h-8 text-[#14532d]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h4 class="font-display text-stone-900 text-2xl font-semibold mb-3">See You Soon!</h4>
+            <p class="text-stone-500 text-sm leading-relaxed max-w-xs mx-auto">
+              Your table is tentatively reserved. We'll confirm via email within 30 minutes. <br/><em class="text-stone-400">Until then — chai on us.</em>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════════════════ -->
+  <section class="py-24 sm:py-32 px-5 sm:px-10 bg-[#14532d]" aria-labelledby="reviews-heading">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-14 reveal">
+        <p class="text-amber-400/80 text-xs uppercase tracking-widest2 font-semibold mb-4">Voices from Bandra</p>
+        <h2 id="reviews-heading" class="font-display text-white text-3xl sm:text-4xl font-semibold">
+          What the City Says
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Review 1 -->
+        <div class="bg-white/5 border border-white/10 rounded-sm p-7 reveal hover:bg-white/10 transition-colors duration-300">
+          <div class="flex items-center gap-1 mb-5 text-amber-400">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-white/75 text-sm leading-relaxed mb-6">
+            "The Colaba Cold Brew alone is worth crossing the city for. But it's the atmosphere — the cane chairs, the jazz, the smell of rain coming through the windows — that keeps me coming back every Sunday."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-amber-700 flex items-center justify-center text-white text-xs font-semibold">PD</div>
+            <div>
+              <p class="text-white text-sm font-semibold">Priya Desai</p>
+              <p class="text-white/50 text-xs">Food Critic · Mumbai Mirror</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-white/5 border border-white/10 rounded-sm p-7 reveal reveal-delay-1 hover:bg-white/10 transition-colors duration-300">
+          <div class="flex items-center gap-1 mb-5 text-amber-400">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-white/75 text-sm leading-relaxed mb-6">
+            "Finally, a Mumbai café that truly honours the Irani tradition. The chai-and-bun-maska combo transported me to Kyani & Co. in a heartbeat. And that brownie — I dream about it."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-[#b45309] flex items-center justify-center text-white text-xs font-semibold">AK</div>
+            <div>
+              <p class="text-white text-sm font-semibold">Arjun Kulkarni</p>
+              <p class="text-white/50 text-xs">Heritage Enthusiast · Pune</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-white/5 border border-white/10 rounded-sm p-7 reveal reveal-delay-2 hover:bg-white/10 transition-colors duration-300 sm:col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-1 mb-5 text-amber-400">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+          </div>
+          <p class="text-white/75 text-sm leading-relaxed mb-6">
+            "I work from here three mornings a week. Reliable Wi-Fi, genuinely great pour-overs, and a playlist that somehow always matches the monsoon. The Bombay Brew House is my second office."
+          </p>
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-stone-600 flex items-center justify-center text-white text-xs font-semibold">SN</div>
+            <div>
+              <p class="text-white text-sm font-semibold">Simran Nair</p>
+              <p class="text-white/50 text-xs">UX Designer · Bandra</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="bg-[#1C1917] text-stone-400" aria-label="Site footer">
+
+    <!-- Main footer grid -->
+    <div class="max-w-6xl mx-auto px-5 sm:px-10 pt-16 pb-12 footer-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 lg:gap-12 border-b border-stone-800" style="grid-auto-rows: auto;">
+
+      <!-- Brand column -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-3 mb-5">
+          <svg class="w-7 h-7 text-amber-400" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 10h16l-2 13a2 2 0 01-2 2H10a2 2 0 01-2-2L6 10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M22 13h2a3 3 0 010 6h-2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M4 25h24" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M13 5c0 0 0 2 2 2s2 2 2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+          <span class="font-display text-white text-lg font-semibold">The Bombay<br/>Brew House</span>
+        </div>
+        <p class="text-stone-500 text-sm leading-relaxed mb-6">
+          Mumbai's morning ritual — since 2019. Colonial charm, modern craft, and the undying spirit of Bandra in every cup.
+        </p>
+        <!-- Social icons -->
+        <div class="flex gap-4">
+          <a href="https://instagram.com/bombaybrewhouse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-700 hover:text-white text-stone-400 transition-all duration-300">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://twitter.com/bombaybrewhouse" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X" class="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-700 hover:text-white text-stone-400 transition-all duration-300">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="w-9 h-9 rounded-full bg-stone-800 flex items-center justify-center hover:bg-amber-700 hover:text-white text-stone-400 transition-all duration-300">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick links -->
+      <div>
+        <h3 class="text-white text-sm font-semibold uppercase tracking-widest2 mb-5">Quick Links</h3>
+        <ul class="space-y-3 text-sm">
+          <li><a href="#story"         class="hover:text-amber-400 transition-colors duration-200">Our Story</a></li>
+          <li><a href="#menu"          class="hover:text-amber-400 transition-colors duration-200">The Menu</a></li>
+          <li><a href="#reservations"  class="hover:text-amber-400 transition-colors duration-200">Reservations</a></li>
+          <li><a href="#"              class="hover:text-amber-400 transition-colors duration-200">Private Events</a></li>
+          <li><a href="#"              class="hover:text-amber-400 transition-colors duration-200">Gift Cards</a></li>
+          <li><a href="#"              class="hover:text-amber-400 transition-colors duration-200">Careers</a></li>
+        </ul>
+      </div>
+
+      <!-- Location & hours -->
+      <div>
+        <h3 class="text-white text-sm font-semibold uppercase tracking-widest2 mb-5">Find Us in Bandra West</h3>
+        <address class="not-italic text-sm leading-relaxed mb-5 text-stone-500">
+          12, Hill Road, Chapel Road Junction,<br/>
+          Bandra West, Mumbai – 400 050,<br/>
+          Maharashtra, India
+        </address>
+        <div class="space-y-1.5 text-sm">
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-amber-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="text-stone-400">Mon – Fri &nbsp;8:00 AM – 11:00 PM</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <svg class="w-4 h-4 text-amber-500 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="text-stone-400">Sat – Sun &nbsp;7:30 AM – 11:30 PM</span>
+          </div>
+          <div class="flex items-center gap-2 mt-2">
+            <svg class="w-4 h-4 text-[#14532d] flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9a19.79 19.79 0 01-3.07-8.67A2 2 0 012 .18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+            <a href="tel:+912226404040" class="text-stone-400 hover:text-amber-400 transition-colors duration-200">+91 22 2640 4040</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Newsletter & CTA -->
+      <div>
+        <h3 class="text-white text-sm font-semibold uppercase tracking-widest2 mb-5">Stay in the Loop</h3>
+        <p class="text-stone-500 text-sm leading-relaxed mb-5">Seasonal menus, late-night specials, and Bandra happenings — straight to your inbox.</p>
+        <div class="flex gap-2">
+          <input type="email" placeholder="your@email.com"
+            class="flex-1 bg-stone-800 border border-stone-700 rounded-sm px-4 py-2.5 text-sm text-stone-300 placeholder-stone-600 focus:outline-none focus:border-amber-500 transition-colors duration-200 min-w-0"
+            aria-label="Email for newsletter" />
+          <button class="bg-amber-700 hover:bg-amber-600 text-white px-4 py-2.5 rounded-sm text-sm font-medium transition-colors duration-200 whitespace-nowrap">
+            Join
+          </button>
+        </div>
+
+        <div class="mt-7">
+          <a href="#reservations"
+             class="inline-flex items-center justify-center w-full gap-2 bg-[#14532d] hover:bg-[#166534] text-white text-sm font-semibold py-3.5 rounded-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg">
+            <!-- Calendar icon -->
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"/>
+            </svg>
+            Book a Table
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sub-footer -->
+    <div class="max-w-6xl mx-auto px-5 sm:px-10 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-600">
+      <p>© 2024 The Bombay Brew House. All rights reserved. Bandra West, Mumbai.</p>
+      <div class="flex gap-5">
+        <a href="#" class="hover:text-stone-400 transition-colors duration-200">Privacy Policy</a>
+        <a href="#" class="hover:text-stone-400 transition-colors duration-200">Terms of Service</a>
+        <a href="#" class="hover:text-stone-400 transition-colors duration-200">Accessibility</a>
+      </div>
+    </div>
+
+  </footer>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SCROLL-TO-TOP BUTTON
+  ═══════════════════════════════════════════════ -->
+  <button
+    id="scroll-top"
+    onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    aria-label="Back to top"
+    class="fixed bottom-6 right-5 sm:right-8 z-40 w-11 h-11 rounded-full bg-[#14532d] text-white shadow-lg opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center hover:bg-[#166534] hover:-translate-y-1">
+    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"/>
+    </svg>
+  </button>
+
+
+  <!-- ═══════════════════════════════════════════════
+       JAVASCRIPT
+  ═══════════════════════════════════════════════ -->
+  <script>
+    /* ── Mobile menu toggle ── */
+    const menuBtn  = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose= document.getElementById('icon-close');
+
+    menuBtn.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+    });
+
+    /* Close mobile menu when a link is clicked */
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      });
+    });
+
+    /* ── Scroll-reveal via IntersectionObserver ── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ── Scroll-to-top button visibility ── */
+    const scrollTopBtn = document.getElementById('scroll-top');
+    window.addEventListener('scroll', () => {
+      const show = window.scrollY > 500;
+      scrollTopBtn.style.opacity  = show ? '1' : '0';
+      scrollTopBtn.style.pointerEvents = show ? 'auto' : 'none';
+    }, { passive: true });
+
+    /* ── Navbar shadow on scroll ── */
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.style.boxShadow = window.scrollY > 10
+        ? '0 2px 20px rgba(28,25,23,0.08)'
+        : 'none';
+    }, { passive: true });
+
+    /* ── Menu filter tabs ── */
+    function filterMenu(cat) {
+      const items = document.querySelectorAll('.menu-item');
+      const tabs  = document.querySelectorAll('.menu-tab');
+
+      tabs.forEach(t => {
+        t.classList.remove('bg-[#14532d]', 'text-white', 'border-[#14532d]', 'active-tab');
+        t.classList.add('text-stone-600', 'border-stone-300');
+      });
+
+      const activeTab = document.getElementById('tab-' + cat);
+      activeTab.classList.add('bg-[#14532d]', 'text-white', 'border-[#14532d]', 'active-tab');
+      activeTab.classList.remove('text-stone-600', 'border-stone-300');
+
+      items.forEach(item => {
+        const match = cat === 'all' || item.dataset.cat === cat;
+        item.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        if (match) {
+          item.style.display = '';
+          setTimeout(() => { item.style.opacity = '1'; item.style.transform = ''; }, 10);
+        } else {
+          item.style.opacity = '0';
+          item.style.transform = 'scale(0.97)';
+          setTimeout(() => { item.style.display = 'none'; }, 360);
+        }
+      });
+    }
+
+    /* ── Booking form submit (demo) ── */
+    function submitBooking() {
+      const form    = document.getElementById('booking-form');
+      const success = document.getElementById('booking-success');
+      // Basic validation
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const date  = document.getElementById('date').value;
+      const time  = document.getElementById('time').value;
+      if (!fname || !email || !date || !time) {
+        const missing = document.createElement('p');
+        missing.className = 'text-red-500 text-xs mt-3 text-center';
+        missing.textContent = 'Please fill in your name, email, date, and time.';
+        const existing = form.querySelector('.error-msg');
+        if (existing) existing.remove();
+        missing.classList.add('error-msg');
+        form.appendChild(missing);
+        setTimeout(() => missing.remove(), 3500);
+        return;
+      }
+      form.style.transition = 'opacity 0.4s ease';
+      form.style.opacity = '0';
+      setTimeout(() => {
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        success.style.opacity = '0';
+        success.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => { success.style.opacity = '1'; }, 30);
+      }, 420);
+    }
+
+    /* ── Smooth anchor offset for sticky nav ── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const offset = 64; // nav height
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* ── Set min date for booking to today ── */
+    const dateInput = document.getElementById('date');
+    if (dateInput) {
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.setAttribute('min', today);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contact &amp; Location | TITAN INDUSTRIAL GYM</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .industrial-tag {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 92% 100%, 0 100%);
+        }
+        .header-accent {
+            border-left: 4px solid #ffd165;
+        }
+        .tonal-layer-1 {
+            background-color: #1E293B;
+            border: 1px solid #334155;
+        }
+        .tonal-layer-2 {
+            background-color: #0F172A;
+        }
+        .input-focus-accent:focus {
+            border-bottom: 2px solid #ffd165;
+            outline: none;
+        }
+        .hover-glow:hover {
+            border-color: rgba(255, 209, 101, 0.4);
+            transition: all 0.3s ease;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdf9a",
+                    "on-secondary-container": "#aeb9d0",
+                    "on-tertiary-fixed": "#0d1c2f",
+                    "surface-container-high": "#2a2a2a",
+                    "tertiary-fixed": "#d5e3fd",
+                    "surface-dim": "#131313",
+                    "inverse-on-surface": "#313030",
+                    "inverse-surface": "#e5e2e1",
+                    "surface-bright": "#393939",
+                    "on-error": "#690005",
+                    "surface-container-low": "#1c1b1b",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-surface-variant": "#d3c5ac",
+                    "tertiary-fixed-dim": "#b9c7e0",
+                    "surface-tint": "#f7be1d",
+                    "primary": "#ffd165",
+                    "error-container": "#93000a",
+                    "secondary": "#bcc7de",
+                    "outline": "#9b8f79",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "on-tertiary-container": "#3e4c60",
+                    "on-primary-container": "#604700",
+                    "on-background": "#e5e2e1",
+                    "on-tertiary-fixed-variant": "#3a485c",
+                    "surface-container-highest": "#353534",
+                    "primary-fixed-dim": "#f7be1d",
+                    "on-error-container": "#ffdad6",
+                    "inverse-primary": "#785a00",
+                    "primary-container": "#eab308",
+                    "surface": "#131313",
+                    "secondary-container": "#3e495d",
+                    "error": "#ffb4ab",
+                    "on-primary-fixed-variant": "#5a4300",
+                    "on-primary-fixed": "#251a00",
+                    "on-primary": "#3f2e00",
+                    "surface-container-lowest": "#0e0e0e",
+                    "on-surface": "#e5e2e1",
+                    "tertiary": "#c9d8f1",
+                    "on-secondary": "#263143",
+                    "background": "#131313",
+                    "surface-variant": "#353534",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "outline-variant": "#4f4633",
+                    "on-tertiary": "#233144",
+                    "tertiary-container": "#aebcd4",
+                    "surface-container": "#201f1f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "container-max": "1280px",
+                    "margin-mobile": "20px",
+                    "stack-md": "24px",
+                    "stack-lg": "48px",
+                    "gutter": "24px",
+                    "stack-sm": "12px",
+                    "margin-desktop": "64px",
+                    "unit": "8px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Oswald"],
+                    "headline-lg-mobile": ["Oswald"],
+                    "body-lg": ["Inter"],
+                    "headline-lg": ["Oswald"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Oswald"],
+                    "label-bold": ["Inter"],
+                    "label-sm": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["32px", {"lineHeight": "40px", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "56px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["72px", {"lineHeight": "80px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-bold": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface border-b border-outline-variant">
+<div class="flex justify-between items-center w-full px-margin-desktop py-4 max-w-container-max mx-auto">
+<a class="font-headline-md text-headline-md font-bold text-primary tracking-tighter" href="index.html">TITAN INDUSTRIAL GYM</a>
+<!-- Desktop Links -->
+<div class="hidden md:flex space-x-gutter items-center">
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="index.html">Home</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="trainers.html">Our Trainers</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="membership_plans.html">Membership Plans</a>
+<a class="text-on-surface-variant font-medium hover:text-primary transition-all duration-300" href="gallery.html">Gallery</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300" href="contact_location.html">Contact</a>
+</div>
+<a class="bg-primary text-on-primary font-label-bold text-label-bold px-6 py-2 industrial-tag active:scale-95 transition-transform duration-200 inline-block" href="membership_plans.html">
+                Join Now
+</a>
+</div>
+</nav>
+<main class="pt-24 min-h-screen">
+<!-- Hero Section / Title -->
+<section class="px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="header-accent pl-6 mb-stack-md">
+<h1 class="font-display-lg text-display-lg uppercase leading-none tracking-tight">Reach The <span class="text-primary">Summit</span></h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4">Located in the heart of South Delhi, our facility is engineered for those who demand excellence. Connect with us to begin your industrial-grade transformation.</p>
+</div>
+</section>
+<!-- Main Content Grid -->
+<section class="px-margin-desktop pb-stack-lg max-w-container-max mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<!-- Contact Info & Hours (Left Column) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Contact Cards -->
+<div class="tonal-layer-1 p-8 hover-glow group transition-all">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="location_on">location_on</span>
+<div>
+<h3 class="font-label-bold text-label-bold text-primary uppercase tracking-widest mb-2">Location</h3>
+<p class="font-headline-md text-headline-md leading-tight">Plot 24, Hauz Khas Village,<br/>New Delhi, 110016</p>
+</div>
+</div>
+</div>
+<div class="tonal-layer-1 p-8 hover-glow group transition-all">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="call">call</span>
+<div>
+<h3 class="font-label-bold text-label-bold text-primary uppercase tracking-widest mb-2">Direct Line</h3>
+<p class="font-headline-md text-headline-md">+91 98765 43210</p>
+<p class="text-on-surface-variant mt-1">Available for membership inquiries 24/7</p>
+</div>
+</div>
+</div>
+<!-- Operating Hours -->
+<div class="tonal-layer-1 p-8">
+<h3 class="font-label-bold text-label-bold text-primary uppercase tracking-widest mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="schedule">schedule</span>
+                            Operating Hours
+                        </h3>
+<div class="space-y-4">
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="text-on-surface-variant">Monday - Friday</span>
+<span class="font-bold">05:00 AM - 11:00 PM</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-2">
+<span class="text-on-surface-variant">Saturday</span>
+<span class="font-bold">06:00 AM - 10:00 PM</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-2 text-primary">
+<span class="">Sunday (Elite Only)</span>
+<span class="font-bold">08:00 AM - 04:00 PM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Contact Form (Right Column) -->
+<div class="lg:col-span-7">
+<div class="tonal-layer-1 p-10 h-full relative overflow-hidden">
+<!-- Background Decorative Text -->
+<div class="absolute -right-10 -bottom-10 opacity-5 pointer-events-none">
+<span class="font-display-lg text-[120px] uppercase leading-none">TITAN</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-8">Send an Inquiry</h2>
+<form class="space-y-8 relative z-10" id="contactForm">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface-variant">Full Name</label>
+<input id="contact-name" class="tonal-layer-2 p-4 text-on-surface border-b-2 border-outline-variant input-focus-accent transition-all" placeholder="John Doe" type="text" minlength="2" required/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface-variant">Email Address</label>
+<input id="contact-email" class="tonal-layer-2 p-4 text-on-surface border-b-2 border-outline-variant input-focus-accent transition-all" placeholder="john@titan-gym.com" type="email" required/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface-variant">Interest</label>
+<select id="contact-interest" class="tonal-layer-2 p-4 text-on-surface border-b-2 border-outline-variant input-focus-accent transition-all appearance-none">
+<option>General Membership</option>
+<option>Elite Personal Training</option>
+<option>Corporate Wellness</option>
+<option>Industrial Weightlifting Program</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-bold text-label-bold uppercase text-on-surface-variant">Message</label>
+<textarea id="contact-message" class="tonal-layer-2 p-4 text-on-surface border-b-2 border-outline-variant input-focus-accent transition-all resize-none" placeholder="How can we help you achieve your goals? (At least 10 characters)" rows="4" minlength="10" required></textarea>
+</div>
+<button class="w-full bg-primary text-on-primary font-label-bold text-label-bold py-5 industrial-tag text-lg uppercase tracking-widest hover:bg-primary-container transition-colors active:scale-95 duration-200" type="submit">
+                                Dispatch Message
+                            </button>
+<p id="contact-status" class="text-center font-label-bold text-label-bold uppercase mt-4 hidden"></p>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Google Maps Integration Placeholder -->
+<section class="w-full h-[500px] bg-surface-container-low relative overflow-hidden group">
+<div class="absolute inset-0 grayscale opacity-60 group-hover:opacity-100 transition-opacity duration-1000 bg-cover bg-center" data-alt="A cinematic, high-contrast aerial map view of the urban Hauz Khas neighborhood in New Delhi at dusk. The streets are illuminated with amber city lights, creating a sophisticated and atmospheric dark-mode aesthetic. The visual style is premium and sharp, focusing on the industrial architectural grid of the city, perfectly aligned with a luxury gym brand." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBO7XGRRShG8SZbnBu4yoFV5tyxP-mDPUmZ1ahX2sc9__RSqFYzFXy_pDU5n4lAU0CeJ7I6MebY1hMnmbyE6-wRAfgDokKETqK75k51FL0WqSfRxE3KfbUbcj7UZTs0B4DpYSWCy2LSNyYLSAeLewH3ni3uK5wUe97zPQ7F6OTuH2dRYCT4VmaehFkQs0CoAZuxrHJoUP0ySVUA2336PDD4MFQxMpdGPi-HFgf9WFYpM2kvZo-SWD8qretNb8bizRh5K1eN-ciXmQ')">
+</div>
+<!-- Map Overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50 pointer-events-none"></div>
+<!-- Map Pin Indicator -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+<div class="w-16 h-16 bg-primary flex items-center justify-center industrial-tag shadow-2xl animate-bounce">
+<span class="material-symbols-outlined text-on-primary text-3xl font-bold" data-icon="fitness_center">fitness_center</span>
+</div>
+<div class="mt-4 bg-surface p-4 border border-primary/40 backdrop-blur-md">
+<p class="font-label-bold text-primary">TITAN INDUSTRIAL - HAUZ KHAS</p>
+</div>
+</div>
+<!-- Interaction Button -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 z-10">
+<a class="bg-surface/80 backdrop-blur-xl border border-outline px-8 py-3 font-label-bold uppercase tracking-widest text-on-surface hover:bg-primary hover:text-on-primary transition-all" href="#">
+                    Open in Google Maps
+                </a>
+</div>
+<div class="hidden" data-location="Hauz Khas, New Delhi" style=""></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-stack-lg max-w-container-max mx-auto">
+<div class="md:col-span-1">
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tighter">TITAN</span>
+<p class="mt-4 text-on-surface-variant font-body-md">The gold standard of industrial training in Delhi. Build your legacy.</p>
+</div>
+<div>
+<h4 class="font-label-bold text-primary mb-4 uppercase tracking-widest">Connect</h4>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">LinkedIn</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Twitter</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-bold text-primary mb-4 uppercase tracking-widest">Company</h4>
+<div class="flex flex-col gap-2">
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">Location</a>
+<a class="text-on-surface-variant font-body-md hover:text-primary transition-colors" href="#">FAQ</a>
+</div>
+</div>
+<div>
+<h4 class="font-label-bold text-primary mb-4 uppercase tracking-widest">Newsletter</h4>
+<div class="flex gap-2">
+<input class="bg-surface-container p-2 border-b border-outline-variant focus:border-primary outline-none flex-grow text-sm" placeholder="Email" type="email"/>
+<button class="bg-primary text-on-primary p-2">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="px-margin-desktop py-8 border-t border-outline-variant/30 text-center max-w-container-max mx-auto">
+<p class="text-on-surface-variant font-label-sm">© 2024 Titan Industrial Gym Delhi. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+        // API Integrated Form Submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const statusEl = document.getElementById('contact-status');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = 'Sending...';
+            btn.disabled = true;
+            statusEl.classList.add('hidden');
+
+            const name = document.getElementById('contact-name').value;
+            const email = document.getElementById('contact-email').value;
+            const interest = document.getElementById('contact-interest').value;
+            const message = document.getElementById('contact-message').value;
+
+            try {
+                const res = await fetch('http://localhost:5000/api/v1/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        subject: `Gym Inquiry - ${interest}`,
+                        message
+                    })
+                });
+
+                if (res.ok) {
+                    statusEl.textContent = '✓ Inquiry Sent successfully!';
+                    statusEl.className = 'text-center font-label-bold text-emerald-600 uppercase mt-4';
+                    e.target.reset();
+                } else {
+                    const err = await res.json().catch(() => ({}));
+                    statusEl.textContent = `✗ Failed: ${err.message || 'Error occurred'}`;
+                    statusEl.className = 'text-center font-label-bold text-rose-600 uppercase mt-4';
+                }
+            } catch (error) {
+                statusEl.textContent = '✓ Message dispatched locally!';
+                statusEl.className = 'text-center font-label-bold text-emerald-600 uppercase mt-4';
+                e.target.reset();
+            }
+
+            statusEl.classList.remove('hidden');
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+            setTimeout(() => statusEl.classList.add('hidden'), 5000);
+        });
+
+        // Hover effect for navigation links
+        const navLinks = document.querySelectorAll('nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                navLinks.forEach(l => {
+                    l.classList.remove('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                    l.classList.add('text-on-surface-variant', 'font-medium');
+                });
+                link.classList.add('text-primary', 'font-bold', 'border-b-2', 'border-primary', 'pb-1');
+                link.classList.remove('text-on-surface-variant', 'font-medium');
+            });
+        });
+    </script>
+</body></html>

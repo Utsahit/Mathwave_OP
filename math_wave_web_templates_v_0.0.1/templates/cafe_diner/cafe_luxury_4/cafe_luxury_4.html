@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The Glasshouse Bistro — Al fresco dining, specialty roasts, and artisan plates under a canopy of green in Indiranagar, Bangalore." />
+  <title>The Glasshouse Bistro — Indiranagar, Bangalore</title>
+
+  <!-- Google Fonts: Syne (headers) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN (replace with Tailwind CLI build output in production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            body: ['DM Sans', 'sans-serif'],
+          },
+          colors: {
+            botanica: {
+              950: '#022c22',
+              900: '#064e3b',
+              800: '#065f46',
+              700: '#047857',
+              600: '#059669',
+              400: '#34d399',
+              200: '#a7f3d0',
+              50:  '#ecfdf5',
+            },
+          },
+          backgroundImage: {
+            'leaf-texture': "url(\"data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23059669' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\")",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* Base font assignments */
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: #fafaf9; /* stone-50 equivalent */
+      color: #1c1917; /* stone-900 */
+    }
+    h1, h2, h3, h4, h5, h6, .font-display {
+      font-family: 'Syne', sans-serif;
+    }
+
+    /* Glassmorphism nav */
+    .glass-nav {
+      background: rgba(2, 44, 34, 0.18);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(5, 150, 105, 0.15);
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #fafaf9; }
+    ::-webkit-scrollbar-thumb { background: #059669; border-radius: 3px; }
+
+    /* Marquee animation */
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+
+    /* Fade-up reveal on scroll */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      animation: fadeUp 0.72s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .reveal-delay-1 { animation-delay: 0.1s; }
+    .reveal-delay-2 { animation-delay: 0.22s; }
+    .reveal-delay-3 { animation-delay: 0.36s; }
+    .reveal-delay-4 { animation-delay: 0.5s; }
+
+    /* Menu card shimmer on hover */
+    .menu-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(5,150,105,0.06) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .menu-card:hover::after { opacity: 1; }
+
+    /* Hero image overlay */
+    .hero-img-wrap::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(2,44,34,0.08) 0%, rgba(2,44,34,0.28) 100%);
+      border-radius: inherit;
+    }
+
+    /* Dotted separator line */
+    .dot-rule {
+      background-image: radial-gradient(circle, #059669 1px, transparent 1px);
+      background-size: 10px 10px;
+      height: 1px;
+      background-repeat: repeat-x;
+      background-position: center;
+    }
+
+    /* Newsletter input focus ring */
+    .brew-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.45);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .reveal { opacity: 1; animation: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-stone-50 text-stone-900 antialiased overflow-x-hidden">
+
+  <!-- ════════════════════════════════════════
+       NAVIGATION — Sticky Glassmorphism
+  ════════════════════════════════════════ -->
+  <header class="glass-nav fixed top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 h-16 flex items-center justify-between">
+
+      <!-- Wordmark -->
+      <a href="#" class="flex items-center gap-2.5 group" aria-label="The Glasshouse Bistro home">
+        <!-- Leaf SVG icon -->
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M14 3C14 3 5 8 5 16C5 20.418 9.134 24 14 24C18.866 24 23 20.418 23 16C23 8 14 3 14 3Z" fill="#059669" opacity="0.9"/>
+          <path d="M14 3C14 3 14 12 14 24" stroke="#022c22" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M14 13C12 11 8 10 8 10C8 10 10 14 14 14" fill="#022c22" opacity="0.35"/>
+        </svg>
+        <span class="font-display font-700 text-emerald-50 text-lg tracking-tight leading-none">
+          The Glasshouse<br/>
+          <span class="text-emerald-400 text-xs font-400 tracking-[0.18em] uppercase font-body">Bistro · Indiranagar</span>
+        </span>
+      </a>
+
+      <!-- Desktop nav links -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        <a href="#vibe" class="text-emerald-100/80 hover:text-emerald-300 font-body text-sm font-medium transition-colors duration-200">The Vibe</a>
+        <a href="#menu" class="text-emerald-100/80 hover:text-emerald-300 font-body text-sm font-medium transition-colors duration-200">Menu</a>
+        <a href="#footer" class="text-emerald-100/80 hover:text-emerald-300 font-body text-sm font-medium transition-colors duration-200">Visit Us</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <a href="#footer"
+         class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-display font-semibold text-sm px-5 py-2.5 rounded-full transition-all duration-300 hover:translate-x-1 hover:shadow-lg hover:shadow-emerald-900/40 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-2 focus:ring-offset-transparent">
+        Reserve a Table
+        <!-- Arrow right SVG -->
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+
+  <!-- ════════════════════════════════════════
+       HERO — Split Layout
+  ════════════════════════════════════════ -->
+  <section class="min-h-screen bg-botanica-950 pt-16 flex items-center overflow-hidden relative" aria-labelledby="hero-headline">
+    <!-- Subtle botanical leaf-texture bg -->
+    <div class="absolute inset-0 opacity-30" style="background-image: url(\"data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23059669' fill-opacity='0.07'%3E%3Cpath d='M40 10C40 10 15 25 15 45C15 57 26 67 40 67C54 67 65 57 65 45C65 25 40 10 40 10Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E\"); background-size: 80px 80px;" aria-hidden="true"></div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-2 gap-0 items-center py-16 lg:py-0 min-h-[calc(100vh-4rem)]">
+
+      <!-- Left: Text Content -->
+      <div class="relative z-10 flex flex-col justify-center py-16 lg:pr-12">
+        <!-- Eyebrow label -->
+        <div class="reveal reveal-delay-1 flex items-center gap-3 mb-8">
+          <span class="h-px w-10 bg-emerald-500"></span>
+          <span class="text-emerald-400 font-body font-medium text-xs tracking-[0.22em] uppercase">Indiranagar · Bangalore</span>
+        </div>
+
+        <!-- Headline -->
+        <h1 id="hero-headline" class="reveal reveal-delay-2 font-display font-800 text-5xl lg:text-6xl xl:text-7xl leading-[1.02] text-stone-50 mb-7">
+          Where Bangalore's<br/>
+          <em class="not-italic text-emerald-400">Tech Pulse</em><br/>
+          Meets the<br/>
+          Garden City Calm.
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="reveal reveal-delay-3 font-body text-lg text-emerald-100/70 max-w-md leading-relaxed mb-10">
+          Al fresco dining, specialty roasts, and artisan plates under a canopy of green in Indiranagar. Pull up a chair. Your city slows down here.
+        </p>
+
+        <!-- CTA row -->
+        <div class="reveal reveal-delay-4 flex flex-wrap gap-4 items-center">
+          <a href="#menu"
+             class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-display font-semibold text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:translate-x-1 hover:shadow-xl hover:shadow-emerald-950/60 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            Explore the Menu
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#vibe"
+             class="inline-flex items-center gap-2 text-emerald-300 hover:text-emerald-100 font-body font-medium text-base border border-emerald-700 hover:border-emerald-400 px-7 py-3.5 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            Our Story
+          </a>
+        </div>
+
+        <!-- Micro-stats row -->
+        <div class="reveal reveal-delay-4 flex gap-8 mt-14 pt-8 border-t border-emerald-900">
+          <div>
+            <span class="block font-display font-700 text-3xl text-stone-50">7 AM</span>
+            <span class="block font-body text-xs text-emerald-400/80 tracking-widest uppercase mt-0.5">Opens Daily</span>
+          </div>
+          <div class="w-px bg-emerald-800"></div>
+          <div>
+            <span class="block font-display font-700 text-3xl text-stone-50">100%</span>
+            <span class="block font-body text-xs text-emerald-400/80 tracking-widest uppercase mt-0.5">Al Fresco Seats</span>
+          </div>
+          <div class="w-px bg-emerald-800"></div>
+          <div>
+            <span class="block font-display font-700 text-3xl text-stone-50">40+</span>
+            <span class="block font-body text-xs text-emerald-400/80 tracking-widest uppercase mt-0.5">Artisan Plates</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Image Grid -->
+      <div class="relative hidden lg:grid grid-cols-2 grid-rows-2 gap-3 h-[calc(100vh-6rem)] max-h-[720px]">
+        <!-- Main tall image -->
+        <div class="hero-img-wrap relative row-span-2 rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&q=80&w=800&fit=crop"
+            alt="Lush indoor greenery and warm bistro lighting at The Glasshouse Bistro"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <!-- Top right -->
+        <div class="hero-img-wrap relative rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&q=80&w=600&fit=crop"
+            alt="Artisan flat white coffee at The Glasshouse Bistro"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+        <!-- Bottom right -->
+        <div class="hero-img-wrap relative rounded-2xl overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&q=80&w=600&fit=crop"
+            alt="Artisan brunch plate with garden vegetables"
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+          />
+        </div>
+
+        <!-- Floating badge -->
+        <div class="absolute -bottom-3 -left-5 bg-emerald-600 text-white rounded-2xl px-5 py-4 shadow-2xl shadow-emerald-950/60 z-10">
+          <span class="block font-display font-700 text-2xl leading-none">4.9</span>
+          <div class="flex gap-0.5 mt-1">
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+          </div>
+          <span class="block font-body text-emerald-200 text-[10px] mt-0.5 tracking-wide">1,200+ reviews</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       MARQUEE TICKER — Between sections
+  ════════════════════════════════════════ -->
+  <div class="bg-emerald-600 py-3.5 overflow-hidden" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Specialty Roasts</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Al Fresco Seating</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Artisan Brunch</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Laptop-Friendly Canopy</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Filter Coffee Culture</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Weekend Brunches</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Indiranagar, Bangalore</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Specialty Roasts</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Al Fresco Seating</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Artisan Brunch</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Laptop-Friendly Canopy</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Filter Coffee Culture</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Weekend Brunches</span>
+      <span class="text-white/40 mx-1">◆</span>
+      <span class="font-body text-white/90 text-sm tracking-widest uppercase px-8">Indiranagar, Bangalore</span>
+      <span class="text-white/40 mx-1">◆</span>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       THE VIBE SECTION
+  ════════════════════════════════════════ -->
+  <section id="vibe" class="bg-stone-50 py-24 lg:py-32 leaf-texture" aria-labelledby="vibe-heading">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Section header -->
+      <div class="flex items-start gap-6 mb-16 lg:mb-20">
+        <div>
+          <span class="font-body text-emerald-600 text-xs font-medium tracking-[0.22em] uppercase mb-3 block">The Experience</span>
+          <h2 id="vibe-heading" class="font-display font-800 text-4xl lg:text-5xl xl:text-6xl text-stone-900 leading-tight max-w-2xl">
+            This is not just<br/>a café. It's a <em class="not-italic text-emerald-600">clearing.</em>
+          </h2>
+        </div>
+      </div>
+
+      <!-- Vibe cards grid -->
+      <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+
+        <!-- Card 1: Filter Coffee -->
+        <article class="group bg-white rounded-3xl p-8 border border-stone-100 hover:border-emerald-200 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-50 hover:scale-[1.02]">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6 group-hover:bg-emerald-100 transition-colors duration-300">
+            <!-- Coffee cup SVG -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M4 9H16V17C16 18.657 14.657 20 13 20H7C5.343 20 4 18.657 4 17V9Z" stroke="#059669" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M16 11H18C19.105 11 20 11.895 20 13C20 14.105 19.105 15 18 15H16" stroke="#059669" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M7 5C7 5 7.5 3 9 3C10.5 3 10.5 5 12 5C13.5 5 13.5 3 15 3" stroke="#059669" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-700 text-xl text-stone-900 mb-3">Filter Coffee Culture, Reimagined</h3>
+          <p class="font-body text-stone-500 leading-relaxed text-[15px]">
+            Kaapi didn't die. It evolved. We pour single-origin beans through traditional stainless steel filters, then cold-brew them overnight and serve them over river-stone ice. The same ritual Mysore grandmothers swear by — but with beans sourced from Chikmagalur's finest micro-lots. Because Bangalore never discards its roots. It just upgrades them.
+          </p>
+          <a href="#menu" class="inline-flex items-center gap-1.5 text-emerald-600 font-body font-medium text-sm mt-6 hover:gap-3 transition-all duration-200 group-hover:translate-x-1">
+            See our coffee list
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+
+        <!-- Card 2: Weekend Brunch -->
+        <article class="group bg-botanica-950 rounded-3xl p-8 border border-botanica-900 hover:border-emerald-700 transition-all duration-300 hover:shadow-xl hover:shadow-botanica-950/40 hover:scale-[1.02]">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-900/60 flex items-center justify-center mb-6 group-hover:bg-emerald-800/60 transition-colors duration-300">
+            <!-- Bicycle SVG -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="6" cy="15" r="3" stroke="#34d399" stroke-width="1.7"/>
+              <circle cx="18" cy="15" r="3" stroke="#34d399" stroke-width="1.7"/>
+              <path d="M6 15L10 7L13 11L16 7H19" stroke="#34d399" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M13 11L18 15" stroke="#34d399" stroke-width="1.7" stroke-linecap="round"/>
+              <path d="M10 7H13" stroke="#34d399" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-700 text-xl text-stone-50 mb-3">After the Cycling Loop</h3>
+          <p class="font-body text-emerald-200/70 leading-relaxed text-[15px]">
+            Sunday mornings on Indiranagar's streets belong to the cyclists who wind through the leafy avenues before the tech crowd wakes. We open at 7 AM with you in mind. Park your bike, claim a table under the ficus canopy, and let a jackfruit slider and a cold brew restore what Cubbon Park took from your legs. Cleats and jerseys are always welcome here.
+          </p>
+          <a href="#menu" class="inline-flex items-center gap-1.5 text-emerald-400 font-body font-medium text-sm mt-6 hover:gap-3 transition-all duration-200 group-hover:translate-x-1">
+            Weekend brunch menu
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+
+        <!-- Card 3: Laptop workspace -->
+        <article class="group bg-white rounded-3xl p-8 border border-stone-100 hover:border-emerald-200 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-50 hover:scale-[1.02]">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6 group-hover:bg-emerald-100 transition-colors duration-300">
+            <!-- Laptop SVG -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="12" rx="2" stroke="#059669" stroke-width="1.7"/>
+              <path d="M1 20H23" stroke="#059669" stroke-width="1.7" stroke-linecap="round"/>
+              <circle cx="12" cy="11" r="1.5" fill="#059669" opacity="0.5"/>
+            </svg>
+          </div>
+          <h3 class="font-display font-700 text-xl text-stone-900 mb-3">The Perfect Laptop-Friendly Canopy</h3>
+          <p class="font-body text-stone-500 leading-relaxed text-[15px]">
+            Bangalore runs on sprints and standups. Between deployments and design reviews, you need a place where the WiFi is faster than your tech debt and the ambient sound is birdsong, not a barista calling a name. Our canopy tables come with USB-C outlets, zero time-limits, and a no-judgment policy for that third cold brew. Deep work deserves deep green.
+          </p>
+          <a href="#footer" class="inline-flex items-center gap-1.5 text-emerald-600 font-body font-medium text-sm mt-6 hover:gap-3 transition-all duration-200 group-hover:translate-x-1">
+            Reserve a workspace table
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+      </div>
+
+      <!-- Image strip -->
+      <div class="mt-12 grid grid-cols-3 gap-3 h-56 rounded-3xl overflow-hidden">
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&q=80&w=700&fit=crop" alt="Warm café interior with plants and natural light" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy"/>
+        </div>
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&q=80&w=700&fit=crop" alt="Lush outdoor dining space with tropical plants" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy"/>
+        </div>
+        <div class="relative overflow-hidden rounded-2xl">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&q=80&w=700&fit=crop" alt="Artisan coffee being poured with precision" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       DOT RULE DIVIDER
+  ════════════════════════════════════════ -->
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 py-2">
+    <div class="dot-rule" aria-hidden="true"></div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       SEASONAL MENU — Interactive Grid
+  ════════════════════════════════════════ -->
+  <section id="menu" class="bg-stone-50 py-24 lg:py-32" aria-labelledby="menu-heading">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Section header -->
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-14">
+        <div>
+          <span class="font-body text-emerald-600 text-xs font-medium tracking-[0.22em] uppercase mb-3 block">Kitchen & Bar</span>
+          <h2 id="menu-heading" class="font-display font-800 text-4xl lg:text-5xl xl:text-6xl text-stone-900 leading-tight">
+            The Current Menu
+          </h2>
+          <p class="font-body text-stone-400 text-base mt-3 max-w-sm">Plates that speak Bangalore. Sourced within 200 km. Rotated with the season.</p>
+        </div>
+        <!-- Season badge -->
+        <div class="flex items-center gap-3 bg-emerald-50 border border-emerald-200 rounded-full px-5 py-2.5 self-start lg:self-auto">
+          <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+          <span class="font-body text-emerald-700 text-sm font-medium">Monsoon 2025 Edition</span>
+        </div>
+      </div>
+
+      <!-- Filter tabs -->
+      <div class="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Menu categories">
+        <button class="px-5 py-2 rounded-full bg-emerald-600 text-white font-body text-sm font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" role="tab" aria-selected="true">All Plates</button>
+        <button class="px-5 py-2 rounded-full bg-white text-stone-500 font-body text-sm font-medium border border-stone-200 hover:bg-stone-100 hover:text-stone-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" role="tab" aria-selected="false">Small Plates</button>
+        <button class="px-5 py-2 rounded-full bg-white text-stone-500 font-body text-sm font-medium border border-stone-200 hover:bg-stone-100 hover:text-stone-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" role="tab" aria-selected="false">Drinks</button>
+        <button class="px-5 py-2 rounded-full bg-white text-stone-500 font-body text-sm font-medium border border-stone-200 hover:bg-stone-100 hover:text-stone-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" role="tab" aria-selected="false">Mains</button>
+        <button class="px-5 py-2 rounded-full bg-white text-stone-500 font-body text-sm font-medium border border-stone-200 hover:bg-stone-100 hover:text-stone-800 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-400" role="tab" aria-selected="false">Desserts</button>
+      </div>
+
+      <!-- Menu cards — 3 column grid -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+        <!-- Card: Namma Avocado Toast -->
+        <article class="menu-card relative bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-emerald-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-50/80 transition-all duration-350 group cursor-default">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1541519227354-08fa5d50c820?auto=format&q=80&w=700&fit=crop"
+              alt="Namma Avocado Toast with local spices on sourdough"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <!-- Tag badge -->
+            <span class="absolute top-3 left-3 bg-emerald-600 text-white font-body text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full">Chef's Pick</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-display font-700 text-lg text-stone-900 leading-snug">Namma Avocado Toast</h3>
+              <span class="font-display font-700 text-emerald-600 text-lg shrink-0">₹480</span>
+            </div>
+            <p class="font-body text-stone-400 text-sm leading-relaxed mb-4">
+              Stone-milled sourdough from our Malleswaram baker, ripe Coorg avocado, gunpowder idli spice, pickled raw mango, and a soft-boiled egg marinated in Filter Coffee brine. The local spice twist that Zomato keeps screenshotting.
+            </p>
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="5" r="4"/></svg>
+                Vegetarian
+              </span>
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
+                🌶 Medium Spice
+              </span>
+            </div>
+            <button class="mt-5 w-full flex items-center justify-center gap-2 bg-stone-900 hover:bg-emerald-700 text-white font-body font-medium text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              Add to Order
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card: Filter Coffee Cold Brew -->
+        <article class="menu-card relative bg-botanica-950 rounded-3xl overflow-hidden border border-botanica-900 hover:border-emerald-700 hover:scale-[1.02] hover:shadow-xl hover:shadow-botanica-950/60 transition-all duration-350 group cursor-default">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&q=80&w=700&fit=crop"
+              alt="Filter Coffee Cold Brew served over clear ice"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <span class="absolute top-3 left-3 bg-amber-500 text-stone-900 font-body text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full">Signature Brew</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-display font-700 text-lg text-stone-50 leading-snug">Filter Coffee Cold Brew</h3>
+              <span class="font-display font-700 text-emerald-400 text-lg shrink-0">₹260</span>
+            </div>
+            <p class="font-body text-emerald-200/60 text-sm leading-relaxed mb-4">
+              18-hour cold-steeped Robusta–Arabica blend from Chikmagalur estates. Traditional brass filter process, modernized. Served tall over glacier-clear ice with a side of jaggery syrup for self-sweetening. The meeting of old Mysore and new Bangalore in one glass.
+            </p>
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-emerald-300 bg-emerald-900/60 px-2.5 py-1 rounded-full border border-emerald-800">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="5" r="4"/></svg>
+                Vegan Option
+              </span>
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-amber-300 bg-amber-900/40 px-2.5 py-1 rounded-full border border-amber-800">
+                ☕ High Caffeine
+              </span>
+            </div>
+            <button class="mt-5 w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-body font-medium text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              Add to Order
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card: Jackfruit Slider Plate -->
+        <article class="menu-card relative bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-emerald-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-50/80 transition-all duration-350 group cursor-default">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&q=80&w=700&fit=crop"
+              alt="Jackfruit Slider Plate with micro-greens and house-made sauce"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <span class="absolute top-3 left-3 bg-stone-900 text-emerald-400 font-body text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full">Monsoon Special</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-display font-700 text-lg text-stone-900 leading-snug">Jackfruit Slider Plate</h3>
+              <span class="font-display font-700 text-emerald-600 text-lg shrink-0">₹520</span>
+            </div>
+            <p class="font-body text-stone-400 text-sm leading-relaxed mb-4">
+              Three brioche sliders packed with slow-braised tender jackfruit in a Karnataka-spiced BBQ marinade, caramelized onion, and coconut-lime slaw. Comes with a side of kumquat chutney and hand-cut sweet potato wedges dusted with chaat masala. Karnataka on a plate.
+            </p>
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="5" r="4"/></svg>
+                100% Plant-Based
+              </span>
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-stone-600 bg-stone-50 px-2.5 py-1 rounded-full border border-stone-200">
+                🏡 Local Sourced
+              </span>
+            </div>
+            <button class="mt-5 w-full flex items-center justify-center gap-2 bg-stone-900 hover:bg-emerald-700 text-white font-body font-medium text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              Add to Order
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 4: Chikmagalur Ricotta Pancakes -->
+        <article class="menu-card relative bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-emerald-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-50/80 transition-all duration-350 group cursor-default">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?auto=format&q=80&w=700&fit=crop"
+              alt="Fluffy ricotta pancakes with seasonal fruit and honey"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-display font-700 text-lg text-stone-900 leading-snug">Chikmagalur Ricotta Pancakes</h3>
+              <span class="font-display font-700 text-emerald-600 text-lg shrink-0">₹440</span>
+            </div>
+            <p class="font-body text-stone-400 text-sm leading-relaxed mb-4">
+              Cloud-light ricotta stack with Coorg wild honey, fresh passion fruit, and hibiscus compote. The weekend pancake you'll stop making excuses for. Three per plate. Zero regrets.
+            </p>
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                Vegetarian
+              </span>
+            </div>
+            <button class="mt-5 w-full flex items-center justify-center gap-2 bg-stone-900 hover:bg-emerald-700 text-white font-body font-medium text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              Add to Order
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 5: Garden Bowl -->
+        <article class="menu-card relative bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-emerald-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-50/80 transition-all duration-350 group cursor-default">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&q=80&w=700&fit=crop"
+              alt="Vibrant garden bowl with roasted vegetables and grains"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <span class="absolute top-3 left-3 bg-emerald-100 text-emerald-800 font-body text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full">New</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-display font-700 text-lg text-stone-900 leading-snug">The Garden Bowl</h3>
+              <span class="font-display font-700 text-emerald-600 text-lg shrink-0">₹390</span>
+            </div>
+            <p class="font-body text-stone-400 text-sm leading-relaxed mb-4">
+              Ragi grains, roasted farmers' market vegetables from Russell Market, peppered cottage cheese, pumpkin seed dukkah, and a green tahini drizzle. Nourishing without the performance.
+            </p>
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="5" r="4"/></svg>
+                Gluten-Friendly
+              </span>
+            </div>
+            <button class="mt-5 w-full flex items-center justify-center gap-2 bg-stone-900 hover:bg-emerald-700 text-white font-body font-medium text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              Add to Order
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+        <!-- Card 6: Banana Blossom Tacos -->
+        <article class="menu-card relative bg-white rounded-3xl overflow-hidden border border-stone-100 hover:border-emerald-200 hover:scale-[1.02] hover:shadow-xl hover:shadow-emerald-50/80 transition-all duration-350 group cursor-default">
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&q=80&w=700&fit=crop"
+              alt="Banana blossom tacos with fresh toppings"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex items-start justify-between gap-4 mb-3">
+              <h3 class="font-display font-700 text-lg text-stone-900 leading-snug">Banana Blossom Tacos</h3>
+              <span class="font-display font-700 text-emerald-600 text-lg shrink-0">₹460</span>
+            </div>
+            <p class="font-body text-stone-400 text-sm leading-relaxed mb-4">
+              Three corn tortillas with slow-marinated banana blossom, a Kerala-spiced tomato salsa, pickled red onion, and a tamarind–mint crema. The taco that has no business being this good in Bangalore. And yet.
+            </p>
+            <div class="flex items-center gap-3 flex-wrap">
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-100">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="5" cy="5" r="4"/></svg>
+                Vegan
+              </span>
+              <span class="inline-flex items-center gap-1 font-body text-[11px] text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-100">
+                🌶 Spicy
+              </span>
+            </div>
+            <button class="mt-5 w-full flex items-center justify-center gap-2 bg-stone-900 hover:bg-emerald-700 text-white font-body font-medium text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              Add to Order
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- View full menu CTA -->
+      <div class="mt-12 text-center">
+        <a href="#footer"
+           class="inline-flex items-center gap-2 bg-stone-900 hover:bg-emerald-800 text-white font-display font-semibold text-base px-8 py-4 rounded-full transition-all duration-300 hover:translate-x-1 hover:shadow-xl hover:shadow-stone-900/30 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+          View the Full Seasonal Menu
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 8H14M14 8L9 3M14 8L9 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       TESTIMONIAL STRIP
+  ════════════════════════════════════════ -->
+  <section class="bg-botanica-950 py-20" aria-label="Guest reviews">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+      <div class="grid md:grid-cols-3 gap-8">
+
+        <blockquote class="group">
+          <div class="flex gap-0.5 mb-4">
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+          </div>
+          <p class="font-body text-emerald-100/75 text-base leading-relaxed italic mb-5">
+            "My Sunday ritual: 100ft Road cycling loop → Glasshouse cold brew → stare at plants for an hour. Bangalore living at its best. The jackfruit slider is criminally good."
+          </p>
+          <footer class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-emerald-800 flex items-center justify-center font-display font-700 text-emerald-300 text-sm">P</div>
+            <div>
+              <cite class="font-body font-medium text-stone-50 text-sm not-italic">Priya Krishnamurthy</cite>
+              <span class="block font-body text-xs text-emerald-500">Product Designer · Indiranagar</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="group">
+          <div class="flex gap-0.5 mb-4">
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+          </div>
+          <p class="font-body text-emerald-100/75 text-base leading-relaxed italic mb-5">
+            "Three sprints, two deploys, one very important cold brew. My entire team moved their Monday standups here. Management approved. The canopy tables have better bandwidth than our office."
+          </p>
+          <footer class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-emerald-800 flex items-center justify-center font-display font-700 text-emerald-300 text-sm">A</div>
+            <div>
+              <cite class="font-body font-medium text-stone-50 text-sm not-italic">Arjun Mehta</cite>
+              <span class="block font-body text-xs text-emerald-500">Engineering Lead · HSR Layout</span>
+            </div>
+          </footer>
+        </blockquote>
+
+        <blockquote class="group">
+          <div class="flex gap-0.5 mb-4">
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+            <svg width="16" height="16" viewBox="0 0 10 10" fill="#fbbf24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M5 0.5L6.12 3.62L9.5 3.9L7.1 6.08L7.85 9.5L5 7.75L2.15 9.5L2.9 6.08L0.5 3.9L3.88 3.62L5 0.5Z"/></svg>
+          </div>
+          <p class="font-body text-emerald-100/75 text-base leading-relaxed italic mb-5">
+            "The avocado toast with gunpowder spice had me questioning everything I thought I knew about avocado toast. Also, they have real Filter Coffee. Real. Not the instant nonsense the west calls coffee."
+          </p>
+          <footer class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-full bg-emerald-800 flex items-center justify-center font-display font-700 text-emerald-300 text-sm">N</div>
+            <div>
+              <cite class="font-body font-medium text-stone-50 text-sm not-italic">Nalini Subramaniam</cite>
+              <span class="block font-body text-xs text-emerald-500">Food Writer · Koramangala</span>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ════════════════════════════════════════
+       FOOTER — Hours, Location, Newsletter
+  ════════════════════════════════════════ -->
+  <footer id="footer" class="bg-stone-900 pt-20 pb-10" aria-label="Site footer">
+    <div class="max-w-7xl mx-auto px-6 lg:px-10">
+
+      <!-- Upper footer grid -->
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+        <!-- Brand col -->
+        <div class="lg:col-span-1">
+          <a href="#" class="flex items-center gap-2.5 mb-6 group" aria-label="The Glasshouse Bistro home">
+            <svg width="30" height="30" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M14 3C14 3 5 8 5 16C5 20.418 9.134 24 14 24C18.866 24 23 20.418 23 16C23 8 14 3 14 3Z" fill="#059669" opacity="0.9"/>
+              <path d="M14 3C14 3 14 12 14 24" stroke="#022c22" stroke-width="1.4" stroke-linecap="round"/>
+              <path d="M14 13C12 11 8 10 8 10C8 10 10 14 14 14" fill="#022c22" opacity="0.35"/>
+            </svg>
+            <span class="font-display font-700 text-stone-100 text-base tracking-tight">The Glasshouse Bistro</span>
+          </a>
+          <p class="font-body text-stone-400 text-sm leading-relaxed mb-6 max-w-xs">
+            A canopy café in the heart of Indiranagar. Al fresco dining, specialty roasts, and artisan plates from Bangalore's garden city soul.
+          </p>
+          <!-- Social icons -->
+          <div class="flex gap-3">
+            <!-- Instagram -->
+            <a href="#" class="w-9 h-9 rounded-xl bg-stone-800 hover:bg-emerald-700 flex items-center justify-center transition-all duration-200 hover:scale-[1.08] focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Follow us on Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" stroke="#d4d4d4" stroke-width="1.8"/>
+                <circle cx="12" cy="12" r="5" stroke="#d4d4d4" stroke-width="1.8"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="#d4d4d4"/>
+              </svg>
+            </a>
+            <!-- Twitter / X -->
+            <a href="#" class="w-9 h-9 rounded-xl bg-stone-800 hover:bg-emerald-700 flex items-center justify-center transition-all duration-200 hover:scale-[1.08] focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Follow us on X">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 4L20 20M4 20L20 4" stroke="#d4d4d4" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </a>
+            <!-- Google Maps -->
+            <a href="https://maps.google.com/?q=Indiranagar+Bangalore" target="_blank" rel="noopener noreferrer" class="w-9 h-9 rounded-xl bg-stone-800 hover:bg-emerald-700 flex items-center justify-center transition-all duration-200 hover:scale-[1.08] focus:outline-none focus:ring-2 focus:ring-emerald-400" aria-label="Find us on Google Maps">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2C8.134 2 5 5.134 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.134 15.866 2 12 2Z" stroke="#d4d4d4" stroke-width="1.8"/>
+                <circle cx="12" cy="9" r="2.5" stroke="#d4d4d4" stroke-width="1.8"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hours col -->
+        <div>
+          <h3 class="font-display font-700 text-stone-50 text-base mb-5 flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" stroke="#059669" stroke-width="1.8"/>
+              <path d="M12 7V12L15 14" stroke="#059669" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Opening Hours
+          </h3>
+          <ul class="space-y-3" role="list">
+            <li class="flex justify-between items-center">
+              <span class="font-body text-stone-400 text-sm">Monday – Friday</span>
+              <span class="font-body text-stone-200 text-sm font-medium">7 AM – 11 PM</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span class="font-body text-stone-400 text-sm">Saturday</span>
+              <span class="font-body text-stone-200 text-sm font-medium">7 AM – 11 PM</span>
+            </li>
+            <li class="flex justify-between items-center">
+              <span class="font-body text-stone-400 text-sm">Sunday</span>
+              <span class="font-body text-stone-200 text-sm font-medium">7 AM – 11 PM</span>
+            </li>
+            <li class="flex justify-between items-center pt-2 mt-2 border-t border-stone-800">
+              <span class="font-body text-stone-400 text-sm">Kitchen Last Order</span>
+              <span class="font-body text-emerald-400 text-sm font-medium">10:30 PM</span>
+            </li>
+          </ul>
+          <div class="mt-5 flex items-center gap-2 bg-emerald-900/40 rounded-xl px-4 py-3 border border-emerald-800/50">
+            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></div>
+            <span class="font-body text-emerald-300 text-xs">Open now · Closes 11 PM</span>
+          </div>
+        </div>
+
+        <!-- Location col -->
+        <div>
+          <h3 class="font-display font-700 text-stone-50 text-base mb-5 flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M12 2C8.134 2 5 5.134 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.134 15.866 2 12 2Z" stroke="#059669" stroke-width="1.8"/>
+              <circle cx="12" cy="9" r="2.5" stroke="#059669" stroke-width="1.8"/>
+            </svg>
+            Find Us
+          </h3>
+          <address class="font-body not-italic text-stone-400 text-sm leading-relaxed mb-4">
+            12th Cross, Indiranagar<br/>
+            Bengaluru, Karnataka 560038<br/>
+            <span class="text-stone-500 text-xs mt-1 block">Landmark: Near Indiranagar Metro, 100ft Road</span>
+          </address>
+          <a href="https://maps.google.com/?q=Indiranagar+Bangalore" target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 bg-stone-800 hover:bg-emerald-700 text-stone-200 hover:text-white font-body font-medium text-sm px-4 py-2.5 rounded-xl transition-all duration-200 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2C8.134 2 5 5.134 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.134 15.866 2 12 2Z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8"/></svg>
+            Get Directions
+          </a>
+          <div class="mt-5">
+            <a href="tel:+918046001234" class="flex items-center gap-2 text-stone-400 hover:text-emerald-400 font-body text-sm transition-colors duration-200">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.1 4.5C6.5 5.8 7.1 7 7.9 8.1L6.3 9.7C5.4 10.6 5.2 12 5.9 13L10.9 18C11.9 19 13.3 18.7 14.2 17.9L15.9 16.2C17 17 18.3 17.6 19.5 18C20.6 18.3 21.6 17.5 21.6 16.3V13.5C21.6 12.5 20.8 11.7 19.8 11.6C15.2 11.1 11.1 7.1 10.4 2.4C10.3 1.5 9.5 0.9 8.7 0.9H5.7C4.5 0.9 3.7 2 4 3.1L6.1 4.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
+              +91 80 4600 1234
+            </a>
+            <a href="mailto:hello@glasshousebistro.in" class="flex items-center gap-2 text-stone-400 hover:text-emerald-400 font-body text-sm transition-colors duration-200 mt-2">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M2 8L12 14L22 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+              hello@glasshousebistro.in
+            </a>
+          </div>
+        </div>
+
+        <!-- Newsletter col -->
+        <div>
+          <h3 class="font-display font-700 text-stone-50 text-base mb-2">The Weekly Brew</h3>
+          <p class="font-body text-stone-400 text-sm leading-relaxed mb-5">
+            New menu drops, canopy events, and the occasional bad pun about plants. Zero spam. Unsubscribe with the click of a leaf.
+          </p>
+          <!-- Newsletter form -->
+          <form class="flex flex-col gap-3" onsubmit="handleNewsletterSubmit(event)" aria-label="Subscribe to The Weekly Brew newsletter">
+            <label for="newsletter-email" class="sr-only">Email address</label>
+            <input
+              type="email"
+              id="newsletter-email"
+              name="email"
+              placeholder="your@email.com"
+              required
+              autocomplete="email"
+              class="brew-input w-full bg-stone-800 border border-stone-700 text-stone-200 placeholder-stone-500 font-body text-sm px-4 py-3 rounded-xl transition-all duration-200 focus:border-emerald-600"
+            />
+            <button
+              type="submit"
+              class="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white font-display font-semibold text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 hover:shadow-lg hover:shadow-emerald-900/40 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              Subscribe — It's Free
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M2 7H12M12 7L8 3M12 7L8 11" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </form>
+          <p class="font-body text-stone-600 text-xs mt-3">No spam. Just plants, plates, and pours.</p>
+
+          <!-- Reserve table CTA -->
+          <div class="mt-7 pt-7 border-t border-stone-800">
+            <p class="font-body text-stone-400 text-sm mb-3">Want a table this weekend?</p>
+            <a href="tel:+918046001234"
+               class="w-full flex items-center justify-center gap-2 border border-emerald-700 hover:bg-emerald-800/40 text-emerald-400 hover:text-emerald-300 font-body font-medium text-sm py-3 rounded-xl transition-all duration-300 hover:translate-x-1 focus:outline-none focus:ring-2 focus:ring-emerald-400">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6.1 4.5C6.5 5.8 7.1 7 7.9 8.1L6.3 9.7C5.4 10.6 5.2 12 5.9 13L10.9 18C11.9 19 13.3 18.7 14.2 17.9L15.9 16.2C17 17 18.3 17.6 19.5 18C20.6 18.3 21.6 17.5 21.6 16.3V13.5C21.6 12.5 20.8 11.7 19.8 11.6C15.2 11.1 11.1 7.1 10.4 2.4C10.3 1.5 9.5 0.9 8.7 0.9H5.7C4.5 0.9 3.7 2 4 3.1L6.1 4.5Z" stroke="currentColor" stroke-width="1.6"/></svg>
+              Call to Reserve
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="pt-8 border-t border-stone-800 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="font-body text-stone-600 text-xs text-center md:text-left">
+          &copy; 2025 The Glasshouse Bistro. All rights reserved. Grown with care in Indiranagar, Bangalore.
+        </p>
+        <div class="flex items-center gap-6">
+          <a href="#" class="font-body text-stone-600 hover:text-stone-400 text-xs transition-colors duration-200">Privacy Policy</a>
+          <a href="#" class="font-body text-stone-600 hover:text-stone-400 text-xs transition-colors duration-200">Menu PDF</a>
+          <a href="#" class="font-body text-stone-600 hover:text-stone-400 text-xs transition-colors duration-200">Careers</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Newsletter toast notification (JS) -->
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true"
+       class="fixed bottom-6 right-6 bg-emerald-600 text-white font-body font-medium text-sm px-6 py-4 rounded-2xl shadow-2xl shadow-emerald-950/50 translate-y-24 opacity-0 transition-all duration-500 z-50 flex items-center gap-3 pointer-events-none">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/>
+      <path d="M7 12.5L10 15.5L17 8.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Welcome to The Weekly Brew! 🌿
+  </div>
+
+  <script>
+    // ─── Newsletter form handler ───────────────────────────────
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      const toast = document.getElementById('toast');
+      toast.classList.remove('translate-y-24', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.add('translate-y-24', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+      }, 4000);
+      e.target.reset();
+    }
+
+    // ─── Scroll-reveal (Intersection Observer) ────────────────
+    (function () {
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = 'running';
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      document.querySelectorAll('.menu-card, article, blockquote').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(24px)';
+        el.style.transition = `opacity 0.6s cubic-bezier(0.22,1,0.36,1) ${i * 0.08}s, transform 0.6s cubic-bezier(0.22,1,0.36,1) ${i * 0.08}s`;
+        observer.observe(el);
+      });
+
+      const onIntersect = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      };
+
+      const revealObserver = new IntersectionObserver(onIntersect, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.menu-card, article, blockquote').forEach((el) => revealObserver.observe(el));
+    })();
+
+    // ─── Sticky nav: tint on scroll ──────────────────────────
+    (function () {
+      const nav = document.querySelector('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 40) {
+          nav.style.background = 'rgba(2, 44, 34, 0.72)';
+        } else {
+          nav.style.background = 'rgba(2, 44, 34, 0.18)';
+        }
+      }, { passive: true });
+    })();
+  </script>
+
+</body>
+</html>

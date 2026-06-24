@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ELIXIR & OAK | Menu</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary": "#000000",
+          "surface-container-highest": "#e4e2e2",
+          "on-surface-variant": "#444748",
+          "on-tertiary-fixed-variant": "#5d4201",
+          "inverse-on-surface": "#f2f0f0",
+          "secondary-container": "#e1dfdb",
+          "on-tertiary-fixed": "#261900",
+          "background": "#fbf9f8",
+          "on-primary-container": "#858383",
+          "surface-dim": "#dbd9d9",
+          "on-primary-fixed": "#1c1b1b",
+          "on-surface": "#1b1c1c",
+          "secondary": "#5e5e5b",
+          "tertiary": "#000000",
+          "on-primary-fixed-variant": "#474646",
+          "on-error-container": "#93000a",
+          "surface": "#fbf9f8",
+          "on-secondary": "#ffffff",
+          "on-tertiary": "#ffffff",
+          "on-secondary-fixed-variant": "#474744",
+          "surface-bright": "#fbf9f8",
+          "tertiary-fixed": "#ffdea5",
+          "inverse-surface": "#303030",
+          "error": "#ba1a1a",
+          "surface-container-lowest": "#ffffff",
+          "outline": "#747878",
+          "surface-tint": "#5f5e5e",
+          "tertiary-fixed-dim": "#e9c176",
+          "outline-variant": "#c4c7c7",
+          "surface-container-low": "#f5f3f3",
+          "on-secondary-fixed": "#1b1c19"
+        },
+        borderRadius: {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        spacing: {
+          "unit": "8px",
+          "margin-mobile": "24px",
+          "margin-desktop": "64px",
+          "container-max": "1200px",
+          "gutter": "24px"
+        },
+        fontFamily: {
+          "body-md": ["DM Sans"],
+          "label-caps": ["DM Sans"],
+          "display-lg": ["Bodoni Moda"],
+          "headline-lg": ["Bodoni Moda"],
+          "body-lg": ["DM Sans"],
+          "headline-md": ["Bodoni Moda"],
+          "display-lg-mobile": ["Bodoni Moda"]
+        },
+        fontSize: {
+          "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.15em", "fontWeight": "700"}],
+          "display-lg": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+          "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "500"}],
+          "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+          "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "500"}],
+          "display-lg-mobile": ["40px", {"lineHeight": "1.2", "fontWeight": "600"}]
+        }
+      }
+    }
+  }
+</script>
+<style>
+:root {
+  --gold: #c9a84c;
+  --gold-light: #e9c176;
+  --gold-dark: #8B6914;
+  --dark: #1a1710;
+}
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+.hero-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 35%, rgba(0,0,0,0.8) 100%);
+}
+.transition-500 { transition: all 500ms cubic-bezier(0.4,0,0.2,1); }
+.nav-link-underline { position: relative; }
+.nav-link-underline::after {
+  content: ''; position: absolute; width: 0; height: 1px;
+  bottom: -4px; left: 0; background-color: currentColor;
+  transition: width 0.3s ease;
+}
+.nav-link-underline:hover::after { width: 100%; }
+.card-hover { transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.35s ease; }
+.card-hover:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 24px 60px rgba(0,0,0,0.13); }
+.gold-line { background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.menu-tab.active { color: #ffffff; border-bottom: 2px solid var(--gold); }
+#menu-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#menu-background { position: absolute; inset: 0; background: radial-gradient(circle at top center, rgba(255,230,180,0.18), transparent 35%), radial-gradient(circle at 20% 20%, rgba(255,255,255,0.12), transparent 25%), linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.75)); }
+body { min-height: 100vh; }
+#mobile-menu {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+}
+#mobile-menu.open {
+  max-height: 300px;
+  opacity: 1;
+}
+</style>
+</head>
+<body class="bg-background text-on-background selection:bg-tertiary-fixed selection:text-on-tertiary-fixed overflow-x-hidden">
+<div class="relative min-h-screen overflow-hidden text-white">
+  <canvas id="menu-canvas"></canvas>
+  <div id="menu-background"></div>
+  <header class="fixed top-0 left-0 w-full z-50 bg-surface/30 backdrop-blur-xl border-b border-on-surface/5 transition-all duration-300 py-4 md:py-6">
+    <nav class="flex justify-between items-center w-full px-6 md:px-16 max-w-[1200px] mx-auto">
+      <div class="flex items-center">
+        <a href="cafe_luxury_2.html" class="font-display-lg text-[18px] md:text-[26px] text-primary tracking-tighter">ELIXIR & OAK</a>
+      </div>
+      <div class="hidden md:flex items-center space-x-8 text-white">
+        <a class="nav-link-underline font-label-caps text-[11px] text-white transition-all duration-300 hover:scale-105" href="cafe_luxury_2.html">Home</a>
+        <a class="nav-link-underline font-label-caps text-[11px] text-secondary hover:text-white transition-all duration-300 hover:scale-105" href="#menu">Menu</a>
+        <a class="nav-link-underline font-label-caps text-[11px] text-secondary hover:text-white transition-all duration-300 hover:scale-105" href="cafe_luxury_2.html#reservations">Reservations</a>
+        <a class="nav-link-underline font-label-caps text-[11px] text-secondary hover:text-white transition-all duration-300 hover:scale-105" href="cafe_luxury_2.html#contact">Contact</a>
+      </div>
+      <div class="flex items-center gap-3">
+        <a href="tel:+919820000000" class="hidden md:flex items-center gap-2 border border-white/30 text-white px-4 py-2 font-label-caps text-[10px] hover:bg-white/10 transition-500 whitespace-nowrap">
+          <span class="material-symbols-outlined text-[14px]">call</span> CALL
+        </a>
+        <button onclick="document.location.href='cafe_luxury_2.html#reservations'" class="cta-shimmer border border-white/30 text-white px-5 py-2 font-label-caps text-[11px] hover:bg-white/10 transition-500 whitespace-nowrap">
+          Book a Table
+        </button>
+        <button onclick="toggleMobileMenu()" class="md:hidden text-white p-1">
+          <span class="material-symbols-outlined" id="mob-menu-icon">menu</span>
+        </button>
+      </div>
+    </nav>
+    <div id="mobile-menu" class="md:hidden border-t border-on-surface/10 bg-black/80 backdrop-blur-xl">
+      <div class="flex flex-col px-6 py-4 gap-4">
+        <a class="font-label-caps text-[11px] text-white py-2 border-b border-on-surface/5" href="cafe_luxury_2.html">HOME</a>
+        <a class="font-label-caps text-[11px] text-white py-2 border-b border-on-surface/5" href="#menu" onclick="closeMobileMenu()">MENU</a>
+        <a class="font-label-caps text-[11px] text-white py-2 border-b border-on-surface/5" href="cafe_luxury_2.html#reservations" onclick="closeMobileMenu()">RESERVATIONS</a>
+        <a class="font-label-caps text-[11px] text-white py-2 border-b border-on-surface/5" href="cafe_luxury_2.html#contact" onclick="closeMobileMenu()">CONTACT</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 pt-28 pb-20 px-6 md:px-16">
+    <section class="max-w-[1200px] mx-auto pb-20">
+      <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-center">
+        <div class="space-y-6 text-white">
+          <span class="font-label-caps text-label-caps tracking-[0.4em] text-tertiary-fixed">MENU & TASTING ROOM</span>
+          <h1 class="font-display-lg text-[42px] md:text-[64px] leading-tight">Explore our curated menu with Mumbai-inspired flavors.</h1>
+          <p class="max-w-2xl font-body-lg text-white/80">From artisanal coffees to botanical elixirs, every dish is crafted to be part of the ritual.</p>
+          <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
+            <a href="#menu" class="inline-flex items-center justify-center gap-3 border border-white/30 text-white px-10 py-4 font-label-caps text-label-caps hover:bg-white/10 transition-500">View Menu</a>
+            <a href="cafe_luxury_2.html" class="inline-flex items-center justify-center gap-3 border border-tertiary-fixed text-tertiary-fixed px-10 py-4 font-label-caps text-label-caps hover:bg-tertiary-fixed/10 transition-500">Back to Home</a>
+          </div>
+        </div>
+        <div class="relative overflow-hidden rounded-3xl bg-white/10 border border-white/10 p-6 backdrop-blur-xl">
+          <div class="grid gap-4">
+            <div class="p-6 rounded-3xl bg-white/10 border border-white/10">
+              <span class="font-label-caps text-[10px] tracking-widest text-tertiary-fixed">FEATURE</span>
+              <h2 class="mt-3 text-[28px] font-headline-lg">Oak Barrel Aged Coffee</h2>
+              <p class="mt-3 text-body-md text-white/80">Distinctive blend aged in oak barrels for a rich, rounded finish.</p>
+            </div>
+            <div class="grid grid-cols-2 gap-4 text-center">
+              <div class="rounded-3xl bg-white/10 p-5 border border-white/10">
+                <p class="text-[28px] font-display-lg">96.5</p>
+                <span class="text-[10px] tracking-widest text-white/70">CUPPING SCORE</span>
+              </div>
+              <div class="rounded-3xl bg-white/10 p-5 border border-white/10">
+                <p class="text-[28px] font-display-lg">14</p>
+                <span class="text-[10px] tracking-widest text-white/70">ORIGINS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="max-w-[1200px] mx-auto bg-white/10 rounded-[2rem] p-6 md:p-10 border border-white/10 backdrop-blur-xl shadow-2xl shadow-black/10">
+      <div id="menu-tabs" class="flex flex-wrap justify-center gap-3 mb-12">
+        <button onclick="switchMenuTab('coffees')" class="menu-tab active font-label-caps text-[10px] tracking-widest text-white px-5 py-3 transition-all" data-tab="coffees">Coffees</button>
+        <button onclick="switchMenuTab('food')" class="menu-tab font-label-caps text-[10px] tracking-widest text-white/60 hover:text-white px-5 py-3 transition-all" data-tab="food">Food</button>
+        <button onclick="switchMenuTab('desserts')" class="menu-tab font-label-caps text-[10px] tracking-widest text-white/60 hover:text-white px-5 py-3 transition-all" data-tab="desserts">Desserts</button>
+        <button onclick="switchMenuTab('elixirs')" class="menu-tab font-label-caps text-[10px] tracking-widest text-white/60 hover:text-white px-5 py-3 transition-all" data-tab="elixirs">Elixirs</button>
+      </div>
+
+      <div id="menu-items" class="grid gap-5 md:grid-cols-3"></div>
+      <div id="menu-no-results" class="text-center text-white/70 py-20 hidden">
+        <p class="font-headline-md text-[18px]">No menu items available.</p>
+        <p class="mt-3 text-[14px]">Update <code>assets/menu_images/menu.json</code> with items to show them here.</p>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+function toggleMobileMenu() {
+  const m = document.getElementById('mobile-menu');
+  const icon = document.getElementById('mob-menu-icon');
+  m.classList.toggle('open');
+  icon.textContent = m.classList.contains('open') ? 'close' : 'menu';
+}
+function closeMobileMenu() {
+  const m = document.getElementById('mobile-menu');
+  const icon = document.getElementById('mob-menu-icon');
+  m.classList.remove('open');
+  icon.textContent = 'menu';
+}
+let menuData = [];
+
+function switchMenuTab(tab) {
+  document.querySelectorAll('.menu-tab').forEach(t => {
+    t.classList.remove('active');
+    t.classList.add('text-white/60');
+    t.classList.remove('text-white');
+  });
+  const activeTab = document.querySelector(`[data-tab="${tab}"]`);
+  if (activeTab) {
+    activeTab.classList.add('active', 'text-white');
+    activeTab.classList.remove('text-white/60');
+  }
+  renderMenuItems(tab);
+}
+
+function renderMenuItems(category) {
+  const container = document.getElementById('menu-items');
+  const noResults = document.getElementById('menu-no-results');
+  const items = menuData.filter(item => item.category === category);
+
+  container.innerHTML = '';
+  if (!items.length) {
+    noResults.classList.remove('hidden');
+    return;
+  }
+
+  noResults.classList.add('hidden');
+  items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'card-hover rounded-3xl overflow-hidden border border-white/10 bg-black/30';
+
+    const imageWrapper = document.createElement('div');
+    imageWrapper.className = 'h-56 overflow-hidden bg-surface/10';
+
+    if (item.image) {
+      const img = document.createElement('img');
+      img.className = 'w-full h-full object-cover';
+      img.src = item.image.startsWith('http') ? item.image : `assets/menu_images/${item.image}`;
+      img.alt = item.name;
+      img.onerror = () => { img.style.display = 'none'; };
+      imageWrapper.appendChild(img);
+    }
+
+    const body = document.createElement('div');
+    body.className = 'p-5';
+
+    const titleRow = document.createElement('div');
+    titleRow.className = 'flex justify-between items-baseline mb-2';
+
+    const title = document.createElement('h4');
+    title.className = 'font-headline-md text-[18px]';
+    title.textContent = item.name;
+
+    const price = document.createElement('span');
+    price.className = 'text-tertiary-fixed font-display-lg text-[16px]';
+    price.textContent = item.price || '';
+
+    titleRow.appendChild(title);
+    titleRow.appendChild(price);
+
+    const description = document.createElement('p');
+    description.className = 'text-[13px] text-white/70';
+    description.textContent = item.description || '';
+
+    body.appendChild(titleRow);
+    body.appendChild(description);
+
+    if (item.tag) {
+      const tag = document.createElement('span');
+      tag.className = 'inline-block mt-3 font-label-caps text-[9px] tracking-widest text-tertiary-fixed border border-tertiary-fixed/30 px-2 py-1';
+      tag.textContent = item.tag;
+      body.appendChild(tag);
+    }
+
+    card.appendChild(imageWrapper);
+    card.appendChild(body);
+    container.appendChild(card);
+  });
+}
+
+async function loadMenuData() {
+  try {
+    const response = await fetch('http://localhost:5000/api/v1/menu/public');
+    if (!response.ok) throw new Error('Unable to load menu from API');
+    const body = await response.json();
+    const categories = body?.data?.categories;
+    if (Array.isArray(categories)) {
+      menuData = [];
+      const tabContainer = document.getElementById('menu-tabs');
+      tabContainer.innerHTML = '';
+      categories.forEach((cat, idx) => {
+        const slug = (cat.slug || cat.name || '').toLowerCase();
+        (cat.items || []).forEach(item => {
+          menuData.push({
+            name: item.name || 'Menu Item',
+            price: item.price ? `₹${Number(item.price).toLocaleString()}` : '',
+            description: item.description || '',
+            category: slug,
+            image: item.image || '',
+            tag: item.tag || '',
+          });
+        });
+        const btn = document.createElement('button');
+        btn.onclick = () => switchMenuTab(slug);
+        btn.className = `menu-tab font-label-caps text-[10px] tracking-widest text-white/60 hover:text-white px-5 py-3 transition-all${idx === 0 ? ' active text-white' : ''}`;
+        btn.dataset.tab = slug;
+        btn.textContent = cat.name || slug;
+        tabContainer.appendChild(btn);
+      });
+      
+      if (categories.length > 0) {
+        const firstSlug = (categories[0].slug || categories[0].name || '').toLowerCase();
+        switchMenuTab(firstSlug);
+        return;
+      }
+    }
+  } catch (error) {
+    console.error('Failed to load menu data:', error);
+    menuData = [];
+  }
+
+  renderMenuItems('coffees');
+}
+
+function startMenuAnimation() {
+  const canvas = document.getElementById('menu-canvas');
+  const gl = canvas.getContext('webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;v.y=1.-v.y;gl_Position=vec4(p,0,1);}`;
+  const fs = `precision highp float;varying vec2 v;uniform float t;void main(){float n=sin(v.x*10.+t)*cos(v.y*8.-t*.5)+sin(v.y*15.+t*.7)*cos(v.x*12.+t*.3);vec3 c=mix(vec3(.06,.06,.06),vec3(.11,.11,.11),n*.5+.5);c+=vec3(.78,.58,.25)*pow(max(0.,n),5.)*.1;gl_FragColor=vec4(c,1);}`;
+  function sh(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  const pos = gl.getAttribLocation(prog, 'p');
+  const tLoc = gl.getUniformLocation(prog, 't');
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,-1,1,1,-1,1,1]), gl.STATIC_DRAW);
+  function render(time) {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    gl.useProgram(prog);
+    gl.enableVertexAttribArray(pos);
+    gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+    gl.uniform1f(tLoc, time * .001);
+    gl.drawArrays(gl.TRIANGLES, 0, 6);
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+}
+window.addEventListener('DOMContentLoaded', () => {
+  startMenuAnimation();
+  loadMenuData();
+});
+</script>
+</body>
+</html>

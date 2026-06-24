@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elixir & Oak</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/app.css">
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/utils.js"></script>
+  <script src="assets/js/store.js"></script>
+  <script src="assets/js/api.js"></script>
+  <script src="assets/js/components/toast.js"></script>
+  <script src="assets/js/router.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#3a2a1a',
+            secondary: '#7a6a5a',
+            surface: '#faf7f2',
+            'surface-container': '#f0ebe3',
+            'surface-container-high': '#e5ddd3',
+            'on-primary': '#faf7f2',
+            'on-surface': '#3a2a1a',
+            tertiary: '#c9a96e',
+            'tertiary-fixed': '#c9a96e',
+          },
+          fontFamily: { display: ['Bodoni Moda', 'serif'], body: ['DM Sans', 'sans-serif'] },
+        },
+      },
+    };
+  </script>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+  <!-- Top Navigation -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-on-surface/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <button id="menu-toggle" class="md:hidden text-primary p-1" aria-label="Toggle menu">☰</button>
+        <a href="#/customer/menu" class="font-display text-xl font-bold text-primary tracking-tight">ELIXIR & OAK</a>
+      </div>
+      <div class="hidden md:flex items-center gap-6">
+        <a href="#/customer/menu" class="text-sm text-secondary hover:text-primary transition-500">Menu</a>
+        <a href="#/customer/cart" class="text-sm text-secondary hover:text-primary transition-500 relative">
+          Cart
+          <span id="cart-badge" class="absolute -top-2 -right-4 bg-primary text-on-primary text-[10px] w-4 h-4 rounded-full flex items-center justify-center hidden"></span>
+        </a>
+        <a href="#/customer/reservations" class="text-sm text-secondary hover:text-primary transition-500">Reservations</a>
+      </div>
+      <div id="app-nav"></div>
+    </div>
+    <!-- Mobile menu drawer -->
+    <div id="mobile-sidebar" class="fixed top-0 left-0 h-full w-64 bg-surface z-50 shadow-2xl -translate-x-full md:hidden">
+      <div class="p-6 border-b border-on-surface/5">
+        <div class="flex justify-between items-center">
+          <span class="font-display text-lg font-bold text-primary">Menu</span>
+          <button id="mobile-close" class="text-secondary p-1">✕</button>
+        </div>
+      </div>
+      <nav class="p-4 space-y-1" id="mobile-nav-links">
+        <a href="#/customer/menu" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">🍽️ Menu</a>
+        <a href="#/customer/cart" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">🛒 Cart</a>
+        <a href="#/customer/orders" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">📋 Orders</a>
+        <a href="#/customer/reservations" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">📅 Reservations</a>
+        <a href="#/customer/favorites" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">❤️ Favorites</a>
+        <a href="#/customer/addresses" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">📍 Addresses</a>
+        <a href="#/customer/loyalty" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">⭐ Loyalty</a>
+        <a href="#/customer/notifications" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">🔔 Notifications</a>
+        <a href="#/customer/support" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500">💬 Support</a>
+        <hr class="my-2 border-on-surface/10">
+        <a href="#/auth/login" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500" id="mobile-login-link">🔑 Login</a>
+        <a href="#/auth/register" class="block px-4 py-3 text-sm text-secondary hover:text-primary hover:bg-surface-container-high rounded-lg transition-500" id="mobile-register-link">📝 Register</a>
+      </nav>
+    </div>
+  </header>
+  <!-- Main Content -->
+  <main class="pt-16 min-h-screen" id="app-content"></main>
+  <!-- Footer -->
+  <footer class="bg-primary text-on-primary py-12 mt-16">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 text-center">
+      <p class="font-display text-xl mb-2">ELIXIR & OAK</p>
+      <p class="text-sm opacity-70">© 2026 Elixir & Oak. All rights reserved.</p>
+    </div>
+  </footer>
+  <!-- Page Scripts -->
+  <script src="assets/js/pages/auth/login.js"></script>
+  <script src="assets/js/pages/auth/register.js"></script>
+  <script src="assets/js/pages/auth/forgot-password.js"></script>
+  <script src="assets/js/pages/auth/reset-password.js"></script>
+  <script src="assets/js/pages/customer/dashboard.js"></script>
+  <script src="assets/js/pages/customer/menu.js"></script>
+  <script src="assets/js/pages/customer/cart.js"></script>
+  <script src="assets/js/pages/customer/checkout.js"></script>
+  <script src="assets/js/pages/customer/payment.js"></script>
+  <script src="assets/js/pages/customer/orders.js"></script>
+  <script src="assets/js/pages/customer/reservations.js"></script>
+  <script src="assets/js/pages/customer/favorites.js"></script>
+  <script src="assets/js/pages/customer/addresses.js"></script>
+  <script src="assets/js/pages/customer/loyalty.js"></script>
+  <script src="assets/js/pages/customer/coupons.js"></script>
+  <script src="assets/js/pages/customer/giftcards.js"></script>
+  <script src="assets/js/pages/customer/recommendations.js"></script>
+  <script src="assets/js/pages/customer/notifications.js"></script>
+  <script src="assets/js/pages/customer/support.js"></script>
+  <script src="assets/js/pages/admin/dashboard.js"></script>
+  <script src="assets/js/pages/admin/menu-management.js"></script>
+  <script src="assets/js/pages/admin/reservations.js"></script>
+  <script src="assets/js/pages/admin/orders.js"></script>
+  <script src="assets/js/pages/admin/kitchen.js"></script>
+  <script src="assets/js/pages/admin/inventory.js"></script>
+  <script src="assets/js/pages/admin/crm.js"></script>
+  <script src="assets/js/pages/admin/marketing.js"></script>
+  <script src="assets/js/pages/admin/branches.js"></script>
+  <script src="assets/js/pages/admin/reports.js"></script>
+  <script src="assets/js/pages/admin/audit-logs.js"></script>
+  <script src="assets/js/pages/admin/jobs.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

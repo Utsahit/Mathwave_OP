@@ -1,0 +1,108 @@
+{
+  "items": [
+    {
+      "id": "malabar-cold-brew",
+      "name": "Malabar Cold Brew",
+      "category": "coffees",
+      "description": "House-steeped 18 hrs with cardamom and dark chocolate.",
+      "price": "₹450",
+      "image": "https://images.unsplash.com/photo-1517668808822-9ebb02ae2a0e?w=400&h=300&fit=crop",
+      "tag": "SIGNATURE"
+    },
+    {
+      "id": "yirgacheffe-pour-over",
+      "name": "Yirgacheffe Pour Over",
+      "category": "coffees",
+      "description": "Jasmine, lemongrass, and white peach. Single origin Ethiopia.",
+      "price": "₹550",
+      "image": "https://images.unsplash.com/photo-1512568400610-62da28bc8a13?w=400&h=300&fit=crop",
+      "tag": "SINGLE ORIGIN"
+    },
+    {
+      "id": "saffron-cortado",
+      "name": "Saffron Cortado",
+      "category": "coffees",
+      "description": "Double shot espresso, Kashmiri saffron steamed milk, rose water mist.",
+      "price": "₹480",
+      "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=400&h=300&fit=crop",
+      "tag": "HOUSE SPECIAL"
+    },
+    {
+      "id": "bombay-brioche",
+      "name": "Bombay Brioche",
+      "category": "food",
+      "description": "Masala-spiced berry compote, clotted cream, gold leaf.",
+      "price": "₹850",
+      "image": "https://images.unsplash.com/photo-1550507-da09e0f0e02c?w=400&h=300&fit=crop",
+      "tag": "BESTSELLER"
+    },
+    {
+      "id": "saffron-risotto",
+      "name": "Saffron Risotto",
+      "category": "food",
+      "description": "Kashmiri saffron, toasted pine nuts, local artisanal parmesan.",
+      "price": "₹1,250",
+      "image": "https://images.unsplash.com/photo-1545074519-a6d24e3b1beb?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "truffle-brioche-toast",
+      "name": "Truffle Brioche Toast",
+      "category": "food",
+      "description": "Cultured butter, local honey, shaved black truffle from Uttarakhand.",
+      "price": "₹980",
+      "image": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "cacao-sea-salt",
+      "name": "Cacao & Sea Salt",
+      "category": "desserts",
+      "description": "72% dark single-origin mousse, Alibaug sea salt caramel.",
+      "price": "₹650",
+      "image": "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&h=300&fit=crop",
+      "tag": "SIGNATURE"
+    },
+    {
+      "id": "gulab-creme-brulee",
+      "name": "Gulab Crème Brûlée",
+      "category": "desserts",
+      "description": "Classic custard infused with gulab jal, torched to order.",
+      "price": "₹580",
+      "image": "https://images.unsplash.com/photo-1508737764454-e6b99dc6faf1?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "cardamom-mille-feuille",
+      "name": "Cardamom Mille-Feuille",
+      "category": "desserts",
+      "description": "Flaky laminated pastry, elaichi-scented cream, saffron glaze.",
+      "price": "₹720",
+      "image": "https://images.unsplash.com/photo-1535294874716-864efb7a7f40?w=400&h=300&fit=crop"
+    },
+    {
+      "id": "oak-botanical-gin",
+      "name": "Oak Botanical Gin",
+      "category": "elixirs",
+      "description": "House-infused gin with coastal botanicals, tonic, cucumber ribbon.",
+      "price": "₹950",
+      "image": "https://images.unsplash.com/photo-1608481246814-4af26fc655cb?w=400&h=300&fit=crop",
+      "tag": "AFTER 6PM"
+    },
+    {
+      "id": "negroni-mumbai",
+      "name": "Negroni Mumbai",
+      "category": "elixirs",
+      "description": "Campari, aged vermouth, local craft gin, orange bitters.",
+      "price": "₹1,100",
+      "image": "https://images.unsplash.com/photo-1608681299424-0e16b0d63f31?w=400&h=300&fit=crop",
+      "tag": "AFTER 6PM"
+    },
+    {
+      "id": "rose-lassi-spritz",
+      "name": "Rose Lassi Spritz",
+      "category": "elixirs",
+      "description": "Chilled lassi, rose syrup, Malabar pepper, kombucha fizz.",
+      "price": "₹380",
+      "image": "https://images.unsplash.com/photo-1590080876-a47ae0e99934?w=400&h=300&fit=crop",
+      "tag": "ZERO PROOF"
+    }
+  ]
+}
