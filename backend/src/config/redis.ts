@@ -9,8 +9,10 @@ let redis: Redis | null = null;
  */
 export function getRedisClient(): Redis {
   if (!redis) {
+    const isProduction = env.NODE_ENV === 'production';
     redis = new Redis(env.REDIS_URL, {
       maxRetriesPerRequest: null, // Required by BullMQ to run background tasks reliably
+      ...(isProduction && !env.REDIS_URL.startsWith('rediss://') ? { tls: {} } : {}),
       retryStrategy(times) {
         // Exponential backoff strategy, cap delay at 3 seconds
         const delay = Math.min(times * 100, 3000);
